@@ -1,6 +1,6 @@
 # Zipcard
 
-Zipcard is a simple to use resume sharing application to be used by recruiters and potential candidates at functions such as career fairs. The application uses the power of NFC (Near Field Communication) technology in order to quickly share resumes between individuals. 
+Zipcard is a simple to use resume sharing application to be used by recruiters and potential candidates at functions such as career fairs. The application uses the power of NFC (Near Field Communication) technology in order to quickly share resumes between individuals. The application is currently written as an [Ionic](https://ionicframework.com/) 4 Application.
 
 ---
 
@@ -48,5 +48,27 @@ In order to commit changes that you have made to your local repository:
 3. Once all necessary changes have been added, run **git commit -m "<commit message\>"** in order to commit your changes.
 
 Once all changes have been committed, you can now push your commits to the remote repository. In order to do so, simply run **git push origin <branch name\>** in order to push your changes.
+
+---
+
+## Setting up Project
+
+### Installing Node.js and NPM
+
+Node.js and the Node Package Manager (NPM) are required in order to use Ionic. Download both of them [here](https://www.npmjs.com/get-npm).
+
+### Installing Ionic
+
+In order to install Ionic, run the command: **npm install -g ionic cordova** in the terminal, or follow [these](https://ionicframework.com/docs/intro/installation/) instructions from Ionic's website.
+
+### Installing Dependencies
+
+There are dependencies that first need to be installed in order to run the ionic application. Run the command: **npm install** in order to have these installed locally for this project.
+
+---
+
+## Running the Project
+
+After following the steps in *Setting up Project*, run **ionic serve** within the root directory of the Ionic project in order to preview the application on your computer's browser.
 
 ---
