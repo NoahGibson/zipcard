@@ -1,5 +1,7 @@
 {
   "name": "zipcard",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
