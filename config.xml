@@ -86,4 +86,5 @@
         <variable name="APP_ID" value="77kv82auory0bv" />
     </plugin>
     <engine name="android" spec="7.1.4" />
+    <plugin name="phonegap-nfc" spec="^1.0.3" />
 </widget>
