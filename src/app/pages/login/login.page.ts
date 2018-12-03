@@ -16,7 +16,7 @@ export class LoginPage {
 
     constructor(private router: Router, private linkedin: LinkedIn) {}
 
-    ionViewDidAppear() {
+    ionViewDidEnter() {
         this.linkedin.hasActiveSession().then((active) => {
             this.isLoggedIn = active;
         });
