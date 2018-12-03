@@ -1,0 +1,32 @@
+ion-grid {
+  height: 100%;
+  justify-content: center;
+}
+
+ion-row {
+  height: 100%;
+}
+
+#login-content {
+  margin: auto;
+  min-height: 100%;
+  background-image: radial-gradient(#ffffff, #99ccff);
+  text-align: center;
+
+  #login-text {
+    padding: 15px;
+    color: #333333;
+
+    #login-title {
+      font-size: 1.75em;
+      font-weight: bold;
+    }
+
+    #login-subtitle {
+      font-size: 1em;
+      font-style: italic;
+    }
+
+  }
+
+}
