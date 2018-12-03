@@ -10,12 +10,16 @@ ion-row {
 #login-content {
   margin: auto;
   min-height: 100%;
-  background-image: radial-gradient(var(--ion-color-light), var(--ion-color-secondary));
+  background-image: radial-gradient(var(--ion-color-secondary), var(--ion-color-primary));
   text-align: center;
+
+  #login-button, #logout-button {
+    color: var(--ion-color-primary-tint);
+  }
 
   #login-text {
     padding: 15px;
-    color: var(--ion-color-dark);
+    color: var(--ion-color-light);
 
     #login-title {
       font-size: 1.75em;
