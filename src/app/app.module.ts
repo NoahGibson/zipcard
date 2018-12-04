@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { LinkedIn } from '@ionic-native/linkedin/ngx';
 
-import {CoreModule} from '@app/core';
+import {AuthGuard, CoreModule} from '@app/core';
 
 @NgModule({
     declarations: [AppComponent],
@@ -26,7 +26,8 @@ import {CoreModule} from '@app/core';
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        LinkedIn
+        LinkedIn,
+        AuthGuard
     ],
     bootstrap: [AppComponent]
 })
