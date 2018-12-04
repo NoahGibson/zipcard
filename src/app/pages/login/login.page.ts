@@ -9,7 +9,7 @@ import {AuthService} from '@app/core';
 })
 export class LoginPage {
 
-    constructor(public authService: AuthService) {}
+    constructor(private authService: AuthService) {}
 
     login() {
         this.authService.login();
