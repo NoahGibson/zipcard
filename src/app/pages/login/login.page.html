@@ -6,15 +6,15 @@
                     <h1 id="login-title">Welcome to Zipcard</h1>
                     <h3 id="login-subtitle">Recruiting Reimagined</h3>
                 </div>
-                <ion-button *ngIf="isLoggedIn; else isLoggedOut"
-                            id="login-button"
+                <ion-button *ngIf="isAuthenticated(); else isLoggedOut"
+                            id="logout-button"
                             fill="outline"
                             shape="round"
                             (click)="logout()">
                     Logout from&nbsp;<ion-icon name="logo-linkedin"></ion-icon>
                 </ion-button>
                 <ng-template #isLoggedOut>
-                    <ion-button id="logout-button"
+                    <ion-button id="login-button"
                                 fill="outline"
                                 shape="round"
                                 (click)="login()">

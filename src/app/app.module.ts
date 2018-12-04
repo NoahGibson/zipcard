@@ -9,9 +9,9 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
-import { CoreModule } from '@app/core';
-
 import { LinkedIn } from '@ionic-native/linkedin/ngx';
+
+import {CoreModule} from '@app/core';
 
 @NgModule({
     declarations: [AppComponent],

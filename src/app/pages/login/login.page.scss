@@ -10,7 +10,7 @@ ion-row {
 #login-content {
   margin: auto;
   min-height: 100%;
-  background-image: radial-gradient(var(--ion-color-secondary), var(--ion-color-primary));
+  background-image: linear-gradient(60deg, var(--ion-color-primary), var(--ion-color-secondary), var(--ion-color-primary));
   text-align: center;
 
   #login-button, #logout-button {

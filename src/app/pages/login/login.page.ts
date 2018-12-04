@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import {LinkedIn, LinkedInLoginScopes} from '@ionic-native/linkedin/ngx';
-import {Router} from '@angular/router';
+import {AuthService} from '@app/core';
 
 @Component({
     selector: 'app-login',
@@ -10,27 +9,17 @@ import {Router} from '@angular/router';
 })
 export class LoginPage {
 
-    isLoggedIn  = false;
-
-    scopes: LinkedInLoginScopes[] = ['r_basicprofile'];
-
-    constructor(private router: Router, private linkedin: LinkedIn) {}
-
-    ionViewDidEnter() {
-        this.linkedin.hasActiveSession().then((active) => {
-            this.isLoggedIn = active;
-        });
-    }
+    constructor(public authService: AuthService) {}
 
     login() {
-        this.linkedin.login(this.scopes, true)
-            .then(() =>  this.isLoggedIn = true)
-            .catch(e => console.log('Error logging in', e));
+        this.authService.login();
     }
 
     logout() {
-        this.linkedin.logout();
-        this.isLoggedIn = false;
+        this.authService.logout();
     }
 
+    isAuthenticated() {
+        return this.authService.authenticated();
+    }
 }
