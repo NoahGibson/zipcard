@@ -4,7 +4,6 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { LoginPage } from './login.page';
-import {AuthService} from '@app/core';
 
 @NgModule({
     imports: [
@@ -17,9 +16,6 @@ import {AuthService} from '@app/core';
             }
         ])
     ],
-    declarations: [LoginPage],
-    providers: [
-        AuthService
-    ]
+    declarations: [LoginPage]
 })
 export class LoginPageModule {}

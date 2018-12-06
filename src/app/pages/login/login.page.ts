@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import {AuthService} from '@app/core';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -9,7 +10,16 @@ import {AuthService} from '@app/core';
 })
 export class LoginPage {
 
-    constructor(private authService: AuthService) {}
+    readonly HOME_URL = '/home';
+    readonly LOGIN_URL = '/login';
+
+    constructor(private router: Router, private authService: AuthService) {}
+
+    ionViewWillEnter() {
+        if (this.authService.authenticated()) {
+            this.router.navigate([this.HOME_URL]);
+        }
+    }
 
     login() {
         this.authService.login();
