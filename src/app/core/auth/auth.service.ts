@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {LinkedIn, LinkedInLoginScopes} from '@ionic-native/linkedin/ngx';
-import {Router} from '@angular/router';
 import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
@@ -12,7 +11,7 @@ export class AuthService {
 
     authState = new BehaviorSubject(false);
 
-    constructor(private router: Router, private linkedin: LinkedIn) {
+    constructor(private linkedin: LinkedIn) {
         this.linkedin.hasActiveSession().then((active) => {
             this.authState.next(active);
         });

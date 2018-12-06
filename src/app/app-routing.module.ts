@@ -5,7 +5,7 @@ import {AuthGuard} from '@app/core';
 const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', loadChildren: '@app/pages/login/login.module#LoginPageModule' },
-    { path: 'home', loadChildren: '@app/pages/home/home.module#HomePageModule', canActivate: [AuthGuard] }
+    { path: 'home', loadChildren: '@app/pages/home/home.module#HomePageModule' }
 ];
 
 @NgModule({
