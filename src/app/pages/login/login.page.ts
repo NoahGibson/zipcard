@@ -11,12 +11,6 @@ export class LoginPage {
 
     constructor(private authService: AuthService) {}
 
-    // ionViewWillEnter() {
-    //     if (this.authService.authenticated()) {
-    //         this.router.navigate(['home']);
-    //     }
-    // }
-
     login() {
         this.authService.login();
     }

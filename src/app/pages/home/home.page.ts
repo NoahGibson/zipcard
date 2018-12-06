@@ -14,4 +14,8 @@ export class HomePage {
       this.authService.logout();
   }
 
+  getFirstName() {
+    return this.userService.getUser().firstName;
+  }
+
 }
