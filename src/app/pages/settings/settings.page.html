@@ -1,0 +1,63 @@
+<app-header title="Settings"></app-header>
+
+<ion-content padding>
+    <ion-grid>
+
+        <!-- Resume Settings -->
+        <ion-row>
+            <ion-col>
+                <h3>Resume Settings</h3>
+            </ion-col>
+        </ion-row>
+
+        <!-- Send/Receive Settings -->
+        <ion-row>
+            <ion-col>
+                <h3>Send/Receive Settings</h3>
+                <ion-list>
+                    <ion-radio-group>
+                        <ion-list-header>
+                            <ion-label text-wrap>
+                                <p>Select how you want to send and receive resumes</p>
+                            </ion-label>
+                        </ion-list-header>
+                        <ion-item>
+                            <ion-label text-wrap>
+                                <h4>Send & Receive (Default)</h4>
+                                <p>Send your resume to others as well as receive all sent resumes</p>
+                            </ion-label>
+                            <ion-radio slot="start" value="sendReceive"></ion-radio>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label text-wrap>
+                                <h4>Send only</h4>
+                                <p>Send your resume to others but don't receive any sent resumes</p>
+                            </ion-label>
+                            <ion-radio slot="start" value="send"></ion-radio>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label text-wrap>
+                                <h4>Receive only</h4>
+                                <p>Receive all sent resumes but don't send your own</p>
+                            </ion-label>
+                            <ion-radio slot="start" value="receive"></ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </ion-list>
+            </ion-col>
+        </ion-row>
+
+        <!-- Save Settings -->
+        <ion-row>
+            <ion-col>
+                <ion-button id="save-settings"
+                            fill="outline"
+                            shape="round"
+                            (click)="saveSettings()">
+                    Save Changes
+                </ion-button>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
+</ion-content>

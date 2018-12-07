@@ -1,14 +1,38 @@
 <app-header title="Zipcard"></app-header>
 
 <ion-content padding>
-  <h3>
-    Hello, {{ getFirstName() }}!
-  </h3>
-  <ion-button id="logout-button"
-              fill="outline"
-              shape="round"
-              (click)="logout()">
-    Logout
-  </ion-button>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        <h3>
+          Hello, {{ getFirstName() }}!
+        </h3>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button id="settings-button"
+                    fill="outline"
+                    shape="round"
+                    (click)="settings()">
+          Got to Settings
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button id="logout-button"
+                    fill="outline"
+                    shape="round"
+                    (click)="logout()">
+          Logout
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
 
