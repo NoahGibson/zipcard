@@ -5,12 +5,14 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import {SharedModule} from '@app/shared';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
+        SharedModule,
         RouterModule.forChild([
               {
                 path: '',
