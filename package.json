@@ -25,6 +25,7 @@
     "@ionic-native/splash-screen": "5.0.0-beta.21",
     "@ionic-native/status-bar": "5.0.0-beta.21",
     "@ionic/angular": "4.0.0-beta.16",
+    "@ionic/storage": "^2.2.0",
     "cordova-android": "7.1.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
@@ -33,6 +34,7 @@
     "cordova-plugin-splashscreen": "^5.0.2",
     "cordova-plugin-statusbar": "^2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
+    "cordova-sqlite-storage": "2.5.2",
     "core-js": "^2.5.4",
     "phonegap-nfc": "^1.0.3",
     "rxjs": "~6.3.3",
@@ -78,7 +80,8 @@
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
       "cordova-plugin-ionic-keyboard": {},
-      "phonegap-nfc": {}
+      "phonegap-nfc": {},
+      "cordova-sqlite-storage": {}
     },
     "platforms": [
       "android"
