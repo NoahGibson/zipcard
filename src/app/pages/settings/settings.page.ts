@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
+import {UserService} from '@app/core';
 
 @Component({
     selector: 'app-settings',
@@ -8,9 +9,14 @@ import {Router} from '@angular/router';
 })
 export class SettingsPage {
 
-    constructor(private router: Router) {}
+    private srSetting = '';
+
+    constructor(private userService: UserService, private router: Router) {
+        this.srSetting = this.userService.getUserSr();
+    }
 
     saveSettings() {
+        this.userService.setUserSr(this.srSetting);
         this.router.navigate(['home']);
     }
 

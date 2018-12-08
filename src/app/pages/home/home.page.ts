@@ -15,12 +15,8 @@ export class HomePage {
       this.authService.logout();
   }
 
-  settings() {
-    this.router.navigate(['settings']);
-  }
-
   getFirstName() {
-    return this.userService.getUser().firstName;
+    return this.userService.getUserName().firstName;
   }
 
 }

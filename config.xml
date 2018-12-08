@@ -86,6 +86,6 @@
         <variable name="APP_ID" value="77kv82auory0bv" />
     </plugin>
     <plugin name="phonegap-nfc" spec="^1.0.3" />
-    <engine name="android" spec="7.1.4" />
     <plugin name="cordova-sqlite-storage" spec="2.5.2" />
+    <engine name="android" spec="7.1.4" />
 </widget>
