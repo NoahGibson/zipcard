@@ -42,13 +42,23 @@ export class UserService {
         return this.userSettings.sendReceive;
     }
 
-    setUserSr(sendReceive: string) {
+    setUserSr(sendReceive: string): Promise<boolean> {
         if (sendReceive.match(/sr|so|ro/)) {
-            this.storage.set(this.userData.value.id, {sendReceive: sendReceive})
-                .then(() => {
-                    this.userSettings.sendReceive = sendReceive;
-                })
-                .catch(e => console.log('Unable to update user settings', e));
+            return new Promise((resolve) => {
+                this.storage.set(this.userData.value.id, {sendReceive: sendReceive})
+                    .then(() => {
+                        this.userSettings.sendReceive = sendReceive;
+                        resolve(true);
+                    })
+                    .catch(e => {
+                        console.log('Unable to update user settings', e);
+                        resolve(false);
+                    });
+            });
+        } else {
+            return new Promise((resolve) => {
+                resolve(false);
+            });
         }
     }
 

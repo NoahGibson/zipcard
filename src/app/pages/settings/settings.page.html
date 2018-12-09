@@ -51,10 +51,20 @@
         <ion-row>
             <ion-col>
                 <ion-button id="save-settings"
+                            class="button-confirm"
                             fill="outline"
                             shape="round"
                             (click)="saveSettings()">
                     Save Changes
+                </ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button id="cancel"
+                            class="button-cancel"
+                            fill="outline"
+                            shape="round"
+                            (click)="cancel()">
+                    Cancel
                 </ion-button>
             </ion-col>
         </ion-row>
