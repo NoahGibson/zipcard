@@ -8,6 +8,10 @@ import {Storage} from '@ionic/storage';
 })
 export class UserService {
 
+    firstName: BehaviorSubject<string> | '' = '';
+    lastName: BehaviorSubject<string> | '' = '';
+    id: BehaviorSubject<string> | null = null;
+
     userData = new BehaviorSubject({id: '', firstName: '', lastName: ''});
     userSettings = {sendReceive: 'sr'};
 
@@ -41,7 +45,7 @@ export class UserService {
         return this.userData.value.id;
     }
 
-    getUserSr(): 'sr' | 'so' | 'ro' {
+    getUserSr() {
         return this.userSettings.sendReceive;
     }
 

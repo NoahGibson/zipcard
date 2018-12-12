@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {BehaviorSubject} from 'rxjs';
+
 import {AuthService, UserService} from '@app/core';
 
 @Component({
@@ -8,14 +10,17 @@ import {AuthService, UserService} from '@app/core';
 })
 export class HomePage {
 
-  constructor(private userService: UserService, private authService: AuthService) {}
+    private firstName: BehaviorSubject<string> | null;
+    private lastName: BehaviorSubject<string> | null;
 
-  logout() {
-      this.authService.logout();
-  }
+    constructor(private userService: UserService, private authService: AuthService) {}
 
-  getFirstName() {
-    return this.userService.getUserName().firstName;
-  }
+    logout() {
+        this.authService.logout();
+    }
+
+    getFirstName() {
+        return this.userService.getUserName().firstName;
+    }
 
 }
