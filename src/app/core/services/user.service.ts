@@ -31,7 +31,8 @@ export class UserService {
             this._lastName.next(user.lastName);
             this._id.next(user.id);
             // Getting profile image
-            const profile_img = await this.linkedin.getRequest(`people/${this._id.value}/picture-url`);
+            let profile_img: string = await this.linkedin.getRequest(`people/${this._id.value}/picture-url`);
+            profile_img = profile_img.replace(/"/g, ''); // Removing added quotes
             this._picture_url.next(profile_img);
         } catch (e) {
             console.log('Unable to fetch user data', e);

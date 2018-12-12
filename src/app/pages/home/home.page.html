@@ -1,6 +1,19 @@
 <app-header title="Zipcard"></app-header>
 
 <ion-content padding>
+  <ion-grid class="profile-overview">
+    <ion-row>
+      <ion-col>
+        <img [src]="userService.picture_url | async" alt="Profile Image" />
+      </ion-col>
+      <ion-col>
+        <h3>
+          {{ userService.firstName | async }} {{ userService.lastName | async }}
+        </h3>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-grid>
 
     <ion-row>
