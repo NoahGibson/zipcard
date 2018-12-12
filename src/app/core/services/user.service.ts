@@ -16,17 +16,26 @@ export class UserService {
     private _id: BehaviorSubject<string>  = new BehaviorSubject('');
     public readonly id: Observable<string> = this._id.asObservable();
 
+    private _picture_url: BehaviorSubject<string> = new BehaviorSubject('');
+    public readonly picture_url: Observable<string> = this._picture_url.asObservable();
+
     constructor(private linkedin: LinkedIn) {
         this.fetchUserData();
     }
 
-    private fetchUserData() {
-        this.linkedin.getRequest('people/~')
-            .then(user => {
-                this._firstName.next(user.firstName);
-                this._lastName.next(user.lastName);
-                this._id.next(user.id);
-            }).catch(e => console.log('Unable to retrieve user data', e));
+    private async fetchUserData() {
+        try {
+            // Getting basic profile data
+            const user = await this.linkedin.getRequest('people/~');
+            this._firstName.next(user.firstName);
+            this._lastName.next(user.lastName);
+            this._id.next(user.id);
+            // Getting profile image
+            const profile_img = await this.linkedin.getRequest(`people/${this._id.value}/picture-url`);
+            this._picture_url.next(profile_img);
+        } catch (e) {
+            console.log('Unable to fetch user data', e);
+        }
     }
 
 }
