@@ -25,18 +25,20 @@ export class UserService {
 
     private async fetchUserData() {
         try {
-            // Getting basic profile data
-            const user = await this.linkedin.getRequest('people/~');
+            const user: {
+                firstName,
+                lastName,
+                id,
+                pictureUrl
+            } = await this.linkedin.getRequest('people/~:(id,first-name,last-name,picture-url)');
             this._firstName.next(user.firstName);
             this._lastName.next(user.lastName);
             this._id.next(user.id);
-            // Getting profile image
-            let profile_img: string = await this.linkedin.getRequest(`people/${this._id.value}/picture-url`);
-            profile_img = profile_img.replace(/"/g, ''); // Removing added quotes
-            this._picture_url.next(profile_img);
+            this._picture_url.next(user.pictureUrl);
         } catch (e) {
             console.log('Unable to fetch user data', e);
         }
     }
 
 }
+
