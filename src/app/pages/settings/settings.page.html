@@ -26,21 +26,21 @@
                                 <h4>Send & Receive (Default)</h4>
                                 <p>Send your resume to others as well as receive all sent resumes</p>
                             </ion-label>
-                            <ion-radio slot="start" value="sr"></ion-radio>
+                            <ion-radio slot="start" value="{{ settingsService.SR_SETTING_VAL }}"></ion-radio>
                         </ion-item>
                         <ion-item>
                             <ion-label text-wrap>
                                 <h4>Send only (Candidate)</h4>
                                 <p>Send your resume to others but don't receive any sent resumes</p>
                             </ion-label>
-                            <ion-radio slot="start" value="so"></ion-radio>
+                            <ion-radio slot="start" value="{{ settingsService.SO_SETTING_VAL }}"></ion-radio>
                         </ion-item>
                         <ion-item>
                             <ion-label text-wrap>
                                 <h4>Receive only (Recruiter)</h4>
                                 <p>Receive all sent resumes but don't send your own</p>
                             </ion-label>
-                            <ion-radio slot="start" value="ro"></ion-radio>
+                            <ion-radio slot="start" value="{{ settingsService.RO_SETTING_VAL }}"></ion-radio>
                         </ion-item>
                     </ion-radio-group>
                 </ion-list>

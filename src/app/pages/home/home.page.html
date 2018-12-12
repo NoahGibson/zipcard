@@ -6,7 +6,7 @@
     <ion-row>
       <ion-col>
         <h3>
-          Hello, {{ getFirstName() }}!
+          Hello, {{ userService.firstName | async }}!
         </h3>
       </ion-col>
     </ion-row>

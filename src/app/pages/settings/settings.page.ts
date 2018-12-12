@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
 
-import {UserService} from '@app/core';
+import {SettingsService} from '@app/core';
 
 @Component({
     selector: 'app-settings',
@@ -11,10 +11,14 @@ import {UserService} from '@app/core';
 })
 export class SettingsPage {
 
-    private srSetting = '';
+    srSetting = '';
 
-    constructor(private userService: UserService, private router: Router, private toastController: ToastController) {
-        this.srSetting = this.userService.getUserSr();
+    constructor(public settingsService: SettingsService,
+                private router: Router,
+                private toastController: ToastController) {
+        this.settingsService.sendReceive.subscribe((setting) => {
+            this.srSetting = setting;
+        });
     }
 
     private async presentToast(msg) {
@@ -29,19 +33,14 @@ export class SettingsPage {
         toast.present();
     }
 
-    saveSettings() {
-        this.userService.setUserSr(this.srSetting)
-            .then((success) => {
-                if (success) {
-                    this.presentToast('Settings saved.')
-                        .then(() => {
-                            this.router.navigate(['home']);
-                        }
-                    );
-                } else {
-                    this.presentToast('Failed to save settings.');
-                }
-            });
+    async saveSettings() {
+        try {
+            await this.settingsService.setSendReceiveSetting(this.srSetting);
+            await this.presentToast('Settings saved.');
+            this.router.navigate(['home']);
+        } catch (e) {
+            this.presentToast('Failed to save settings.');
+        }
     }
 
     cancel() {

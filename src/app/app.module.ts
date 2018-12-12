@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { LinkedIn } from '@ionic-native/linkedin/ngx';
 
-import {AuthGuard, AuthService, CoreModule, UserService} from '@app/core';
+import {AuthGuard, AuthService, CoreModule, SettingsService, UserService} from '@app/core';
 
 @NgModule({
     declarations: [AppComponent],
@@ -31,7 +31,8 @@ import {AuthGuard, AuthService, CoreModule, UserService} from '@app/core';
         LinkedIn,
         AuthService,
         AuthGuard,
-        UserService
+        UserService,
+        SettingsService
     ],
     bootstrap: [AppComponent]
 })
