@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {LinkedIn} from '@ionic-native/linkedin/ngx';
 import {BehaviorSubject} from 'rxjs';
-
 import {Storage} from '@ionic/storage';
 
 @Injectable({
@@ -13,9 +12,9 @@ export class UserService {
     userSettings = {sendReceive: 'sr'};
 
     constructor(private storage: Storage, private linkedin: LinkedIn) {
+        // Getting user profile data from linkedin
         this.linkedin.getRequest('people/~')
             .then(user => {
-                // Getting user profile data from linkedin
                 this.userData.next(user);
             })
             .then(() => {
@@ -38,7 +37,11 @@ export class UserService {
         };
     }
 
-    getUserSr() {
+    getUserId() {
+        return this.userData.value.id;
+    }
+
+    getUserSr(): 'sr' | 'so' | 'ro' {
         return this.userSettings.sendReceive;
     }
 

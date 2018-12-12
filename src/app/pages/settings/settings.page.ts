@@ -11,7 +11,7 @@ import {UserService} from '@app/core';
 })
 export class SettingsPage {
 
-    private srSetting = '';
+    private srSetting: 'sr' | 'so' | 'ro';
 
     constructor(private userService: UserService, private router: Router, private toastController: ToastController) {
         this.srSetting = this.userService.getUserSr();
