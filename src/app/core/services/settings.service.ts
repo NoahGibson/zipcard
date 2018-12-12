@@ -21,23 +21,29 @@ export class SettingsService {
         this.fetchSettingsData();
     }
 
-    private fetchSettingsData() {
-        this.storage.get(this.SEND_RECEIVE_SETTING)
-            .then((setting) => {
-                if (setting) {
-                    this._sendReceive.next(setting);
-                } else {
-                    this.storage.set(this.SEND_RECEIVE_SETTING, this.SR_SETTING_VAL);
-                }
-            }).catch(e => console.log('Unable to fetch settings', e));
+    private async fetchSettingsData() {
+        try {
+            const setting = await this.storage.get(this.SEND_RECEIVE_SETTING);
+            if (setting) {
+                this._sendReceive.next(setting);
+            } else {
+                this.storage.set(this.SEND_RECEIVE_SETTING, this.SR_SETTING_VAL);
+            }
+        } catch (e) {
+            console.log('Unable to fetch settings', e);
+        }
     }
 
     public async setSendReceiveSetting(sendReceive: string) {
-        if (sendReceive === this.SR_SETTING_VAL
-            || sendReceive === this.SO_SETTING_VAL
-            || sendReceive === this.RO_SETTING_VAL) {
-            await this.storage.set(this.SEND_RECEIVE_SETTING, sendReceive);
-            this._sendReceive.next(sendReceive);
+        try {
+            if (sendReceive === this.SR_SETTING_VAL
+                || sendReceive === this.SO_SETTING_VAL
+                || sendReceive === this.RO_SETTING_VAL) {
+                await this.storage.set(this.SEND_RECEIVE_SETTING, sendReceive);
+                this._sendReceive.next(sendReceive);
+            }
+        } catch (e) {
+            console.log('Unable to update settings', e);
         }
     }
 
