@@ -16,6 +16,9 @@ export class UserService {
     private _id: BehaviorSubject<string>  = new BehaviorSubject('');
     public readonly id: Observable<string> = this._id.asObservable();
 
+    private _headline: BehaviorSubject<string> = new BehaviorSubject('');
+    public readonly headline: Observable<string> = this._headline.asObservable();
+
     private _picture_url: BehaviorSubject<string> = new BehaviorSubject('');
     public readonly picture_url: Observable<string> = this._picture_url.asObservable();
 
@@ -29,12 +32,14 @@ export class UserService {
                 firstName,
                 lastName,
                 id,
-                pictureUrl
-            } = await this.linkedin.getRequest('people/~:(id,first-name,last-name,picture-url)');
+                headline,
+                pictureUrls
+            } = await this.linkedin.getRequest('people/~:(id,first-name,last-name,headline,picture-urls::(original))');
             this._firstName.next(user.firstName);
             this._lastName.next(user.lastName);
             this._id.next(user.id);
-            this._picture_url.next(user.pictureUrl);
+            this._headline.next(user.headline);
+            this._picture_url.next(user.pictureUrls.values[0]);
         } catch (e) {
             console.log('Unable to fetch user data', e);
         }

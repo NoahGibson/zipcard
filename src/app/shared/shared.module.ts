@@ -3,17 +3,20 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 
 import {HeaderComponent} from '@app/shared/components/header/header.component';
+import {ZipcardComponent} from '@app/shared/components/zipcard/zipcard.component';
 
 @NgModule({
     declarations: [
-        HeaderComponent
+        HeaderComponent,
+        ZipcardComponent
     ],
     imports: [
         CommonModule,
         IonicModule,
     ],
     exports: [
-        HeaderComponent
+        HeaderComponent,
+        ZipcardComponent
     ]
 })
 export class SharedModule {
