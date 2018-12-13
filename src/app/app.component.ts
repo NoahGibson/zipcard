@@ -26,7 +26,7 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      this.statusBar.styleLightContent();
+      this.statusBar.styleBlackTranslucent();
       this.splashScreen.hide();
 
       // Subscribe to authService to automatically navigate on login/logout
