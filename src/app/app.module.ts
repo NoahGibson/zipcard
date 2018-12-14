@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { LinkedIn } from '@ionic-native/linkedin/ngx';
+import {Chooser} from '@ionic-native/chooser/ngx';
 
 import {AuthGuard, AuthService, CoreModule, SettingsService, UserService} from '@app/core';
 
@@ -29,6 +30,7 @@ import {AuthGuard, AuthService, CoreModule, SettingsService, UserService} from '
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         LinkedIn,
+        Chooser,
         AuthService,
         AuthGuard,
         UserService,
