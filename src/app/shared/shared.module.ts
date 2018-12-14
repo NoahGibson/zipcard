@@ -4,11 +4,13 @@ import {IonicModule} from '@ionic/angular';
 
 import {HeaderComponent} from '@app/shared/components/header/header.component';
 import {ZipcardComponent} from '@app/shared/components/zipcard/zipcard.component';
+import {ResumeChooserComponent} from '@app/shared/components/resume-chooser/resume-chooser.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
-        ZipcardComponent
+        ZipcardComponent,
+        ResumeChooserComponent
     ],
     imports: [
         CommonModule,
@@ -16,7 +18,8 @@ import {ZipcardComponent} from '@app/shared/components/zipcard/zipcard.component
     ],
     exports: [
         HeaderComponent,
-        ZipcardComponent
+        ZipcardComponent,
+        ResumeChooserComponent
     ]
 })
 export class SharedModule {
