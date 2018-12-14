@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {Chooser} from '@ionic-native/chooser/ngx';
+
+import {SettingsService} from '@app/core';
 
 @Component({
     selector: 'app-resume-chooser',
@@ -7,10 +9,9 @@ import {Chooser} from '@ionic-native/chooser/ngx';
     styleUrls: ['./resume-chooser.component.scss']
 })
 export class ResumeChooserComponent {
-    @Input() resume = '';
-    @Output() chosen = new EventEmitter();
 
-    constructor(private chooser: Chooser) {}
+    constructor(private chooser: Chooser,
+                public settingsService: SettingsService) {}
 
     async choose() {
         /*
@@ -18,7 +19,6 @@ export class ResumeChooserComponent {
             directly instead. See: https://github.com/ionic-team/ionic-native/issues/2768
          */
         const file = await (<any>window).chooser.getFile('application/pdf');
-        this.resume = file.name;
-        this.chosen.emit(file);
+        this.settingsService.setResumeUriSetting(file.uri);
     }
 }

@@ -12,7 +12,7 @@
         <ion-input id="chosen-resume"
                    placeholder="No Resume Chosen"
                    readonly="true"
-                   value="{{ resume }}">
+                   value="{{ settingsService.resume_uri | async }}">
         </ion-input>
     </div>
 </div>

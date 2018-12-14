@@ -17,8 +17,4 @@ export class HomePage {
         this.authService.logout();
     }
 
-    onChosen(file) {
-        console.log(file);
-    }
-
 }
