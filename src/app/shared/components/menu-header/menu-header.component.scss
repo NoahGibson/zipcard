@@ -1,0 +1,15 @@
+.menu-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
+  background-image: linear-gradient(var(--ion-color-medium), rgba(255,255,255, 0));
+}
+
+#menu-header-image {
+  height: 125px;
+  width: 125px;
+  object-fit: cover;
+  border-radius: 50%;
+}

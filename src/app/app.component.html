@@ -1,12 +1,8 @@
 <ion-app>
   <ion-menu side="start" [disabled]="!isLoggedIn()">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Options</ion-title>
-      </ion-toolbar>
-    </ion-header>
     <ion-content>
-      <ion-list>
+      <app-menu-header></app-menu-header>
+      <ion-list lines="none">
         <ion-item button (click)="goToHome()">Home</ion-item>
         <ion-item button (click)="goToSettings()">Settings</ion-item>
         <ion-item button (click)="logout()">Logout</ion-item>

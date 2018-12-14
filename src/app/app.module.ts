@@ -14,6 +14,7 @@ import { LinkedIn } from '@ionic-native/linkedin/ngx';
 import {Chooser} from '@ionic-native/chooser/ngx';
 
 import {AuthGuard, AuthService, CoreModule, SettingsService, UserService} from '@app/core';
+import {SharedModule} from '@app/shared';
 
 @NgModule({
     declarations: [AppComponent],
@@ -23,6 +24,7 @@ import {AuthGuard, AuthService, CoreModule, SettingsService, UserService} from '
         IonicModule.forRoot(),
         AppRoutingModule,
         CoreModule,
+        SharedModule,
         IonicStorageModule.forRoot()
     ],
     providers: [
