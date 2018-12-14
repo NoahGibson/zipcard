@@ -1,0 +1,14 @@
+.resume-chooser {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .resume-chooser-button {
+    flex-grow: 1;
+  }
+
+  .resume-chooser-input {
+    flex-grow: 8;
+  }
+
+}

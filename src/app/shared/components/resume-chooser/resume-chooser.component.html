@@ -1,14 +1,18 @@
 <div class="resume-chooser">
-    <ion-button id="chooser-button"
-                class="button-confirm"
-                fill="outline"
-                shape="round"
-                (click)="choose()">
-        Upload
-    </ion-button>
-    <ion-input id="chosen-resume"
-               placeholder="No Resume Chosen"
-               readonly="true"
-               value="{{ resume }}">
-    </ion-input>
+    <div class="resume-chooser-button">
+        <ion-button id="chooser-button"
+                    class="button-confirm"
+                    fill="outline"
+                    shape="round"
+                    (click)="choose()">
+            Upload
+        </ion-button>
+    </div>
+    <div class="resume-chooser-input">
+        <ion-input id="chosen-resume"
+                   placeholder="No Resume Chosen"
+                   readonly="true"
+                   value="{{ resume }}">
+        </ion-input>
+    </div>
 </div>

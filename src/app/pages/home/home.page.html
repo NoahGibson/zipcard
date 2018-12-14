@@ -6,6 +6,11 @@
                headline="{{ userService.headline | async }}"
                [img]="userService.picture_url | async"></app-zipcard>
 
+  <ion-card padding>
+    <ion-card-title>Resume</ion-card-title>
+    <app-resume-chooser (chosen)="onChosen($event)"></app-resume-chooser>
+  </ion-card>
+
   <ion-card>
     <ion-card-content>
       This is a placeholder for where the user will have the option to choose their resume location (also accessible in
@@ -15,12 +20,6 @@
   </ion-card>
 
   <ion-grid>
-
-    <ion-row>
-      <ion-col>
-        <app-resume-chooser (chosen)="onChosen($event)"></app-resume-chooser>
-      </ion-col>
-    </ion-row>
 
     <ion-row>
       <ion-col>
