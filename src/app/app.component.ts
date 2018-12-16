@@ -4,7 +4,6 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {Router} from '@angular/router';
-import {MenuController} from '@ionic/angular';
 
 import {AuthService} from '@app/core';
 
@@ -18,8 +17,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private authService: AuthService,
-    private router: Router,
-    private menuCtrl: MenuController
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -38,24 +36,6 @@ export class AppComponent {
         }
       });
     });
-  }
-
-  goToHome() {
-    this.router.navigate(['home']);
-    this.menuCtrl.close();
-  }
-
-  goToSettings() {
-    this.router.navigate(['settings']);
-    this.menuCtrl.close();
-  }
-
-  isLoggedIn() {
-    return this.authService.authenticated();
-  }
-
-  logout() {
-    this.authService.logout();
   }
 
 }

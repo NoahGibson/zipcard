@@ -1,0 +1,11 @@
+<ion-menu side="start" [disabled]="!isLoggedIn()">
+    <ion-content>
+        <app-menu-header></app-menu-header>
+        <ion-list lines="none">
+            <ion-item button (click)="goToHome()">Home</ion-item>
+            <ion-item button (click)="goToSettings()">Settings</ion-item>
+            <ion-item button (click)="logout()">Logout</ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+<ng-content></ng-content>

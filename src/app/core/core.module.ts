@@ -2,13 +2,21 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 
+import {MenuComponent} from '@app/core/menu/menu.component';
+import {MenuHeaderComponent} from '@app/core/menu/menu-header/menu-header.component';
+
 @NgModule({
-    declarations: [],
+    declarations: [
+        MenuComponent,
+        MenuHeaderComponent
+    ],
     imports: [
         CommonModule,
         IonicModule
     ],
-    exports: []
+    exports: [
+        MenuComponent
+    ]
 })
 export class CoreModule {
 }
