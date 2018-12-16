@@ -1,8 +1,7 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
 import {ToastController} from '@ionic/angular';
 
-import {SettingsService} from '@app/core';
+import {NavigationService, SettingsService} from '@app/core';
 
 @Component({
     selector: 'app-settings',
@@ -14,7 +13,7 @@ export class SettingsPage {
     srSetting = '';
 
     constructor(public settingsService: SettingsService,
-                private router: Router,
+                private navService: NavigationService,
                 private toastController: ToastController) {
         this.settingsService.sendReceive.subscribe((setting) => {
             this.srSetting = setting;
@@ -37,14 +36,14 @@ export class SettingsPage {
         try {
             await this.settingsService.setSendReceiveSetting(this.srSetting);
             await this.presentToast('Settings saved.');
-            this.router.navigate(['home']);
+            this.navService.navigate('home');
         } catch (e) {
             this.presentToast('Failed to save settings.');
         }
     }
 
     cancel() {
-        this.router.navigate(['home']);
+        this.navService.navigate('home');
     }
 
 }

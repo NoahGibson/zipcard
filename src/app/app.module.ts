@@ -13,7 +13,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { LinkedIn } from '@ionic-native/linkedin/ngx';
 import {Chooser} from '@ionic-native/chooser/ngx';
 
-import {AuthGuard, AuthService, CoreModule, SettingsService, UserService} from '@app/core';
+import {
+    AuthGuard,
+    AuthService,
+    CoreModule,
+    NavigationService,
+    SettingsService,
+    UserService
+} from '@app/core';
 import {SharedModule} from '@app/shared';
 
 @NgModule({
@@ -35,6 +42,7 @@ import {SharedModule} from '@app/shared';
         Chooser,
         AuthService,
         AuthGuard,
+        NavigationService,
         UserService,
         SettingsService
     ],

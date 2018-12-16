@@ -28,13 +28,13 @@ export class AppComponent {
       this.splashScreen.hide();
 
       // Subscribe to authService to automatically navigate on login/logout
-      this.authService.authState.subscribe(state => {
-        if (state) {
-          this.router.navigate(['home']);
-        } else {
-          this.router.navigate(['login']);
-        }
-      });
+      // this.authService.authState.subscribe(state => {
+      //   if (state) {
+      //     this.router.navigate(['home']);
+      //   } else {
+      //     this.router.navigate(['login']);
+      //   }
+      // });
     });
   }
 

@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
 import {MenuController} from '@ionic/angular';
 
 import {AuthService} from '@app/core/auth';
+import {NavigationService} from '@app/core/navigation';
 
 @Component({
     selector: 'app-menu',
@@ -24,20 +24,17 @@ export class MenuComponent {
         }
     ];
 
-    private activePage = 'home';
-
-    constructor(private router: Router,
+    constructor(private navService: NavigationService,
                 private menuCtrl: MenuController,
                 private authService: AuthService) {}
 
     async goTo(page: string) {
-        this.activePage = page;
-        await this.router.navigate([page]);
+        await this.navService.navigate(page);
         this.menuCtrl.close();
     }
 
     pageIsActive(page: string) {
-        return page === this.activePage;
+        return page === this.navService.getActivePage();
     }
 
     isLoggedIn() {
