@@ -11,18 +11,25 @@ import {AuthService} from '@app/core/auth';
 })
 export class MenuComponent {
 
+    readonly MENU_PAGES = [
+        { page: 'home', name: 'Home' },
+        { page: 'settings', name: 'Settings' }
+    ];
+
+    private activePage = 'home';
+
     constructor(private router: Router,
                 private menuCtrl: MenuController,
                 private authService: AuthService) {}
 
-    goToHome() {
-      this.router.navigate(['home']);
-      this.menuCtrl.close();
+    async goTo(page: string) {
+        this.activePage = page;
+        await this.router.navigate([page]);
+        this.menuCtrl.close();
     }
 
-    goToSettings() {
-      this.router.navigate(['settings']);
-      this.menuCtrl.close();
+    pageIsActive(page: string) {
+        return page === this.activePage;
     }
 
     isLoggedIn() {
