@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {BehaviorSubject, Observable} from 'rxjs';
 
+import {AuthService} from '@app/core/auth';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -21,8 +23,12 @@ export class SettingsService {
     private _resume_uri: BehaviorSubject<string> = new BehaviorSubject('');
     public readonly resume_uri: Observable<string> = this._resume_uri.asObservable();
 
-    constructor(private storage: Storage) {
-        this.fetchSettingsData();
+    constructor(private storage: Storage, private authService: AuthService) {
+        this.authService.authState.subscribe((state) => {
+            if (state) {
+                this.fetchSettingsData();
+            }
+        });
     }
 
     private async fetchSettingsData() {
