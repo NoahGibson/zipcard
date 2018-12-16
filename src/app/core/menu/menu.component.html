@@ -1,15 +1,26 @@
 <ion-menu side="start" [disabled]="!isLoggedIn()">
     <ion-content>
         <app-menu-header></app-menu-header>
-        <ion-list lines="none">
-            <ion-item *ngFor="let page of MENU_PAGES"
-                      button
-                      (click)="goTo(page.page)"
-                      class="menu-item"
-                      [ngClass]="{'active': pageIsActive(page.page)}">{{ page.name }}</ion-item>
-            <ion-item button
-                      (click)="logout()"
-                      class="menu-item menu-logout">Logout</ion-item>
+        <ion-list lines="none" id="menu-pages">
+            <div *ngFor="let page of MENU_PAGES"
+                 class="menu-item"
+                 [ngClass]="{'active': pageIsActive(page.page)}">
+                <ion-icon name="{{ page.icon }}" class="menu-icon"></ion-icon>
+                <ion-item button
+                          (click)="goTo(page.page)"
+                          class="menu-button">
+                    {{ page.name }}
+                </ion-item>
+            </div>
+            <div class="menu-item menu-logout">
+                <ion-icon name="log-out" class="menu-icon"></ion-icon>
+                <ion-item button
+                          (click)="logout()"
+                          class="menu-button"
+                          id="menu-logout-button">
+                    Logout
+                </ion-item>
+            </div>
         </ion-list>
     </ion-content>
 </ion-menu>

@@ -12,8 +12,16 @@ import {AuthService} from '@app/core/auth';
 export class MenuComponent {
 
     readonly MENU_PAGES = [
-        { page: 'home', name: 'Home' },
-        { page: 'settings', name: 'Settings' }
+        {
+            page: 'home',
+            name: 'Home',
+            icon: 'home'
+        },
+        {
+            page: 'settings',
+            name: 'Settings',
+            icon: 'settings'
+        }
     ];
 
     private activePage = 'home';
