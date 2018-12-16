@@ -10,8 +10,7 @@ import {AuthService, UserService} from '@app/core';
 export class HomePage {
 
     constructor(public userService: UserService,
-                private authService: AuthService) {
-    }
+                private authService: AuthService) {}
 
     logout() {
         this.authService.logout();

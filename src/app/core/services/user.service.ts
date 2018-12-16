@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {LinkedIn} from '@ionic-native/linkedin/ngx';
 import {BehaviorSubject, Observable} from 'rxjs';
 
+import {AuthService} from '@app/core/auth';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -22,8 +24,12 @@ export class UserService {
     private _picture_url: BehaviorSubject<string> = new BehaviorSubject('');
     public readonly picture_url: Observable<string> = this._picture_url.asObservable();
 
-    constructor(private linkedin: LinkedIn) {
-        this.fetchUserData();
+    constructor(private linkedin: LinkedIn, private authService: AuthService) {
+        this.authService.authState.subscribe((state) => {
+            if (state) {
+                this.fetchUserData();
+            }
+        });
     }
 
     private async fetchUserData() {
