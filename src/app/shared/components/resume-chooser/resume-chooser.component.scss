@@ -1,15 +1,11 @@
 .resume-chooser {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
   align-items: center;
   padding: 10px;
 
-  .resume-chooser-button {
-    flex-grow: 1;
-  }
-
   .resume-chooser-input {
-    flex-grow: 8;
+    flex-basis: 100%;
   }
 
 }

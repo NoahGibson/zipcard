@@ -1,18 +1,30 @@
 <div class="resume-chooser">
-    <div class="resume-chooser-button">
-        <ion-button id="chooser-button"
-                    class="button-confirm"
-                    fill="outline"
-                    shape="round"
-                    (click)="choose()">
-            Upload
-        </ion-button>
-    </div>
     <div class="resume-chooser-input">
         <ion-input id="chosen-resume"
                    placeholder="No Resume Chosen"
                    readonly="true"
                    value="{{ settingsService.resume_uri | async }}">
         </ion-input>
+    </div>
+    <div class="resume-chooser-button">
+        <ion-button id="chooser-button"
+                    class="button-confirm"
+                    fill="outline"
+                    shape="round"
+                    size="small"
+                    (click)="choose()">
+            <ion-icon name="document"></ion-icon>
+            Select
+        </ion-button>
+    </div>
+    <div class="resume-chooser-clear">
+        <ion-button id="chooser-clear"
+                    class="button-cancel"
+                    fill="outline"
+                    shape="round"
+                    size="small"
+                    (click)="clear()">
+            <ion-icon name="close"></ion-icon>
+        </ion-button>
     </div>
 </div>

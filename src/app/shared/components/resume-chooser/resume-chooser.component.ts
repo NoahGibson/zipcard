@@ -21,4 +21,9 @@ export class ResumeChooserComponent {
         const file = await (<any>window).chooser.getFile('application/pdf');
         this.settingsService.setResumeUriSetting(file.uri);
     }
+
+    clear() {
+        this.settingsService.setResumeUriSetting('');
+    }
+
 }
