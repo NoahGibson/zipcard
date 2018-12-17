@@ -1,7 +1,5 @@
 import {Component} from '@angular/core';
 
-import {AuthService, UserService} from '@app/core';
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -9,11 +7,6 @@ import {AuthService, UserService} from '@app/core';
 })
 export class HomePage {
 
-    constructor(public userService: UserService,
-                private authService: AuthService) {}
-
-    logout() {
-        this.authService.logout();
-    }
+    constructor() {}
 
 }
