@@ -19,11 +19,11 @@ export class ResumeChooserComponent {
             directly instead. See: https://github.com/ionic-team/ionic-native/issues/2768
          */
         const file = await (<any>window).chooser.getFile('application/pdf');
-        this.settingsService.setResumeUriSetting(file.uri);
+        this.settingsService.setResumeSetting(file.uri, file.name);
     }
 
     clear() {
-        this.settingsService.setResumeUriSetting('');
+        this.settingsService.resetResumeSetting();
     }
 
 }
