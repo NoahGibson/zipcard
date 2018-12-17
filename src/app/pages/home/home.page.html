@@ -2,9 +2,9 @@
 
 <ion-content>
 
-  <app-zipcard title="{{ userService.firstName | async }} {{ userService.lastName | async }}"
-               headline="{{ userService.headline | async }}"
-               [img]="userService.picture_url | async"></app-zipcard>
+  <app-zipcard title="{{ (userService.user | async).firstName }} {{ (userService.user | async).lastName }}"
+               headline="{{ (userService.user | async).headline }}"
+               [img]="(userService.user | async).pictureUrl"></app-zipcard>
 
   <ion-card padding>
     <ion-card-title>Resume</ion-card-title>

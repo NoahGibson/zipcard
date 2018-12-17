@@ -19,8 +19,8 @@ export class SettingsService {
     public readonly RO_SETTING_VAL = 'ro'; // ReceiveOnly
 
     // Default setting values
-    public DEFAULT_SEND_RECEIVE_SETTING = this.SR_SETTING_VAL;
-    public DEFAULT_RESUME_SETTING = { uri: '', name: '' };
+    private DEFAULT_SEND_RECEIVE_SETTING = this.SR_SETTING_VAL;
+    private DEFAULT_RESUME_SETTING = { uri: '', name: '' };
 
     private _sendReceive: BehaviorSubject<string> = new BehaviorSubject(this.DEFAULT_SEND_RECEIVE_SETTING);
     public readonly sendReceive: Observable<string> = this._sendReceive.asObservable();

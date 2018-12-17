@@ -1,10 +1,10 @@
 <div class="menu-header">
     <div class="menu-header-heading">
         <img id="menu-header-image"
-             [src]="userService.picture_url | async"
+             [src]="(userService.user | async).pictureUrl"
              alt="Profile Image" />
     </div>
     <div class="menu-header-content">
-        <h3>{{ userService.firstName | async }} {{ userService.lastName | async }}</h3>
+        <h3>{{ (userService.user | async).firstName }} {{ (userService.user | async).lastName }}</h3>
     </div>
 </div>
