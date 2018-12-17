@@ -1,0 +1,27 @@
+#header-profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  #header-profile-image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 5px;
+  }
+
+  #header-profile-info {
+    font-size: 0.75em;
+
+    #header-profile-name-header {
+      margin: 5px;
+    }
+
+    #header-profile-headline-paragraph {
+      margin: 5px;
+    }
+
+  }
+
+}

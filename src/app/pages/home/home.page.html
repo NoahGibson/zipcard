@@ -1,28 +1,10 @@
 <ion-header>
   <app-header title="Zipcard"></app-header>
-  <ion-toolbar color="medium">
-    <div id="header-profile">
-      <img id="header-profile-image"
-           [src]="(userService.user | async).pictureUrl"
-           alt="Profile Image" />
-      <div id="header-profile-info">
-        <div id="header-profile-name">
-          <h6 id="header-profile-name-header">{{ (userService.user | async).firstName }} {{ (userService.user | async).lastName }}</h6>
-        </div>
-        <div id="header-profile-headline">
-          <p id="header-profile-headline-paragraph">{{ (userService.user | async).headline }}</p>
-        </div>
-      </div>
-    </div>
-  </ion-toolbar>
+  <app-header-profile></app-header-profile>
 </ion-header>
 
 
 <ion-content>
-
-  <app-zipcard title="{{ (userService.user | async).firstName }} {{ (userService.user | async).lastName }}"
-               headline="{{ (userService.user | async).headline }}"
-               [img]="(userService.user | async).pictureUrl"></app-zipcard>
 
   <ion-card padding>
     <ion-card-title>Resume</ion-card-title>
