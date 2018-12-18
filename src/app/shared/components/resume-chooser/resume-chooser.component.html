@@ -3,7 +3,7 @@
         <ion-input id="chosen-resume"
                    placeholder="No Resume Chosen"
                    readonly="true"
-                   value="{{ (settingsService.resume | async).name }}">
+                   value="{{ (resumeService.resume | async).name }}">
         </ion-input>
     </div>
     <div class="resume-chooser-button">
