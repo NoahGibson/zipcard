@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ToastController} from '@ionic/angular';
 
 import {NavigationService, SettingsService} from '@app/core';
+import {Subscription} from 'rxjs';
 
 @Component({
     selector: 'app-settings',
@@ -11,13 +12,20 @@ import {NavigationService, SettingsService} from '@app/core';
 export class SettingsPage {
 
     srSetting = '';
+    private srSubscription: Subscription;
 
     constructor(public settingsService: SettingsService,
                 private navService: NavigationService,
-                private toastController: ToastController) {
-        this.settingsService.sendReceive.subscribe((setting) => {
+                private toastController: ToastController) {}
+
+    ionViewWillEnter() {
+        this.srSubscription = this.settingsService.sendReceive.subscribe((setting) => {
             this.srSetting = setting;
         });
+    }
+
+    ionViewWillLeave() {
+        this.srSubscription.unsubscribe();
     }
 
     private async presentToast(msg) {
