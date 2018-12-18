@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {SettingsService} from '@app/core';
 
 @Component({
   selector: 'app-home',

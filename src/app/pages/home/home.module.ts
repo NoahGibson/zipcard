@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import {PdfViewerModule} from 'ng2-pdf-viewer';
+
 import { HomePage } from './home.page';
 import {SharedModule} from '@app/shared';
 
@@ -13,6 +15,7 @@ import {SharedModule} from '@app/shared';
         FormsModule,
         IonicModule,
         SharedModule,
+        PdfViewerModule,
         RouterModule.forChild([
               {
                 path: '',
