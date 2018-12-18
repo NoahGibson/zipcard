@@ -18,6 +18,7 @@ import {
     AuthService,
     CoreModule,
     NavigationService,
+    ResumeService,
     SettingsService,
     UserService
 } from '@app/core';
@@ -44,7 +45,8 @@ import {SharedModule} from '@app/shared';
         AuthGuard,
         NavigationService,
         UserService,
-        SettingsService
+        SettingsService,
+        ResumeService
     ],
     bootstrap: [AppComponent]
 })
