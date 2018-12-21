@@ -1,5 +1,8 @@
 import {Injectable} from '@angular/core';
+import {Platform} from '@ionic/angular';
 import {Storage} from '@ionic/storage';
+import {File} from '@ionic-native/file/ngx';
+import {FileTransfer} from '@ionic-native/file-transfer/ngx';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {AuthService} from '@app/core/auth';
@@ -10,12 +13,20 @@ import {AuthService} from '@app/core/auth';
 export class ResumeService {
 
     private RESUME_SETTING = 'resume';
-    private DEFAULT_RESUME_SETTING = { uri: '', name: '', src: '' };
+    private DEFAULT_RESUME_SETTING = {
+        remoteSrc: '',
+        name: '',
+        localSrc: ''
+    };
 
     private _resume: BehaviorSubject<any> = new BehaviorSubject(this.DEFAULT_RESUME_SETTING);
     public readonly resume: Observable<any> = this._resume.asObservable();
 
-    constructor(private storage: Storage, private authService: AuthService) {
+    constructor(private platform: Platform,
+                private storage: Storage,
+                private file: File,
+                private fileTransfer: FileTransfer,
+                private authService: AuthService) {
         this.authService.authState.subscribe((state) => {
             if (state) {
                 this.fetchResumeData();
@@ -36,13 +47,33 @@ export class ResumeService {
         }
     }
 
-    public async setResumeSetting(uri: string, name: string) {
+    private async downloadResume(remoteSrc: string): Promise<string> {
         try {
-            const newResume = { uri: uri, name: name };
+            let path = null;
+            if (this.platform.is('ios')) {
+                path = this.file.documentsDirectory;
+            } else {
+                path = this.file.dataDirectory;
+            }
+            const transfer = this.fileTransfer.create();
+            const entry = await transfer.download(remoteSrc, path + 'resume.pdf');
+            return entry.toURL();
+        } catch (e) {
+            console.log('Unable to download resume', e);
+        }
+    }
+
+    public async setResumeSetting(remoteSrc: string, name: string) {
+        try {
+            const newResume = {
+                remoteSrc: remoteSrc,
+                name: name,
+                localSrc: await this.downloadResume(remoteSrc)
+            };
             await this.storage.set(this.RESUME_SETTING, newResume);
             this._resume.next(newResume);
         } catch (e) {
-            console.log('Unable to update settings', e);
+            console.log('Unable to update resume settings', e);
         }
     }
 
@@ -51,7 +82,7 @@ export class ResumeService {
             await this.storage.set(this.RESUME_SETTING, this.DEFAULT_RESUME_SETTING);
             this._resume.next(this.DEFAULT_RESUME_SETTING);
         } catch (e) {
-            console.log('Unable to update settings', e);
+            console.log('Unable to update resume settings', e);
         }
     }
 
