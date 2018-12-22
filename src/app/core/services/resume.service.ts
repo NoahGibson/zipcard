@@ -3,6 +3,7 @@ import {Platform} from '@ionic/angular';
 import {Storage} from '@ionic/storage';
 import {File} from '@ionic-native/file/ngx';
 import {FileTransfer} from '@ionic-native/file-transfer/ngx';
+import {FilePath} from '@ionic-native/file-path/ngx';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {AuthService} from '@app/core/auth';
@@ -26,6 +27,7 @@ export class ResumeService {
                 private storage: Storage,
                 private file: File,
                 private fileTransfer: FileTransfer,
+                private filePath: FilePath,
                 private authService: AuthService) {
         this.authService.authState.subscribe((state) => {
             if (state) {
@@ -50,13 +52,15 @@ export class ResumeService {
     private async downloadResume(remoteSrc: string): Promise<string> {
         try {
             let path = null;
+            let downloadSrc = remoteSrc;
             if (this.platform.is('ios')) {
                 path = this.file.documentsDirectory;
             } else {
-                path = this.file.dataDirectory;
+                path = this.file.externalDataDirectory;
+                downloadSrc = await this.filePath.resolveNativePath(remoteSrc);
             }
             const transfer = this.fileTransfer.create();
-            const entry = await transfer.download(remoteSrc, path + 'resume.pdf');
+            const entry = await transfer.download(downloadSrc, path + 'resume.pdf');
             return entry.toURL();
         } catch (e) {
             console.log('Unable to download resume', e);

@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
-import {SettingsService} from '@app/core';
+
+import {ResumeService} from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,6 @@ import {SettingsService} from '@app/core';
 })
 export class HomePage {
 
-    constructor() {}
+    constructor(public resumeService: ResumeService) {}
 
 }

@@ -8,6 +8,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import {IonicStorageModule} from '@ionic/storage';
 import {File} from '@ionic-native/file/ngx';
 import {FileTransfer} from '@ionic-native/file-transfer/ngx';
+import {FilePath} from '@ionic-native/file-path/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -45,6 +46,7 @@ import {SharedModule} from '@app/shared';
         Chooser,
         File,
         FileTransfer,
+        FilePath,
         AuthService,
         AuthGuard,
         NavigationService,

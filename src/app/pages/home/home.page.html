@@ -6,10 +6,7 @@
 
 <ion-content>
 
-  <pdf-viewer src="assets/test_resume.pdf"
-              [original-size]="false"
-              [fit-to-page]="true"
-              style="display: block;"></pdf-viewer>
+  <!--<embed [src]="(resumeService.resume | async).localSrc | safe: 'resourceUrl'" type="application/pdf" />-->
 
 </ion-content>
 
@@ -17,3 +14,4 @@
             style="background-color: var(--ion-color-light)">
   <app-resume-chooser></app-resume-chooser>
 </ion-footer>
+
