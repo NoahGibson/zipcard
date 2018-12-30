@@ -20,12 +20,12 @@ export class ResumeChooserComponent {
          */
         const file = await (<any>window).chooser.getFile('application/pdf');
         if (file) {
-            this.resumeService.setResumeSetting(file.uri, file.name);
+            this.resumeService.setResume(file.uri, file.name, file.data);
         }
     }
 
     clear() {
-        this.resumeService.resetResumeSetting();
+        this.resumeService.resetResume();
     }
 
 }

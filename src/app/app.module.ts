@@ -9,12 +9,11 @@ import {IonicStorageModule} from '@ionic/storage';
 import {File} from '@ionic-native/file/ngx';
 import {FileTransfer} from '@ionic-native/file-transfer/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
+import { LinkedIn } from '@ionic-native/linkedin/ngx';
+import {Chooser} from '@ionic-native/chooser/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-
-import { LinkedIn } from '@ionic-native/linkedin/ngx';
-import {Chooser} from '@ionic-native/chooser/ngx';
 
 import {
     AuthGuard,

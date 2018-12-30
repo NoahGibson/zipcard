@@ -17,7 +17,8 @@ export class ResumeService {
     private DEFAULT_RESUME_SETTING = {
         remoteSrc: '',
         name: '',
-        localSrc: ''
+        localSrc: '',
+        data: null
     };
 
     private _resume: BehaviorSubject<any> = new BehaviorSubject(this.DEFAULT_RESUME_SETTING);
@@ -67,12 +68,13 @@ export class ResumeService {
         }
     }
 
-    public async setResumeSetting(remoteSrc: string, name: string) {
+    public async setResume(remoteSrc: string, name: string, data: Uint8Array) {
         try {
             const newResume = {
                 remoteSrc: remoteSrc,
                 name: name,
-                localSrc: await this.downloadResume(remoteSrc)
+                localSrc: await this.downloadResume(remoteSrc),
+                data: data
             };
             await this.storage.set(this.RESUME_SETTING, newResume);
             this._resume.next(newResume);
@@ -81,7 +83,7 @@ export class ResumeService {
         }
     }
 
-    public async resetResumeSetting() {
+    public async resetResume() {
         try {
             await this.storage.set(this.RESUME_SETTING, this.DEFAULT_RESUME_SETTING);
             this._resume.next(this.DEFAULT_RESUME_SETTING);
