@@ -1,30 +1,26 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 
+import {AngularFireAuth} from '@angular/fire/auth';
+
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
 
-    // What information to request from LinkedIn
-    // private scopes: LinkedInLoginScopes[] = ['r_basicprofile'];
-
     // The current authentication state (logged in => true; logged out => false)
     private _authState: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public readonly authState: Observable<boolean> = this._authState.asObservable();
 
-    constructor() {
+    constructor(private afAuth: AngularFireAuth) {
        this.checkActiveSession();
     }
 
     private checkActiveSession() {
-        // this.linkedin.hasActiveSession().then((active) => {
-        //     this._authState.next(active);
-        // });
         this._authState.next(false);
     }
 
-    async login(): Promise<boolean> {
+    signInWithEmail(credentials: {email: string, password: string}) {
         // try {
         //     await this.linkedin.login(this.scopes, true);
         //     this._authState.next(true);
@@ -33,8 +29,9 @@ export class AuthService {
         //     console.log('Error logging in', e);
         //     return false;
         // }
-        this._authState.next(true);
-        return true;
+        // this._authState.next(true);
+        // return true;
+        return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
     }
 
     logout() {

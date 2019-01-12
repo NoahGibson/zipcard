@@ -1,27 +1,71 @@
 <ion-content id="login-page">
-    <ion-grid id="login-content">
-        <ion-row align-items-center>
-            <ion-col>
-                <div id="login-text">
-                    <h1 id="login-title">Welcome to Zipcard</h1>
-                    <h3 id="login-subtitle">Recruiting Reimagined</h3>
-                </div>
-                <ion-button *ngIf="isAuthenticated(); else isLoggedOut"
-                            id="logout-button"
-                            fill="outline"
-                            shape="round"
-                            (click)="logout()">
-                    Logout
-                </ion-button>
-                <ng-template #isLoggedOut>
-                    <ion-button id="login-button"
-                                fill="outline"
-                                shape="round"
-                                (click)="login()">
-                        Login
-                    </ion-button>
-                </ng-template>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+    <!--<ion-grid id="login-content">-->
+        <!--<ion-row align-items-center>-->
+            <!--<ion-col>-->
+                <!--<div id="login-text">-->
+                    <!--<h1 id="login-title">Welcome to Zipcard</h1>-->
+                    <!--<h3 id="login-subtitle">Recruiting Reimagined</h3>-->
+                <!--</div>-->
+                <!--<ion-button *ngIf="isAuthenticated(); else isLoggedOut"-->
+                            <!--id="logout-button"-->
+                            <!--fill="outline"-->
+                            <!--shape="round"-->
+                            <!--(click)="logout()">-->
+                    <!--Logout-->
+                <!--</ion-button>-->
+                <!--<ng-template #isLoggedOut>-->
+                    <!--<ion-button id="login-button"-->
+                                <!--fill="outline"-->
+                                <!--shape="round"-->
+                                <!--(click)="login()">-->
+                        <!--Login-->
+                    <!--</ion-button>-->
+                <!--</ng-template>-->
+            <!--</ion-col>-->
+        <!--</ion-row>-->
+    <!--</ion-grid>-->
+    <div id="login-content">
+        <div id="login-header">
+            <h1 id="login-title">Welcome to Zipcard</h1>
+            <h3 id="login-subtitle">Recruiting Reimagined</h3>
+        </div>
+        <div id="login-context">
+            <ion-card id="login-card">
+                <ion-card-header>
+                    <ion-card-title>Login</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form (ngSubmit)="login()" [formGroup]="loginForm">
+                        <ion-list>
+                            <ion-item>
+                                <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+                            </ion-item>
+                        </ion-list>
+
+                        <div>
+                            <div class="form-error">{{loginError}}</div>
+
+                            <button ion-button full type="submit" [disabled]="!loginForm.valid">Log in</button>
+                            <div class="login-footer">
+                                <p>
+                                    <a href="#">Forgot password?</a>
+                                    If you're a new user, please sign up.
+                                </p>
+                            </div>
+
+                            <ion-list>
+                                <button ion-button icon-left block clear (click)="signup()">
+                                    <ion-icon name="person-add"></ion-icon>
+                                    Sign up
+                                </button>
+                            </ion-list>
+                        </div>
+                    </form>
+                </ion-card-content>
+            </ion-card>
+        </div>
+    </div>
 </ion-content>
