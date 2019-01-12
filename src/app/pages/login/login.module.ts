@@ -6,8 +6,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {LoginPage} from './login.page';
 import {LoginPagePopupComponent} from './components/login-page-popup/login-page-popup.component';
-import {LoginPopupComponent} from './components/login-popup/login-popup.component';
-import {SignupPopupComponent} from './components/signup-popup/signup-popup.component';
+import {LoginFormComponent} from './components/login-form/login-form.component';
+import {SignupFormComponent} from './components/signup-form/signup-form.component';
 
 @NgModule({
     imports: [
@@ -25,8 +25,8 @@ import {SignupPopupComponent} from './components/signup-popup/signup-popup.compo
     declarations: [
         LoginPage,
         LoginPagePopupComponent,
-        LoginPopupComponent,
-        SignupPopupComponent
+        LoginFormComponent,
+        SignupFormComponent
     ]
 })
 export class LoginPageModule {}

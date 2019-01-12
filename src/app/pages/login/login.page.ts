@@ -1,7 +1,4 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
-import {AuthService} from '@app/core';
 
 @Component({
     selector: 'app-login',
@@ -10,38 +7,27 @@ import {AuthService} from '@app/core';
 })
 export class LoginPage {
 
-    loginForm: FormGroup;
-    loginError: string;
+    readonly LOGIN_ACTION = 'login';
+    readonly LOGIN_TITLE = 'Login';
+    readonly SIGNUP_ACTION = 'signup';
+    readonly SIGNUP_TITLE = 'Sign Up';
 
-    constructor(private authService: AuthService,
-                private fb: FormBuilder) {
-        this.loginForm = fb.group({
-            email: ['', Validators.compose([Validators.required, Validators.email])],
-            password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
-        });
+    action: any;
+    actionTitle: any;
+
+    constructor() {
+        this.action = this.LOGIN_ACTION;
+        this.actionTitle = this.LOGIN_TITLE;
     }
 
-    login() {
-        const data = this.loginForm.value;
-        if (!data.email) {
-            return;
+    toggleAction() {
+        if (this.action === this.LOGIN_ACTION) {
+            this.action = this.SIGNUP_ACTION;
+            this.actionTitle = this.SIGNUP_TITLE;
+        } else {
+            this.action = this.LOGIN_ACTION;
+            this.actionTitle = this.LOGIN_TITLE;
         }
-        const credentials = {
-            email: data.email,
-            password: data.password
-        };
-        this.authService.signInWithEmail(credentials)
-            .then(
-                () => { return; },
-                error => { this.loginError = error.message; }
-            );
     }
 
-    logout() {
-        this.authService.logout();
-    }
-
-    isAuthenticated() {
-        return this.authService.authenticated();
-    }
 }
