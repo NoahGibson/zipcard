@@ -20,7 +20,7 @@ export class LoginFormComponent {
         });
     }
 
-    login() {
+    async login() {
         const data = this.loginForm.value;
         if (!data.email) {
             return;
@@ -29,7 +29,7 @@ export class LoginFormComponent {
             email: data.email,
             password: data.password
         };
-        this.loginError = this.authService.signInWithEmail(credentials);
+        this.loginError = await this.authService.signInWithEmail(credentials);
     }
 
 }

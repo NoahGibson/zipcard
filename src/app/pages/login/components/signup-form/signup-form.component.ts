@@ -20,15 +20,12 @@ export class SignupFormComponent {
         });
     }
 
-    signup() {
+    async signup() {
         const data = this.signupForm.value;
         const credentials = {
             email: data.email,
             password: data.password
         };
-        this.authService.signUp(credentials).then(
-            () => { return; },
-            error => { this.signupError = error.message; }
-        );
+        this.signupError = await this.authService.signUpWithEmail(credentials);
     }
 }
