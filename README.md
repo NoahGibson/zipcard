@@ -65,24 +65,6 @@ In order to install Ionic, run the command: **npm install -g ionic cordova** in 
 
 There are dependencies that first need to be installed in order to run the ionic application. Run the command: **npm install** in order to have these installed locally for this project.
 
-Currently, there is an issue with the Linkedin Plugin used for signing into the application. In order to fix this issue, first run the command **ionic cordova build android**, then navigate to the file */platforms/android/cordova-plugin-linkedin/zipcard-LinkedIn.gradle* and change:
-
-```
-dependencies {
-  compile 'com.mcxiaoke.volley:library:1.0.+'
-}
-```
-
-to:
-
-```
-dependencies {
-  compile 'com.mcxiaoke.volley:library:1.0.+'
-  compile files('src/main/libs/linkedin.jar')
-}
-```
-
-
 ---
 
 ## Running the Project
