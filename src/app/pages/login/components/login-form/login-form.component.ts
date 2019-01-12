@@ -36,8 +36,4 @@ export class LoginFormComponent {
             );
     }
 
-    logout() {
-        this.authService.logout();
-    }
-
 }

@@ -21,21 +21,14 @@ export class AuthService {
     }
 
     signInWithEmail(credentials: {email: string, password: string}) {
-        // try {
-        //     await this.linkedin.login(this.scopes, true);
-        //     this._authState.next(true);
-        //     return true;
-        // } catch (e) {
-        //     console.log('Error logging in', e);
-        //     return false;
-        // }
-        // this._authState.next(true);
-        // return true;
         return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
     }
 
+    signUp(credentials: {email: string, password: string}) {
+        return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+    }
+
     logout() {
-        // this.linkedin.logout();
         this._authState.next(false);
     }
 

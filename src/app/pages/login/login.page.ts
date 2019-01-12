@@ -14,19 +14,23 @@ export class LoginPage {
 
     action: any;
     actionTitle: any;
+    notActionTitle: any;
 
     constructor() {
         this.action = this.LOGIN_ACTION;
         this.actionTitle = this.LOGIN_TITLE;
+        this.notActionTitle = this.SIGNUP_TITLE;
     }
 
     toggleAction() {
         if (this.action === this.LOGIN_ACTION) {
             this.action = this.SIGNUP_ACTION;
             this.actionTitle = this.SIGNUP_TITLE;
+            this.notActionTitle = this.LOGIN_TITLE;
         } else {
             this.action = this.LOGIN_ACTION;
             this.actionTitle = this.LOGIN_TITLE;
+            this.notActionTitle = this.SIGNUP_TITLE;
         }
     }
 
