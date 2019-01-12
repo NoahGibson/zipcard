@@ -13,9 +13,6 @@ import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {IonicStorageModule} from '@ionic/storage';
-import {File} from '@ionic-native/file/ngx';
-import {FileTransfer} from '@ionic-native/file-transfer/ngx';
-import {FilePath} from '@ionic-native/file-path/ngx';
 import {Chooser} from '@ionic-native/chooser/ngx';
 
 import {AppComponent} from './app.component';
@@ -52,9 +49,6 @@ import {SharedModule} from '@app/shared';
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
         Chooser,
-        File,
-        FileTransfer,
-        FilePath,
         AuthService,
         AuthGuard,
         NavigationService,

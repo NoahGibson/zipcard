@@ -1,9 +1,4 @@
 import {Injectable} from '@angular/core';
-import {Platform} from '@ionic/angular';
-import {Storage} from '@ionic/storage';
-import {File} from '@ionic-native/file/ngx';
-import {FileTransfer} from '@ionic-native/file-transfer/ngx';
-import {FilePath} from '@ionic-native/file-path/ngx';
 import {BehaviorSubject, Observable} from 'rxjs';
 
 import {AuthService} from '@app/core/auth';
@@ -24,12 +19,7 @@ export class ResumeService {
     // private _resume: BehaviorSubject<any> = new BehaviorSubject(this.DEFAULT_RESUME_SETTING);
     // public readonly resume: Observable<any> = this._resume.asObservable();
 
-    constructor(private platform: Platform,
-                private storage: Storage,
-                private file: File,
-                private fileTransfer: FileTransfer,
-                private filePath: FilePath,
-                private authService: AuthService) {
+    constructor(private authService: AuthService) {
         // this.authService.authState.subscribe((state) => {
         //     if (state) {
         //         this.fetchResumeData();
