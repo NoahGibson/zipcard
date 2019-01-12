@@ -12,6 +12,8 @@ export class AuthService {
     private _authState: BehaviorSubject<boolean> = new BehaviorSubject(false);
     public readonly authState: Observable<boolean> = this._authState.asObservable();
 
+    private errorMsg: string;
+
     constructor(private afAuth: AngularFireAuth) {
        this.checkActiveSession();
     }
@@ -21,11 +23,23 @@ export class AuthService {
     }
 
     signInWithEmail(credentials: {email: string, password: string}) {
-        return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+        this.errorMsg = '';
+        this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password)
+            .then(
+                () => { this._authState.next(true); },
+                error =>  this.errorMsg = error.message
+            );
+        return this.errorMsg;
     }
 
     signUp(credentials: {email: string, password: string}) {
-        return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+        this.errorMsg = '';
+        this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password)
+            .then(
+                () => { this._authState.next(true); },
+                error => this.errorMsg = error.message
+            );
+        return this.errorMsg;
     }
 
     logout() {

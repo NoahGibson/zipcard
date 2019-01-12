@@ -29,11 +29,7 @@ export class LoginFormComponent {
             email: data.email,
             password: data.password
         };
-        this.authService.signInWithEmail(credentials)
-            .then(
-                () => { return; },
-                error => { this.loginError = error.message; }
-            );
+        this.loginError = this.authService.signInWithEmail(credentials);
     }
 
 }
