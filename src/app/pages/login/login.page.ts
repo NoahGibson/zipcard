@@ -1,6 +1,4 @@
-import { Component } from '@angular/core';
-
-import {AuthService} from '@app/core';
+import {Component} from '@angular/core';
 
 @Component({
     selector: 'app-login',
@@ -9,17 +7,31 @@ import {AuthService} from '@app/core';
 })
 export class LoginPage {
 
-    constructor(private authService: AuthService) {}
+    readonly LOGIN_ACTION = 'login';
+    readonly LOGIN_TITLE = 'Login';
+    readonly SIGNUP_ACTION = 'signup';
+    readonly SIGNUP_TITLE = 'Sign Up';
 
-    login() {
-        this.authService.login();
+    action: any;
+    actionTitle: any;
+    notActionTitle: any;
+
+    constructor() {
+        this.action = this.LOGIN_ACTION;
+        this.actionTitle = this.LOGIN_TITLE;
+        this.notActionTitle = this.SIGNUP_TITLE;
     }
 
-    logout() {
-        this.authService.logout();
+    toggleAction() {
+        if (this.action === this.LOGIN_ACTION) {
+            this.action = this.SIGNUP_ACTION;
+            this.actionTitle = this.SIGNUP_TITLE;
+            this.notActionTitle = this.LOGIN_TITLE;
+        } else {
+            this.action = this.LOGIN_ACTION;
+            this.actionTitle = this.LOGIN_TITLE;
+            this.notActionTitle = this.SIGNUP_TITLE;
+        }
     }
 
-    isAuthenticated() {
-        return this.authService.authenticated();
-    }
 }

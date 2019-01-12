@@ -1,48 +1,70 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
+
+import {AngularFireAuth} from '@angular/fire/auth';
+import {User} from 'firebase';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
 
-    // What information to request from LinkedIn
-    // private scopes: LinkedInLoginScopes[] = ['r_basicprofile'];
+    // The current authentication state, containing the logged in user if applicable
+    public readonly authState: Observable<User>;
 
-    // The current authentication state (logged in => true; logged out => false)
-    private _authState: BehaviorSubject<boolean> = new BehaviorSubject(false);
-    public readonly authState: Observable<boolean> = this._authState.asObservable();
+    // Whether their exists a current authenticated user
+    private isAuthenticated: boolean;
 
-    constructor() {
-       this.checkActiveSession();
+    constructor(private afAuth: AngularFireAuth) {
+        /*
+            NOTE: Google's API's automatically manage user sessions; the default
+            behavior is for sessions to persist indefinitely.
+         */
+        this.authState = this.afAuth.authState;
+        afAuth.authState.subscribe((user) => {
+            this.isAuthenticated = user !== null;
+        });
     }
 
-    private checkActiveSession() {
-        // this.linkedin.hasActiveSession().then((active) => {
-        //     this._authState.next(active);
-        // });
-        this._authState.next(false);
+    /*
+        Signs the user in via email and password.
+        Returns a string containing an error message, if any, if there was an issue signing in.
+     */
+    async signInWithEmail(credentials: {email: string, password: string}): Promise<string> {
+        try {
+            await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+        } catch (e) {
+            return e.message;
+        }
     }
 
-    async login(): Promise<boolean> {
-        // try {
-        //     await this.linkedin.login(this.scopes, true);
-        //     this._authState.next(true);
-        //     return true;
-        // } catch (e) {
-        //     console.log('Error logging in', e);
-        //     return false;
-        // }
-        this._authState.next(true);
-        return true;
+    /*
+        Signs up the user via email and password, then signs in the user.
+        Returns a string containing an error message, if any, if there was an issue signing up.
+     */
+    async signUpWithEmail(credentials: {email: string, password: string}): Promise<string> {
+        try {
+            await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+        } catch (e) {
+            return e.message;
+        }
     }
 
-    logout() {
-        // this.linkedin.logout();
-        this._authState.next(false);
+    /*
+        Logs the current user out, a.k.a. de-authenticates the current session.
+     */
+    async logout(): Promise<string> {
+        try {
+            await this.afAuth.auth.signOut();
+        } catch (e) {
+            return e.message;
+        }
     }
 
-    authenticated() {
-        return this._authState.value;
+    /*
+        Returns whether or not the current user is authenticated.
+     */
+    authenticated(): boolean {
+        return this.isAuthenticated;
     }
 }

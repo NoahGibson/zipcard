@@ -1,0 +1,22 @@
+<form (ngSubmit)="signup()" [formGroup]="signupForm">
+    <ion-list>
+        <ion-item>
+            <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        </ion-item>
+    </ion-list>
+    <div>
+        <div class="form-error">{{ signupError }}</div>
+        <ion-button id="login-toggle-button"
+                    class="button-confirm"
+                    [disabled]="!signupForm.valid"
+                    type="submit"
+                    fill="outline"
+                    expand="block"
+                    shape="round">
+            Sign Up
+        </ion-button>
+    </div>
+</form>

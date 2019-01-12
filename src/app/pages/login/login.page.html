@@ -1,27 +1,24 @@
 <ion-content id="login-page">
-    <ion-grid id="login-content">
-        <ion-row align-items-center>
-            <ion-col>
-                <div id="login-text">
-                    <h1 id="login-title">Welcome to Zipcard</h1>
-                    <h3 id="login-subtitle">Recruiting Reimagined</h3>
-                </div>
-                <ion-button *ngIf="isAuthenticated(); else isLoggedOut"
-                            id="logout-button"
+    <div id="login-content">
+        <div id="login-header">
+            <h1 id="login-title">Welcome to Zipcard</h1>
+            <h3 id="login-subtitle">Recruiting Reimagined</h3>
+        </div>
+        <div id="login-context">
+            <app-login-page-popup title="{{ actionTitle }}">
+                <app-login-form *ngIf="action === 'login'; else signup"></app-login-form>
+                <ng-template #signup>
+                    <app-signup-form></app-signup-form>
+                </ng-template>
+                <ion-button id="login-toggle-button"
+                            class="button-cancel"
                             fill="outline"
                             shape="round"
-                            (click)="logout()">
-                    Logout
+                            size="small"
+                            (click)="toggleAction()">
+                    {{ notActionTitle }}
                 </ion-button>
-                <ng-template #isLoggedOut>
-                    <ion-button id="login-button"
-                                fill="outline"
-                                shape="round"
-                                (click)="login()">
-                        Login
-                    </ion-button>
-                </ng-template>
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+            </app-login-page-popup>
+        </div>
+    </div>
 </ion-content>
