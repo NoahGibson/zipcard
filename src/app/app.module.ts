@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireStorageModule } from '@angular/fire/storage';
-import { environment } from '../environments/environment';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -12,7 +9,6 @@ import {IonicStorageModule} from '@ionic/storage';
 import {File} from '@ionic-native/file/ngx';
 import {FileTransfer} from '@ionic-native/file-transfer/ngx';
 import {FilePath} from '@ionic-native/file-path/ngx';
-import { LinkedIn } from '@ionic-native/linkedin/ngx';
 import {Chooser} from '@ionic-native/chooser/ngx';
 
 import { AppComponent } from './app.component';
@@ -38,15 +34,12 @@ import {SharedModule} from '@app/shared';
         AppRoutingModule,
         CoreModule,
         SharedModule,
-        IonicStorageModule.forRoot(),
-        AngularFireModule.initializeApp(environment.firebase),
-        AngularFireStorageModule
+        IonicStorageModule.forRoot()
     ],
     providers: [
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        LinkedIn,
         Chooser,
         File,
         FileTransfer,

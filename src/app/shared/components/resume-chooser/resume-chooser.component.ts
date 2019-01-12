@@ -19,13 +19,13 @@ export class ResumeChooserComponent {
             directly instead. See: https://github.com/ionic-team/ionic-native/issues/2768
          */
         const file = await (<any>window).chooser.getFile('application/pdf');
-        if (file) {
-            this.resumeService.setResume(file.uri, file.name, file.data);
-        }
+        // if (file) {
+        //     this.resumeService.setResume(file.uri, file.name, file.data);
+        // }
     }
 
     clear() {
-        this.resumeService.resetResume();
+        // this.resumeService.resetResume();
     }
 
 }

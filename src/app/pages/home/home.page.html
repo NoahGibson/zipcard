@@ -5,17 +5,17 @@
 
 <ion-content>
 
-  <div *ngIf="(resumeService.resume | async).data; else noResume">
-    <pdf-viewer [src]="(resumeService.resume | async).data"
-                [original-size]="false"
-                [fit-to-page]="true"
-                style="display: block;"></pdf-viewer>
-  </div>
-  <ng-template #noResume>
-    <div>
-      No Resume Selected
-    </div>
-  </ng-template>
+  <!--<div *ngIf="(resumeService.resume | async).data; else noResume">-->
+    <!--<pdf-viewer [src]="(resumeService.resume | async).data"-->
+                <!--[original-size]="false"-->
+                <!--[fit-to-page]="true"-->
+                <!--style="display: block;"></pdf-viewer>-->
+  <!--</div>-->
+  <!--<ng-template #noResume>-->
+    <!--<div>-->
+      <!--No Resume Selected-->
+    <!--</div>-->
+  <!--</ng-template>-->
 
 
 </ion-content>
