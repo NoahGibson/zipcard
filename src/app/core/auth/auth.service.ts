@@ -1,27 +1,25 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {AngularFireAuth} from '@angular/fire/auth';
+import {User} from 'firebase';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthService {
 
-    // The current authentication state (logged in => true; logged out => false)
-    private _authState: BehaviorSubject<boolean> = new BehaviorSubject(false);
-    public readonly authState: Observable<boolean> = this._authState.asObservable();
+    // The current authentication state, containing the logged in user if applicable
+    public readonly authState: Observable<User>;
+
+    // The current authenticated user
+    private isAuthenticated: boolean;
 
     constructor(private afAuth: AngularFireAuth) {
-       this.checkActiveSession();
-    }
-
-    /*
-        Checks if there is already an active session.
-     */
-    private checkActiveSession() {
-        // TODO - check for active session
-        this._authState.next(false);
+        this.authState = this.afAuth.authState;
+        afAuth.authState.subscribe((user) => {
+            this.isAuthenticated = user !== null;
+        });
     }
 
     /*
@@ -31,7 +29,6 @@ export class AuthService {
     async signInWithEmail(credentials: {email: string, password: string}): Promise<string> {
         try {
             await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
-            this._authState.next(true);
         } catch (e) {
             return e.message;
         }
@@ -44,8 +41,6 @@ export class AuthService {
     async signUpWithEmail(credentials: {email: string, password: string}): Promise<string> {
         try {
             await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-            // TODO - add new user
-            this._authState.next(true);
         } catch (e) {
             return e.message;
         }
@@ -57,7 +52,6 @@ export class AuthService {
     async logout(): Promise<string> {
         try {
             await this.afAuth.auth.signOut();
-            this._authState.next(false);
         } catch (e) {
             return e.message;
         }
@@ -67,6 +61,6 @@ export class AuthService {
         Returns whether or not the current user is authenticated.
      */
     authenticated(): boolean {
-        return this._authState.value;
+        return this.isAuthenticated;
     }
 }
