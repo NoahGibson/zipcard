@@ -12,10 +12,14 @@ export class AuthService {
     // The current authentication state, containing the logged in user if applicable
     public readonly authState: Observable<User>;
 
-    // The current authenticated user
+    // Whether their exists a current authenticated user
     private isAuthenticated: boolean;
 
     constructor(private afAuth: AngularFireAuth) {
+        /*
+            NOTE: Google's API's automatically manage user sessions; the default
+            behavior is for sessions to persist indefinitely.
+         */
         this.authState = this.afAuth.authState;
         afAuth.authState.subscribe((user) => {
             this.isAuthenticated = user !== null;
