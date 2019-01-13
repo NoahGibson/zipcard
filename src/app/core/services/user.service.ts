@@ -30,15 +30,14 @@ export class UserService {
     }
 
     /*
-        Creates a new user from the given user model.
-        The user model must at the least contain:
-        - uid
-        - firstName
-        - lastName
-        - email
+        Creates a new user from the currently logged in user
+        using the given attributes.
         Returns an error message, if any.
      */
-    async createUser(user: User): Promise<string> {
+    async createCurrentUser(firstName: string,
+                            lastName: string,
+                            photoUrl: string,
+                            resumeUrl: string): Promise<string> {
         return null;
     }
 
