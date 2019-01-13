@@ -1,6 +1,10 @@
 # Zipcard
 
-Zipcard is a simple to use resume sharing application to be used by recruiters and potential candidates at functions such as career fairs. The application uses the power of NFC (Near Field Communication) technology in order to quickly share resumes between individuals. The application is currently written as an [Ionic](https://ionicframework.com/) 4 Application.
+Zipcard is a simple to use resume sharing application to be used by recruiters and potential candidates at functions such as career fairs. The application is currently written as an [Ionic](https://ionicframework.com/) 4 Application.
+
+The current backend for the application is managed via Google's Firebase, and the Firebase project for Zipcard can be found [here](https://console.firebase.google.com/project/zipcard-65375/overview).
+
+Trello is used for managing project tasks. The board for Zipcard can either be accessed via the Boards tab within the Bitbucket repo, or at [this link](https://trello.com/b/VJMLUXao/zipcard).
 
 ---
 
