@@ -19,13 +19,25 @@ export class UserService {
     public readonly currentUser: Observable<User> = this._currentUser.asObservable();
 
     constructor(private authService: AuthService,
-                private afs: AngularFirestore) {}
+                private afs: AngularFirestore) {
+        /*
+            Subscribing to authenticated user, grabbing the uid,
+            fetching details of that user, then setting current
+            user to those details.
+         */
+        this.authService.authState.subscribe((auth) => {
+            this.getUserById(auth.uid)
+                .then((user) => {
+                    this._currentUser.next(user);
+                });
+        });
+    }
 
     /*
         Returns an observable of the user with the given UID,
         if they exist.
      */
-    async getUserById(uid: string): Promise<Observable<User>> {
+    async getUserById(uid: string): Promise<User> {
         return null;
     }
 
