@@ -3,3 +3,4 @@ export * from './guards';
 export * from './auth';
 export * from './services';
 export * from './navigation';
+export * from './models';
