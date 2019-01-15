@@ -11,6 +11,9 @@ import {User} from '@app/core/models';
 })
 export class UserService {
 
+    // The path to the users location in Firebase
+    private readonly USERS_LOC = 'users';
+
     // The subscription to the current user
     private curUserSub: Subscription;
 
@@ -48,8 +51,9 @@ export class UserService {
         if they exist.
      */
     async getUserById(uid: string): Promise<Observable<User>> {
+        // TODO - somehow return an error message if one exists
         try {
-            const userDoc = await this.afs.doc<User>(`users/${uid}`);
+            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
             return userDoc.valueChanges();
         } catch (e) {
             // TODO - don't log error to console
@@ -61,12 +65,30 @@ export class UserService {
         Creates a new user from the currently logged in user
         using the given attributes.
         Returns an error message, if any.
+        First name, last name, and email are all required; photo url
+        and resume url are optional.
      */
     async createCurrentUser(firstName: string,
                             lastName: string,
-                            photoUrl: string,
-                            resumeUrl: string): Promise<string> {
-        return null;
+                            email: string,
+                            photoUrl: string = '',
+                            resumeUrl: string = ''): Promise<string> {
+        const userUID = this._currentUser.value.uid;
+        // TODO - check to make sure current user doesn't already exist
+        try {
+            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + userUID);
+            const newUser = {
+                uid: userUID,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                photoUrl: photoUrl,
+                resumeUrl: resumeUrl
+            };
+            userDoc.set(newUser);
+        } catch (e) {
+            return e.message;
+        }
     }
 
     /*
