@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 
 import {AngularFirestore} from '@angular/fire/firestore';
 
@@ -11,25 +11,35 @@ import {User} from '@app/core/models';
 })
 export class UserService {
 
-    // Default user definition
-    private readonly DEFAULT_USER: User;
+    // The subscription to the current user
+    private curUserSub: Subscription;
 
     // The currently logged in user, if applicable
-    private _currentUser: BehaviorSubject<User> = new BehaviorSubject(this.DEFAULT_USER);
+    private _currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
     public readonly currentUser: Observable<User> = this._currentUser.asObservable();
 
     constructor(private authService: AuthService,
                 private afs: AngularFirestore) {
-        /*
-            Subscribing to authenticated user, grabbing the uid,
-            fetching details of that user, then setting current
-            user to those details.
-         */
-        this.authService.authState.subscribe((auth) => {
-            this.getUserById(auth.uid)
-                .then((user) => {
-                    this._currentUser.next(user);
-                });
+        this.init();
+    }
+
+    /*
+        Initialize necessary subscriptions to authentication service and to current user.
+     */
+    private init(): void {
+        this.authService.authState.subscribe(async (auth) => {
+            if (auth) {
+                // If authenticated, get the current user and subscribe to value
+                const curUserObs = await this.getUserById(auth.uid);
+                this.curUserSub = curUserObs.subscribe((user) => {
+                        this._currentUser.next(user);
+                    });
+            } else {
+                // Else unsubscribe from current user if subscription exists
+                if (this.curUserSub) {
+                    this.curUserSub.unsubscribe();
+                }
+            }
         });
     }
 
@@ -37,8 +47,14 @@ export class UserService {
         Returns an observable of the user with the given UID,
         if they exist.
      */
-    async getUserById(uid: string): Promise<User> {
-        return null;
+    async getUserById(uid: string): Promise<Observable<User>> {
+        try {
+            const userDoc = await this.afs.doc<User>(`users/${uid}`);
+            return userDoc.valueChanges();
+        } catch (e) {
+            // TODO - don't log error to console
+            console.log(e);
+        }
     }
 
     /*
@@ -56,6 +72,7 @@ export class UserService {
     /*
         Updates the current user with the provided new attributes.
         If an attribute is not specified, it will remain the same.
+        Returns an error message, if any.
      */
     async updateCurrentUser(firstName: string = this._currentUser.value.firstName,
                             lastName: string = this._currentUser.value.lastName,
