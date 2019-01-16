@@ -16,6 +16,7 @@
       <!--No Resume Selected-->
     <!--</div>-->
   <!--</ng-template>-->
+  <p *ngIf="(authService.currentUser$ | async)">{{ (authService.currentUser$ | async).firstName }}</p>
 
 
 </ion-content>

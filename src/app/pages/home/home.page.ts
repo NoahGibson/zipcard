@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {ResumeService} from '@app/core';
+import {AuthService, ResumeService} from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +9,7 @@ import {ResumeService} from '@app/core';
 })
 export class HomePage {
 
-    constructor(public resumeService: ResumeService) {}
+    constructor(public resumeService: ResumeService,
+                public authService: AuthService) {}
 
 }

@@ -20,7 +20,7 @@ export class ResumeService {
     // public readonly resume: Observable<any> = this._resume.asObservable();
 
     constructor(private authService: AuthService) {
-        // this.authService.authState.subscribe((state) => {
+        // this.authService.authState$.subscribe((state) => {
         //     if (state) {
         //         this.fetchResumeData();
         //     }

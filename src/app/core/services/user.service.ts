@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable, Subscription} from 'rxjs';
+import {Observable} from 'rxjs';
 
 import {AngularFirestore} from '@angular/fire/firestore';
 
-import {AuthService} from '@app/core/auth';
 import {User} from '@app/core/models';
 
 @Injectable({
@@ -14,37 +13,7 @@ export class UserService {
     // The path to the users location in Firebase
     private readonly USERS_LOC = 'users';
 
-    // The subscription to the current user
-    private curUserSub: Subscription;
-
-    // The currently logged in user, if applicable
-    private _currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
-    public readonly currentUser: Observable<User> = this._currentUser.asObservable();
-
-    constructor(private authService: AuthService,
-                private afs: AngularFirestore) {
-        this.init();
-    }
-
-    /*
-        Initialize necessary subscriptions to authentication service and to current user.
-     */
-    private init(): void {
-        this.authService.authState.subscribe(async (auth) => {
-            if (auth) {
-                // If authenticated, get the current user and subscribe to value
-                const curUserObs = await this.getUserById(auth.uid);
-                this.curUserSub = curUserObs.subscribe((user) => {
-                        this._currentUser.next(user);
-                    });
-            } else {
-                // Else unsubscribe from current user if subscription exists
-                if (this.curUserSub) {
-                    this.curUserSub.unsubscribe();
-                }
-            }
-        });
-    }
+    constructor(private afs: AngularFirestore) {}
 
     /*
         Returns an observable of the user with the given UID,
@@ -62,53 +31,49 @@ export class UserService {
     }
 
     /*
-        Creates a new user from the currently logged in user
-        using the given attributes.
-        Returns an error message, if any.
-        First name, last name, and email are all required; photo url
-        and resume url are optional.
+        Creates a new user from the given User.
+        Returns true if user creation is successful, false otherwise.
+        UID, first name, last name, and email are all required to be set
+        on the given user; photo url and resume url are optional.
      */
-    async createCurrentUser(firstName: string,
-                            lastName: string,
-                            email: string,
-                            photoUrl: string = '',
-                            resumeUrl: string = ''): Promise<string> {
-        const userUID = this._currentUser.value.uid;
+    async createUser(newUser: User): Promise<boolean> {
+        if (!newUser.uid || !newUser.firstName || !newUser.lastName || !newUser.email) {
+            // TODO - handle error
+            console.log('Missing required user attributes');
+            return false;
+        }
         // TODO - check to make sure current user doesn't already exist
         try {
-            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + userUID);
-            const newUser = {
-                uid: userUID,
-                firstName: firstName,
-                lastName: lastName,
-                email: email,
-                photoUrl: photoUrl,
-                resumeUrl: resumeUrl
-            };
-            userDoc.set(newUser);
+            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + newUser.uid);
+            await userDoc.set(newUser);
+            return true;
         } catch (e) {
-            return e.message;
+            // TODO - handle error
+            console.log(e);
+            return false;
         }
     }
 
     /*
-        Updates the current user with the provided new attributes.
+        Updates the user with the given UID with the provided new attributes.
         If an attribute is not specified, it will remain the same.
-        Returns an error message, if any.
+        An authenticated user can only update their own information.
+        Returns true if user update is successful, false otherwise.
      */
-    async updateCurrentUser(firstName: string = this._currentUser.value.firstName,
-                            lastName: string = this._currentUser.value.lastName,
-                            email: string = this._currentUser.value.email,
-                            photoUrl: string = this._currentUser.value.photoUrl,
-                            resumeUrl: string = this._currentUser.value.resumeUrl): Promise<string> {
+    async updateUser(uid: string,
+                     firstName: string = null,
+                     lastName: string = null,
+                     email: string = null,
+                     photoUrl: string = null,
+                     resumeUrl: string = null): Promise<boolean> {
         return null;
     }
 
     /*
-        Permanently deletes the current user.
-        Returns an error message, if any.
+        Permanently deletes the user with the given UID.
+        Returns true if user deletion is successful, false otherwise.
      */
-    async deleteCurrentUser(): Promise<string> {
+    async deleteUser(uid: string): Promise<boolean> {
         return null;
     }
 

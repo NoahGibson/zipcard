@@ -15,6 +15,8 @@ export class SignupFormComponent {
     constructor(private authService: AuthService,
                 private fb: FormBuilder) {
         this.signupForm = fb.group({
+            firstName: ['', Validators.compose([Validators.required])],
+            lastName: ['', Validators.compose([Validators.required])],
             email: ['', Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
         });
@@ -26,6 +28,13 @@ export class SignupFormComponent {
             email: data.email,
             password: data.password
         };
-        this.signupError = await this.authService.signUpWithEmail(credentials);
+        const userAttributes = {
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            photoUrl: '',
+            resumeUrl: ''
+        }
+        this.signupError = await this.authService.signUpWithEmail(credentials, userAttributes);
     }
 }

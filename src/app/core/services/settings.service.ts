@@ -24,7 +24,7 @@ export class SettingsService {
     public readonly sendReceive: Observable<string> = this._sendReceive.asObservable();
 
     constructor(private storage: Storage, private authService: AuthService) {
-        this.authService.authState.subscribe((state) => {
+        this.authService.authState$.subscribe((state) => {
             if (state) {
                 this.fetchSettingsData();
             }
