@@ -1,6 +1,12 @@
 <form (ngSubmit)="signup()" [formGroup]="signupForm">
     <ion-list>
         <ion-item>
+            <ion-input type="text" placeholder="First Name" formControlName="firstName"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input type="text" placeholder="Last Name" formControlName="lastName"></ion-input>
+        </ion-item>
+        <ion-item>
             <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
         </ion-item>
         <ion-item>

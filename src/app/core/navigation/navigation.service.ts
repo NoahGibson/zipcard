@@ -25,7 +25,7 @@ export class NavigationService {
         // });
 
         // Subscribe to authService to automatically navigate on login/logout
-        this.authService.authState.subscribe((authenticated) => {
+        this.authService.authState$.subscribe((authenticated) => {
             if (authenticated) {
                 this.navigate('home');
             } else {
