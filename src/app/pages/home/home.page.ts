@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {AuthService} from '@app/core';
+import {AuthService, ResumeService, UserService} from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +9,17 @@ import {AuthService} from '@app/core';
 })
 export class HomePage {
 
-    constructor(public authService: AuthService) {}
+    private currentUser;
+
+    constructor(public authService: AuthService,
+                private userService: UserService) {
+        this.authService.currentUser$.subscribe((user) => {
+            this.currentUser = user;
+        });
+    }
+
+    deleteUser() {
+        this.userService.deleteUser(this.currentUser.uid);
+    }
 
 }

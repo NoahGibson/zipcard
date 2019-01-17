@@ -95,11 +95,22 @@ export class UserService {
     }
 
     /*
-        Permanently deletes the user with the given UID.
+        Permanently deletes the user from the database with the given UID.
+        This does not delete the user's account, just their data.
         Returns true if user deletion is successful, false otherwise.
      */
     async deleteUser(uid: string): Promise<boolean> {
-        return null;
+        // TODO - check to make sure user exists
+        try {
+            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
+            await userDoc.delete();
+            // TODO - delete user's resume and photo
+            return true;
+        } catch (e) {
+            // TODO - handle error
+            console.log(e);
+            return false;
+        }
     }
 
 }
