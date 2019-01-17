@@ -106,6 +106,18 @@ export class AuthService {
     }
 
     /*
+        Permanently deletes the current user's account and data.
+     */
+    async deleteAccount(): Promise<string> {
+        try {
+            await this.afAuth.auth.currentUser.delete();
+            await this.userService.deleteUser(this._currentUid);
+        } catch (e) {
+            return e.message;
+        }
+    }
+
+    /*
         Returns whether or not the current user is authenticated.
      */
     authenticated(): boolean {

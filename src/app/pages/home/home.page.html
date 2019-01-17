@@ -19,7 +19,6 @@
   <p *ngIf="(authService.currentUser$ | async)">
     {{ (authService.currentUser$ | async).firstName }} {{ (authService.currentUser$ | async).lastName }}
   </p>
-  <ion-button (click)="deleteUser()">Delete User</ion-button>
 
 
 </ion-content>
