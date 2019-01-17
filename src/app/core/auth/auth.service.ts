@@ -12,7 +12,7 @@ import {User} from '@app/core/models';
 })
 export class AuthService {
 
-    // The current authentication state, containing the logged in user if applicable
+    // The current authentication state
     /*
         NOTE: Google's API's automatically manage user sessions; the default
         behavior is for sessions to persist indefinitely.
@@ -26,6 +26,7 @@ export class AuthService {
     // The subscription to the current user
     private _userSubscription: Subscription;
 
+    // The UID of the current user
     private _currentUid: string = null;
 
     constructor(private afAuth: AngularFireAuth,

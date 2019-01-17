@@ -58,15 +58,40 @@ export class UserService {
         Updates the user with the given UID with the provided new attributes.
         If an attribute is not specified, it will remain the same.
         An authenticated user can only update their own information.
+        First name and last name must not be empty if they are provided.
+        The UID and email of a user cannot be changed.
         Returns true if user update is successful, false otherwise.
      */
-    async updateUser(uid: string,
-                     firstName: string = null,
-                     lastName: string = null,
-                     email: string = null,
-                     photoUrl: string = null,
-                     resumeUrl: string = null): Promise<boolean> {
-        return null;
+    async updateUser(uid: string, update: Partial<User>): Promise<boolean> {
+        if (update.uid) {
+            // TODO - handle error
+            console.log('Cannot update the UID of a user.');
+            return false;
+        }
+        if (update.email) {
+            // TODO - handle error
+            console.log('Cannot update the email of a user.');
+            return false;
+        }
+        if (update.firstName && update.firstName.length === 0) {
+            // TODO - handle error
+            console.log('First name must be non empty.');
+            return false;
+        }
+        if (update.lastName && update.lastName.length === 0) {
+            // TODO - handle error
+            console.log('Last name must be non empty.');
+            return false;
+        }
+        try {
+            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
+            await userDoc.update(update);
+            return true;
+        } catch (e) {
+            // TODO - handle error
+            console.log(e);
+            return false;
+        }
     }
 
     /*
