@@ -1,4 +1,14 @@
 .login-page-popup {
   background: white;
   text-align: center;
+  border-radius: 20px;
+}
+
+.login-page-popup-header {
+  background-image: linear-gradient(rgba(var(--ion-color-medium-rgb), 0.25), rgba(0, 0, 0, 0));
+}
+
+.login-page-popup-title {
+  font-weight: bold;
+  color: var(--ion-color-primary);
 }
