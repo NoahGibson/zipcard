@@ -153,13 +153,10 @@ export class AuthService {
         }
     }
 
-    /*
-        Returns whether or not the current user is authenticated.
-     */
     /**
      * Returns whether or not the current user is authenticated.
      *
-     * @returns true if a user is currently authenticated; false otherwise
+     * @returns True if a user is currently authenticated; false otherwise
      */
     authenticated(): boolean {
         return this._currentUid !== null;
