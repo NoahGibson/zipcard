@@ -2,5 +2,40 @@
     <app-header title="Profile"></app-header>
 </ion-header>
 <ion-content padding>
-    Profile Page
+    <div id="edit-profile-content">
+        <div id="edit-profile-header">
+            <h3>Edit Profile</h3>
+        </div>
+        <div id="edit-profile-context">
+            <form (ngSubmit)="updateProfile()"
+                  [formGroup]="updateProfileForm"
+                  id="edit-profile-form">
+                <ion-list>
+                    <ion-item>
+                        <ion-label>First Name</ion-label>
+                        <ion-input type="text"
+                                   placeholder="First Name"
+                                   formControlName="firstName">
+                        </ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Last Name</ion-label>
+                        <ion-input type="text"
+                                   placeholder="Last Name"
+                                   formControlName="lastName">
+                        </ion-input>
+                    </ion-item>
+                </ion-list>
+                <ion-button id="update-profie-confirm-button"
+                            class="button-confirm"
+                            [disabled]="!updateProfileForm.valid"
+                            type="submit"
+                            fill="outline"
+                            expand="block"
+                            shape="round">
+                    Save Changes
+                </ion-button>
+            </form>
+        </div>
+    </div>
 </ion-content>
