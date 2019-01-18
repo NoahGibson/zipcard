@@ -4,26 +4,33 @@ import {Platform} from '@ionic/angular';
 
 import {AuthService} from '@app/core/auth';
 
+/**
+ * Service for handling navigation through the app.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class NavigationService {
 
+    /**
+     * The currently active page.
+     * @ignore
+     */
     private activePage = 'home';
+
+    /**
+     * The previous page the user was on.
+     * @ignore
+     */
     private previousPage = '';
 
+    /**
+     * @ignore
+     */
     constructor(private platform: Platform,
                 private router: Router,
                 private authService: AuthService) {
-        // // Register what action to perform on hitting back button
-        // this.platform.backButton.subscribe(() => {
-        //     if (this.activePage !== 'home' && this.activePage !== 'login') {
-        //         this.navigate(this.previousPage);
-        //     } else {
-        //         // TODO - exit app
-        //     }
-        // });
-
+        // TODO - add handling of user pressing back on their phone
         // Subscribe to authService to automatically navigate on login/logout
         this.authService.authState$.subscribe((authenticated) => {
             if (authenticated) {
@@ -34,13 +41,23 @@ export class NavigationService {
         });
     }
 
-    public async navigate(page: string) {
+    /**
+     * Navigates the application to the specified page.
+     *
+     * @param {string} page The name of the page to navigate to
+     */
+    public async navigate(page: string): Promise<void> {
         await this.router.navigate([page]);
         this.previousPage = this.activePage;
         this.activePage = page;
     }
 
-    public getActivePage() {
+    /**
+     * Returns the name of the currently active page.
+     *
+     * @returns {string} The name of the currently active page
+     */
+    public getActivePage(): string {
         return this.activePage;
     }
 

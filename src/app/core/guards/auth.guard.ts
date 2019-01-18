@@ -21,7 +21,7 @@ export class AuthGuard implements CanActivate {
      * Specifies whether or not the current user can activate a certain location
      * of the application.
      *
-     * @returns True if the current user can activate a location; false otherwise
+     * @returns {boolean} True if the current user can activate a location; false otherwise
      */
     public canActivate(): boolean {
         return this.authService.authenticated();
