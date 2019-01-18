@@ -18,15 +18,7 @@ import {Chooser} from '@ionic-native/chooser/ngx';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
-import {
-    AuthGuard,
-    AuthService,
-    CoreModule,
-    NavigationService,
-    ResumeService,
-    SettingsService,
-    UserService
-} from '@app/core';
+import {CoreModule} from '@app/core';
 import {SharedModule} from '@app/shared';
 
 @NgModule({
@@ -36,7 +28,7 @@ import {SharedModule} from '@app/shared';
         BrowserModule,
         IonicModule.forRoot(),
         AppRoutingModule,
-        CoreModule,
+        CoreModule.forRoot(),
         SharedModule,
         IonicStorageModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebase),
@@ -48,13 +40,7 @@ import {SharedModule} from '@app/shared';
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-        Chooser,
-        AuthService,
-        AuthGuard,
-        NavigationService,
-        UserService,
-        SettingsService,
-        ResumeService
+        Chooser
     ],
     bootstrap: [AppComponent]
 })
