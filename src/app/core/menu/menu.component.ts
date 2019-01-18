@@ -18,6 +18,11 @@ export class MenuComponent {
             icon: 'home'
         },
         {
+            page: 'profile',
+            name: 'Profile',
+            icon: 'person'
+        },
+        {
             page: 'settings',
             name: 'Settings',
             icon: 'settings'
