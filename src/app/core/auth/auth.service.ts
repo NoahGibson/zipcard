@@ -103,12 +103,12 @@ export class AuthService {
      * @returns A promise containing an error message, if any
      */
     public async signUpWithEmail(credentials: {email: string, password: string},
-                          userAttributes: {
-                                firstName: string,
-                                lastName: string,
-                                email: string,
-                                photoUrl: string,
-                                resumeUrl: string}): Promise<string> {
+                                 userAttributes: {
+                                        firstName: string,
+                                        lastName: string,
+                                        email: string,
+                                        photoUrl: string,
+                                        resumeUrl: string}): Promise<string> {
         try {
             await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
             const newUser: User = {
