@@ -1,4 +1,5 @@
 # Zipcard
+---
 
 Zipcard is a simple to use resume sharing application to be used by recruiters and potential candidates at functions such as career fairs. The application is currently written as an [Ionic](https://ionicframework.com/) 4 Application.
 
@@ -6,9 +7,16 @@ The current backend for the application is managed via Google's Firebase, and th
 
 Trello is used for managing project tasks. The board for Zipcard can either be accessed via the Boards tab within the Bitbucket repo, or at [this link](https://trello.com/b/VJMLUXao/zipcard).
 
----
+### Contents
+
+- [How to use Git](#markdown-header-how-to-use-git)
+- [Setting up the Project](#markdown-header-setting-up-the-project)
+- [Running the Project](#markdown-header-running-the-project)
+- [Accessing Documentation](#markdown-header-accessing-documentation)
+
 
 ## How to use Git
+---
 
 ### Downloading Git
 
@@ -53,9 +61,9 @@ In order to commit changes that you have made to your local repository:
 
 Once all changes have been committed, you can now push your commits to the remote repository. In order to do so, simply run **git push origin <branch name\>** in order to push your changes.
 
----
 
-## Setting up Project
+## Setting up the Project
+---
 
 ### Installing Node.js and NPM
 
@@ -69,12 +77,19 @@ In order to install Ionic, run the command: **npm install -g ionic cordova** in 
 
 There are dependencies that first need to be installed in order to run the ionic application. Run the command: **npm install** in order to have these installed locally for this project.
 
----
 
 ## Running the Project
+---
 
 After following the steps in *Setting up Project*, run **ionic serve** within the root directory of the Ionic project in order to preview the application on your computer's browser.
 
 To run the application on Android, plug the phone into a USB port on the machine, turn on USB Debugging within Developer Options, and then run **ionic cordova run andriod** within the Ionic project.
 
+
+## Accessing Documentation
 ---
+
+[CompoDoc](https://compodoc.app/) is used for documentation. However, this documenation is not public, and not kept under version control.
+
+In order to access the documenation, run the command **npm run compodoc** within the project directory. This may take a few minutes to complete. Once finished, the documenation will be hosted and can be accessed at the link shown in the command output.
+
