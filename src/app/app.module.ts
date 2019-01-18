@@ -19,7 +19,6 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 
 import {CoreModule} from '@app/core';
-import {SharedModule} from '@app/shared';
 
 @NgModule({
     declarations: [AppComponent],
@@ -29,7 +28,6 @@ import {SharedModule} from '@app/shared';
         IonicModule.forRoot(),
         AppRoutingModule,
         CoreModule.forRoot(),
-        SharedModule,
         IonicStorageModule.forRoot(),
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
