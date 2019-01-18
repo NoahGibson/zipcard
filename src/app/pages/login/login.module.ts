@@ -9,6 +9,9 @@ import {LoginPagePopupComponent} from './components/login-page-popup/login-page-
 import {LoginFormComponent} from './components/login-form/login-form.component';
 import {SignupFormComponent} from './components/signup-form/signup-form.component';
 
+/**
+ * Module containing all elements specific to the [Login Page]{@link LoginPage} functionality.
+ */
 @NgModule({
     imports: [
         CommonModule,

@@ -1,5 +1,8 @@
 import {Component} from '@angular/core';
 
+/**
+ * The application login page.
+ */
 @Component({
     selector: 'app-login',
     templateUrl: 'login.page.html',
