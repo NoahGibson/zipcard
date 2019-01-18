@@ -9,10 +9,10 @@ Trello is used for managing project tasks. The board for Zipcard can either be a
 
 ### Contents
 
-- [How to use Git](#how-to-use-git)
-- [Setting up the Project](#setting-up-the-project)
-- [Running the Project](#running-the-project)
-- [Accessing Documentation](#accessing-documentation)
+- [How to use Git](#markdown-header-how-to-use-git)
+- [Setting up the Project](#markdown-header-setting-up-the-project)
+- [Running the Project](#markdown-header-running-the-project)
+- [Accessing Documentation](#markdown-header-accessing-documentation)
 
 
 ## How to use Git
