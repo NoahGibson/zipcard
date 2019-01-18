@@ -5,19 +5,31 @@ import {AngularFirestore} from '@angular/fire/firestore';
 
 import {User} from '@app/core/models';
 
+/**
+ * Service providing various methods for accessing and manipulating user data.
+ */
 @Injectable({
     providedIn: 'root',
 })
 export class UserService {
 
-    // The path to the users location in Firebase
+    /**
+     * The path to the users location in Firebase database.
+     * @ignore
+     */
     private readonly USERS_LOC = 'users';
 
+    /**
+     * @ignore
+     */
     constructor(private afs: AngularFirestore) {}
 
-    /*
-        Returns an observable of the user with the given UID,
-        if they exist.
+    /**
+     * Retrieves a {@link User} from the database with the given UID,
+     * if they exist.
+     *
+     * @param {string} uid The UID of the user to retrieve the data of
+     * @returns An observable of the user's data
      */
     async getUserById(uid: string): Promise<Observable<User>> {
         // TODO - somehow return an error message if one exists
@@ -30,11 +42,14 @@ export class UserService {
         }
     }
 
-    /*
-        Creates a new user from the given User.
-        Returns true if user creation is successful, false otherwise.
-        UID, first name, last name, and email are all required to be set
-        on the given user; photo url and resume url are optional.
+    /**
+     * Creates a new user in the database from the given {@link User}. The
+     * UID, first name, last name, and email properties of the given user must
+     * be set; photo url and resume url are optional.
+     *
+     * @param {User} newUser The user to add to the database
+     * @returns A promise containing true if the user was successfully added;
+     *      false otherwise
      */
     async createUser(newUser: User): Promise<boolean> {
         if (!newUser.uid || !newUser.firstName || !newUser.lastName || !newUser.email) {
@@ -54,13 +69,17 @@ export class UserService {
         }
     }
 
-    /*
-        Updates the user with the given UID with the provided new attributes.
-        If an attribute is not specified, it will remain the same.
-        An authenticated user can only update their own information.
-        First name and last name must not be empty if they are provided.
-        The UID and email of a user cannot be changed.
-        Returns true if user update is successful, false otherwise.
+    /**
+     * Updates the {@link User} with the given UID with the provided new attributes.
+     * If an attribute is not specified, it will remain the same. First name and
+     * last name must not be empty if they are provided. The UID and email of a
+     * user cannot be changed.
+     * Note: an authenticated user can only update their own information.
+     *
+     * @param {string} uid The UID of the user to update
+     * @param {Partial<User>} update The new attributes of the user
+     * @returns A promise containing true if the user was successfully updated;
+     *      false otherwise
      */
     async updateUser(uid: string, update: Partial<User>): Promise<boolean> {
         if (update.uid) {
@@ -94,10 +113,13 @@ export class UserService {
         }
     }
 
-    /*
-        Permanently deletes the user from the database with the given UID.
-        This does not delete the user's account, just their data.
-        Returns true if user deletion is successful, false otherwise.
+    /**
+     * Permanently deletes the user from the database with the given UID.
+     * Note: this does not delete the user's account, just their data.
+     *
+     * @param {string} uid The UID of the user to delete
+     * @returns A promise containing true if the user was successfully deleted;
+     *      false otherwise
      */
     async deleteUser(uid: string): Promise<boolean> {
         // TODO - check to make sure user exists
