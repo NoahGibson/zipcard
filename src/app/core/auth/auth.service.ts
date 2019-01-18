@@ -86,7 +86,7 @@ export class AuthService {
      * @param credentials An object containing the email and password of a user
      * @returns A promise containing an error message, if any
      */
-    async signInWithEmail(credentials: {email: string, password: string}): Promise<string> {
+    public async signInWithEmail(credentials: {email: string, password: string}): Promise<string> {
         try {
             await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
         } catch (e) {
@@ -102,7 +102,7 @@ export class AuthService {
      *      photo url, and resume url of a user
      * @returns A promise containing an error message, if any
      */
-    async signUpWithEmail(credentials: {email: string, password: string},
+    public async signUpWithEmail(credentials: {email: string, password: string},
                           userAttributes: {
                                 firstName: string,
                                 lastName: string,
@@ -131,7 +131,7 @@ export class AuthService {
      *
      * @returns A promise containing an error message, if any
      */
-    async signOut(): Promise<string> {
+    public async signOut(): Promise<string> {
         try {
             await this.afAuth.auth.signOut();
         } catch (e) {
@@ -144,7 +144,7 @@ export class AuthService {
      *
      * @returns A promise containing an error message, if any
      */
-    async deleteAccount(): Promise<string> {
+    public async deleteAccount(): Promise<string> {
         try {
             await this.afAuth.auth.currentUser.delete();
             await this.userService.deleteUser(this._currentUid);
@@ -158,7 +158,7 @@ export class AuthService {
      *
      * @returns True if a user is currently authenticated; false otherwise
      */
-    authenticated(): boolean {
+    public authenticated(): boolean {
         return this._currentUid !== null;
     }
 }
