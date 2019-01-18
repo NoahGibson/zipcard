@@ -29,6 +29,9 @@ plugins/android.json
 plugins/ios.json
 $RECYCLE.BIN/
 
+# Ignore CompoDoc documentation since it can be generated on the fly
+documentation/
+
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate

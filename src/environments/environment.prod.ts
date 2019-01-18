@@ -1,3 +1,6 @@
+/**
+ * Specifications for the application's production environment.
+ */
 export const environment = {
   production: true,
   firebase: {
