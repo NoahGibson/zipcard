@@ -11,15 +11,12 @@
                   [formGroup]="updateProfileForm"
                   id="edit-profile-form">
                 <ion-list>
+                    <app-text-input type="text"
+                                    label="First Name"
+                                    placeholder="First Name"
+                                    formControlName="firstName"></app-text-input>
                     <ion-item>
-                        <ion-label>First Name</ion-label>
-                        <ion-input type="text"
-                                   placeholder="First Name"
-                                   formControlName="firstName">
-                        </ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Last Name</ion-label>
+                        <ion-label position="fixed">Last Name</ion-label>
                         <ion-input type="text"
                                    placeholder="Last Name"
                                    formControlName="lastName">

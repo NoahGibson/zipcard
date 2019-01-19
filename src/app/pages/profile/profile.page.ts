@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
 import {AuthService, User, UserService} from '@app/core';
@@ -26,10 +26,12 @@ export class ProfilePage {
         this._currentUserSubscription = this.authService.currentUser$.subscribe((user) => {
             this._currentUser = user;
         });
+
         this.updateProfileForm = fb.group({
             firstName: [this._currentUser.firstName, Validators.compose([Validators.required])],
             lastName: [this._currentUser.lastName, Validators.compose([Validators.required])]
         });
+
     }
 
     private ionViewWillLeave() {
