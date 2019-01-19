@@ -140,6 +140,51 @@ export class AuthService {
     }
 
     /**
+     * Updates the first and last name of the current user.
+     *
+     * @param {string} firstName The first name of the user
+     * @param {string} lastName The last name of the user
+     * @returns A promise containing an error message, if any
+     */
+    public async updateName(firstName: string, lastName: string): Promise<string> {
+        try {
+            await this.userService.updateUser(this._currentUid, {firstName: firstName, lastName: lastName});
+        } catch (e) {
+            return e.message;
+        }
+    }
+
+    /**
+     * Updates the email of an authenticated user as well as
+     * updates the user's email value in the database.
+     *
+     * @param {string} newEmail The new email of the user
+     * @returns A promise containing an error message, if any
+     */
+    public async updateEmail(newEmail: string): Promise<string> {
+        try {
+            await this.afAuth.auth.currentUser.updateEmail(newEmail);
+            await this.userService.updateUser(this._currentUid, {email: newEmail});
+        } catch (e) {
+            return e.message;
+        }
+    }
+
+    /**
+     * Updates the password of a user.
+     *
+     * @param {string} newPassword The new password of the user
+     * @returns A promise containing an error message, if any
+     */
+    public async updatePassword(newPassword: string): Promise<string> {
+        try {
+            await this.afAuth.auth.currentUser.updatePassword(newPassword);
+        } catch (e) {
+            return e.message;
+        }
+    }
+
+    /**
      * Permanently deletes the current user's account and data.
      *
      * @returns A promise containing an error message, if any

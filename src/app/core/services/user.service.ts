@@ -7,6 +7,12 @@ import {User} from '@app/core/models';
 
 /**
  * Service providing various methods for accessing and manipulating user data.
+ *
+ * Note: this service only interacts with user information stored within the database;
+ * any methods within this service do not touch the authentication credentials of
+ * a user, nor does it affect the files stored on the server associated with the
+ * user. Manipulating these other aspects should be handled via their respective
+ * services.
  */
 @Injectable({
     providedIn: 'root',
@@ -71,10 +77,15 @@ export class UserService {
 
     /**
      * Updates the {@link User} with the given UID with the provided new attributes.
-     * If an attribute is not specified, it will remain the same. First name and
-     * last name must not be empty if they are provided. The UID and email of a
+     * If an attribute is not specified, it will remain the same. First name,
+     * last name, and email must not be empty if they are provided. The UID of a
      * user cannot be changed.
+     *
      * Note: an authenticated user can only update their own information.
+     *
+     * Note: in order to update a user's email, call AuthService.updateEmail instead.
+     *
+     * Note: in order to update a user's password, call AuthService.updatePassword.
      *
      * @param {string} uid The UID of the user to update
      * @param {Partial<User>} update The new attributes of the user
@@ -87,9 +98,9 @@ export class UserService {
             console.log('Cannot update the UID of a user.');
             return false;
         }
-        if (update.email) {
+        if (update.email && update.email.length === 0) {
             // TODO - handle error
-            console.log('Cannot update the email of a user.');
+            console.log('Email must be non empty.');
             return false;
         }
         if (update.firstName && update.firstName.length === 0) {
@@ -115,6 +126,7 @@ export class UserService {
 
     /**
      * Permanently deletes the user from the database with the given UID.
+     *
      * Note: this does not delete the user's account, just their data.
      *
      * @param {string} uid The UID of the user to delete
