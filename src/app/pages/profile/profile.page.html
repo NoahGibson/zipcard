@@ -2,34 +2,64 @@
     <app-header title="Profile"></app-header>
 </ion-header>
 <ion-content padding>
-    <div id="edit-profile-content">
-        <div id="edit-profile-header">
-            <h3>Edit Profile</h3>
+    <ion-list>
+        <div id="update-profile-content">
+            <div id="update-profile-header">
+                <h3>Edit Profile</h3>
+            </div>
+            <div id="update-profile-context">
+                <form (ngSubmit)="updateName()"
+                      [formGroup]="updateNameForm"
+                      id="update-name-form">
+                    <ion-list>
+                        <app-text-input type="text"
+                                        label="First Name"
+                                        placeholder="First Name"
+                                        formControlName="firstName"></app-text-input>
+                        <app-text-input type="text"
+                                        label="Last Name"
+                                        placeholder="Last Name"
+                                        formControlName="lastName"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ updateNameError }}</div>
+                    <ion-button id="update-name-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!updateNameForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Save Changes
+                    </ion-button>
+                </form>
+            </div>
         </div>
-        <div id="update-name-context">
-            <form (ngSubmit)="updateName()"
-                  [formGroup]="updateNameForm"
-                  id="update-name-form">
-                <ion-list>
-                    <app-text-input type="text"
-                                    label="First Name"
-                                    placeholder="First Name"
-                                    formControlName="firstName"></app-text-input>
-                    <app-text-input type="text"
-                                    label="Last Name"
-                                    placeholder="Last Name"
-                                    formControlName="lastName"></app-text-input>
-                </ion-list>
-                <ion-button id="update-name-confirm-button"
-                            class="button-confirm"
-                            [disabled]="!updateNameForm.valid"
-                            type="submit"
-                            fill="outline"
-                            expand="block"
-                            shape="round">
-                    Save Changes
-                </ion-button>
-            </form>
+        <div id="update-email-content">
+            <div id="update-email-header">
+                <h3>Update Email</h3>
+            </div>
+            <div id="update-email-context">
+                <form (ngSubmit)="updateEmail()"
+                      [formGroup]="updateEmailForm"
+                      id="update-email-form">
+                    <ion-list>
+                        <app-text-input type="email"
+                                        label="Email"
+                                        placeholder="Email"
+                                        formControlName="email"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ updateEmailError }}</div>
+                    <ion-button id="update-email-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!updateEmailForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Update Email
+                    </ion-button>
+                </form>
+            </div>
         </div>
-    </div>
+    </ion-list>
 </ion-content>
