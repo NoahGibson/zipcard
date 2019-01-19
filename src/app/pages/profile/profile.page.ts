@@ -14,20 +14,19 @@ import {AuthService, User, UserService} from '@app/core';
 })
 export class ProfilePage {
 
-    updateProfileForm: FormGroup;
-    updateProfileError: string;
+    updateNameForm: FormGroup;
+    updateNameError: string;
 
     private _currentUser: User;
     private _currentUserSubscription: Subscription;
 
     constructor(public authService: AuthService,
-                private userService: UserService,
                 private fb: FormBuilder) {
         this._currentUserSubscription = this.authService.currentUser$.subscribe((user) => {
             this._currentUser = user;
         });
 
-        this.updateProfileForm = fb.group({
+        this.updateNameForm = fb.group({
             firstName: [this._currentUser.firstName, Validators.compose([Validators.required])],
             lastName: [this._currentUser.lastName, Validators.compose([Validators.required])]
         });
@@ -39,15 +38,11 @@ export class ProfilePage {
     }
 
 
-    public updateProfile(): void {
-        const data = this.updateProfileForm.value;
+    public updateName(): void {
+        const data = this.updateNameForm.value;
         if (!data.firstName || !data.lastName) {
             return;
         }
-        const userPartial = {
-            firstName: data.firstName,
-            lastName: data.lastName
-        };
-        this.userService.updateUser(this._currentUser.uid, userPartial);
+        this.authService.updateName(data.firstName, data.lastName);
     }
 }
