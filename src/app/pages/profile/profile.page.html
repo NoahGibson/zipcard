@@ -15,15 +15,12 @@
                                     label="First Name"
                                     placeholder="First Name"
                                     formControlName="firstName"></app-text-input>
-                    <ion-item>
-                        <ion-label position="fixed">Last Name</ion-label>
-                        <ion-input type="text"
-                                   placeholder="Last Name"
-                                   formControlName="lastName">
-                        </ion-input>
-                    </ion-item>
+                    <app-text-input type="text"
+                                    label="Last Name"
+                                    placeholder="Last Name"
+                                    formControlName="lastName"></app-text-input>
                 </ion-list>
-                <ion-button id="update-profie-confirm-button"
+                <ion-button id="update-profile-confirm-button"
                             class="button-confirm"
                             [disabled]="!updateProfileForm.valid"
                             type="submit"
