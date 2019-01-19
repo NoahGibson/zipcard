@@ -17,6 +17,9 @@ export class ProfilePage {
     updateNameForm: FormGroup;
     updateNameError: string;
 
+    updateEmailForm: FormGroup;
+    updateEmailError: string;
+
     private _currentUser: User;
     private _currentUserSubscription: Subscription;
 
@@ -30,6 +33,9 @@ export class ProfilePage {
             firstName: [this._currentUser.firstName, Validators.compose([Validators.required])],
             lastName: [this._currentUser.lastName, Validators.compose([Validators.required])]
         });
+        this.updateEmailForm = fb.group({
+            email: [this._currentUser.email, Validators.compose([Validators.required, Validators.email])]
+        });
 
     }
 
@@ -38,11 +44,23 @@ export class ProfilePage {
     }
 
 
-    public updateName(): void {
+    public async updateName(): Promise<void> {
         const data = this.updateNameForm.value;
         if (!data.firstName || !data.lastName) {
             return;
         }
-        this.authService.updateName(data.firstName, data.lastName);
+        if (data.firstName !== this._currentUser.firstName || data.lastName !== this._currentUser.lastName) {
+            this.updateNameError = await this.authService.updateName(data.firstName, data.lastName);
+        }
+    }
+
+    public async updateEmail(): Promise<void> {
+        const data = this.updateEmailForm.value;
+        if (!data.email) {
+            return;
+        }
+        if (data.email !== this._currentUser.email) {
+            this.updateEmailError = await this.authService.updateEmail(data.email);
+        }
     }
 }
