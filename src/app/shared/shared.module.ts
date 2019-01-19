@@ -8,6 +8,7 @@ import {ResumeChooserComponent} from '@app/shared/components/resume-chooser/resu
 import {HeaderProfileComponent} from '@app/shared/components/header-profile/header-profile.component';
 import {ResumePreviewComponent} from '@app/shared/components/resume-preview/resume-preview.component';
 import {TextInputComponent} from '@app/shared/components/text-input/text-input.component';
+import {SectionCardComponent} from '@app/shared/components/section-card/section-card.component';
 import {SafePipe} from '@app/shared/pipes/safe.pipe';
 
 /**
@@ -21,6 +22,7 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         ResumePreviewComponent,
         HeaderProfileComponent,
         TextInputComponent,
+        SectionCardComponent,
         SafePipe
     ],
     imports: [
@@ -34,6 +36,7 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         ResumePreviewComponent,
         HeaderProfileComponent,
         TextInputComponent,
+        SectionCardComponent,
         SafePipe
     ]
 })
