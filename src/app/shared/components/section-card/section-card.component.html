@@ -1,0 +1,16 @@
+<ion-card class="section-card">
+    <ion-card-header *ngIf="title || subtitle"
+                     class="section-card-header">
+        <ion-card-title *ngIf="title"
+                        class="section-card-title">
+            <h3>{{ title }}</h3>
+        </ion-card-title>
+        <ion-card-subtitle *ngIf="subtitle"
+                           class="section-card-subtitle">
+            {{ subtitle }}
+        </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content class="section-card-content">
+        <ng-content></ng-content>
+    </ion-card-content>
+</ion-card>
