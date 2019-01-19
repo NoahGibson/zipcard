@@ -11,7 +11,7 @@ import {NavigationService} from '@app/core/navigation';
 import {ResumeService, SettingsService, UserService} from '@app/core/services';
 
 /**
- * Module containing elements of the app that need to only be, and are only imported, once
+ * Module containing elements of the app that need to only be, and are only, imported once
  * within the application.
  */
 @NgModule({

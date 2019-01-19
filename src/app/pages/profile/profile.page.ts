@@ -26,10 +26,12 @@ export class ProfilePage {
         this._currentUserSubscription = this.authService.currentUser$.subscribe((user) => {
             this._currentUser = user;
         });
+
         this.updateProfileForm = fb.group({
             firstName: [this._currentUser.firstName, Validators.compose([Validators.required])],
             lastName: [this._currentUser.lastName, Validators.compose([Validators.required])]
         });
+
     }
 
     private ionViewWillLeave() {
