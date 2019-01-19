@@ -1,0 +1,18 @@
+<div class="text-input">
+    <div *ngIf="label"
+         class="text-input-label">
+        {{ label }}
+    </div>
+    <div class="text-input-field"
+         [ngClass]="{'text-input-focused': focused}">
+        <ion-input type="{{ type }}"
+                   placeholder="{{ placeholder }}"
+                   [value]="innerValue"
+                   [autofocus]="focused"
+                   [disabled]="disabled"
+                   (focus)="onFocus()"
+                   (blur)="onBlur()"
+                   (ionChange)="onChange($event)">
+        </ion-input>
+    </div>
+</div>

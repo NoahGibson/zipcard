@@ -11,22 +11,16 @@
                   [formGroup]="updateProfileForm"
                   id="edit-profile-form">
                 <ion-list>
-                    <ion-item>
-                        <ion-label>First Name</ion-label>
-                        <ion-input type="text"
-                                   placeholder="First Name"
-                                   formControlName="firstName">
-                        </ion-input>
-                    </ion-item>
-                    <ion-item>
-                        <ion-label>Last Name</ion-label>
-                        <ion-input type="text"
-                                   placeholder="Last Name"
-                                   formControlName="lastName">
-                        </ion-input>
-                    </ion-item>
+                    <app-text-input type="text"
+                                    label="First Name"
+                                    placeholder="First Name"
+                                    formControlName="firstName"></app-text-input>
+                    <app-text-input type="text"
+                                    label="Last Name"
+                                    placeholder="Last Name"
+                                    formControlName="lastName"></app-text-input>
                 </ion-list>
-                <ion-button id="update-profie-confirm-button"
+                <ion-button id="update-profile-confirm-button"
                             class="button-confirm"
                             [disabled]="!updateProfileForm.valid"
                             type="submit"
