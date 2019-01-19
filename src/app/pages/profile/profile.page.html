@@ -6,10 +6,10 @@
         <div id="edit-profile-header">
             <h3>Edit Profile</h3>
         </div>
-        <div id="edit-profile-context">
-            <form (ngSubmit)="updateProfile()"
-                  [formGroup]="updateProfileForm"
-                  id="edit-profile-form">
+        <div id="update-name-context">
+            <form (ngSubmit)="updateName()"
+                  [formGroup]="updateNameForm"
+                  id="update-name-form">
                 <ion-list>
                     <app-text-input type="text"
                                     label="First Name"
@@ -20,9 +20,9 @@
                                     placeholder="Last Name"
                                     formControlName="lastName"></app-text-input>
                 </ion-list>
-                <ion-button id="update-profile-confirm-button"
+                <ion-button id="update-name-confirm-button"
                             class="button-confirm"
-                            [disabled]="!updateProfileForm.valid"
+                            [disabled]="!updateNameForm.valid"
                             type="submit"
                             fill="outline"
                             expand="block"
