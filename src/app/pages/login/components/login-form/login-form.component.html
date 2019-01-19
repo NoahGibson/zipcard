@@ -1,11 +1,11 @@
 <form (ngSubmit)="login()" [formGroup]="loginForm">
     <ion-list>
-        <ion-item>
-            <ion-input type="text" placeholder="Email" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-        </ion-item>
+        <app-text-input type="text"
+                        placeholder="Email"
+                        formControlName="email"></app-text-input>
+        <app-text-input type="password"
+                        placeholder="Password"
+                        formControlName="password"></app-text-input>
     </ion-list>
     <div>
         <div class="form-error">{{ loginError }}</div>

@@ -4,6 +4,8 @@ import {IonicModule} from '@ionic/angular';
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
+import {SharedModule} from '@app/shared';
+
 import {LoginPage} from './login.page';
 import {LoginPagePopupComponent} from './components/login-page-popup/login-page-popup.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
@@ -17,6 +19,7 @@ import {SignupFormComponent} from './components/signup-form/signup-form.componen
         CommonModule,
         IonicModule,
         FormsModule,
+        SharedModule,
         ReactiveFormsModule,
         RouterModule.forChild([
             {
