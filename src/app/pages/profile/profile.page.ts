@@ -35,6 +35,16 @@ export class ProfilePage {
     updateEmailError: string;
 
     /**
+     * Form group for resetting the user's password.
+     */
+    resetPasswordForm: FormGroup;
+
+    /**
+     * Error message, if any, for resetting the user's password.
+     */
+    resetPasswordError: string;
+
+    /**
      * The currently authenticated user.
      * @ignore
      */
@@ -54,6 +64,7 @@ export class ProfilePage {
         this.initializeCurrentUser();
         this.initializeNameForm();
         this.initializeEmailForm();
+        this.initializePasswordForm();
     }
 
     /**
@@ -94,6 +105,18 @@ export class ProfilePage {
         this.updateEmailForm = this.fb.group({
             email: [this._currentUser.email, Validators.compose([Validators.required, Validators.email])],
             password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+        });
+    }
+
+    /**
+     * Initializes the reset password form.
+     * @ignore
+     */
+    private initializePasswordForm(): void {
+        this.resetPasswordForm = this.fb.group({
+            currentPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+            newPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
+            confirmNewPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
         });
     }
 
@@ -144,4 +167,37 @@ export class ProfilePage {
             // TODO - reset form to have an empty password field
         }
     }
+
+    /**
+     * Resets the current user's password to the new value, checking the user's
+     * current password for safety.
+     *
+     * @returns A promise that evaluates after attempting to reset the user's password
+     */
+    public async resetPassword(): Promise<void> {
+        this.resetPasswordError = null;
+        const data = this.resetPasswordForm.value;
+        if (!data.currentPassword || !data.newPassword || !data.confirmNewPassword) {
+            this.resetPasswordError = 'Missing required field';
+            return;
+        }
+        if (data.newPassword !== data.confirmNewPassword) {
+            this.resetPasswordError = 'New passwords do not match';
+            return;
+        }
+        if (data.currentPassword === data.newPassword) {
+            this.resetPasswordError = 'New password cannot match the old password';
+            return;
+        }
+        const credentials = {
+            email: this._currentUser.email,
+            password: data.currentPassword
+        };
+        this.resetPasswordError = await this.authService.signInWithEmail(credentials);
+        if (!this.resetPasswordError) {
+            this.resetPasswordError = await this.authService.updatePassword(data.newPassword);
+            // TODO - reset form to have all blank fields
+        }
+    }
+
 }

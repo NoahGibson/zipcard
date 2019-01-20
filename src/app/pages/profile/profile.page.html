@@ -65,5 +65,39 @@
                 </form>
             </app-section-card>
         </div>
+        <div id="reset-password"
+             class="profile-page-card">
+            <app-section-card title="Reset Password"
+                              subtitle="Reset your current password"
+                              id="reset-password-section">
+                <form (ngSubmit)="resetPassword()"
+                      [formGroup]="resetPasswordForm"
+                      id="reset-password-form">
+                    <ion-list>
+                        <app-text-input type="password"
+                                        label="Current Password"
+                                        placeholder="Current Password"
+                                        formControlName="currentPassword"></app-text-input>
+                        <app-text-input type="password"
+                                        label="New Password"
+                                        placeholder="New Password"
+                                        formControlName="newPassword"></app-text-input>
+                        <app-text-input type="password"
+                                        placeholder="Confirm New Password"
+                                        formControlName="confirmNewPassword"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ resetPasswordError }}</div>
+                    <ion-button id="reset-password-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!resetPasswordForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Reset Password
+                    </ion-button>
+                </form>
+            </app-section-card>
+        </div>
     </div>
 </ion-content>
