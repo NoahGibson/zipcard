@@ -1,6 +1,16 @@
 <ion-header>
-  <app-header title="Zipcard"></app-header>
-  <app-header-profile></app-header-profile>
+  <app-header>
+    <div id="header-profile">
+      <img id="header-profile-image"
+           [src]="(authService.currentUser$ | async).photoUrl"
+           alt="" />
+      <div id="header-profile-info">
+        <div id="header-profile-name">
+          <h6 id="header-profile-name-header">{{ (authService.currentUser$ | async).firstName }} {{ (authService.currentUser$ | async).lastName }}</h6>
+        </div>
+      </div>
+    </div>
+  </app-header>
 </ion-header>
 
 <ion-content>
