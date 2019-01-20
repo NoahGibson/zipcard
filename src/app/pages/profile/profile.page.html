@@ -2,60 +2,102 @@
     <app-header title="Profile"></app-header>
 </ion-header>
 <ion-content padding color="light">
-    <app-section-card title="Update Profile"
-                      subtitle="Update your public profile"
-                      id="update-profile-section">
-        <form (ngSubmit)="updateName()"
-              [formGroup]="updateNameForm"
-              id="update-name-form">
-            <ion-list>
-                <app-text-input type="text"
-                                label="First Name"
-                                placeholder="First Name"
-                                formControlName="firstName"></app-text-input>
-                <app-text-input type="text"
-                                label="Last Name"
-                                placeholder="Last Name"
-                                formControlName="lastName"></app-text-input>
-            </ion-list>
-            <div class="form-error">{{ updateNameError }}</div>
-            <ion-button id="update-name-confirm-button"
-                        class="button-confirm"
-                        [disabled]="!updateNameForm.valid"
-                        type="submit"
-                        fill="outline"
-                        expand="block"
-                        shape="round">
-                Save Changes
-            </ion-button>
-        </form>
-    </app-section-card>
-    <app-section-card title="Update Email"
-                      subtitle="Update your current email address"
-                      id="update-email-section">
-        <form (ngSubmit)="updateEmail()"
-              [formGroup]="updateEmailForm"
-              id="update-email-form">
-            <ion-list>
-                <app-text-input type="email"
-                                label="Email"
-                                placeholder="Email"
-                                formControlName="email"></app-text-input>
-                <app-text-input type="password"
-                                label="Password"
-                                placeholder="Enter your password"
-                                formControlName="password"></app-text-input>
-            </ion-list>
-            <div class="form-error">{{ updateEmailError }}</div>
-            <ion-button id="update-email-confirm-button"
-                        class="button-confirm"
-                        [disabled]="!updateEmailForm.valid"
-                        type="submit"
-                        fill="outline"
-                        expand="block"
-                        shape="round">
-                Update Email
-            </ion-button>
-        </form>
-    </app-section-card>
+    <div id="profile-page">
+        <div id="update-profile"
+             class="profile-page-card">
+            <app-section-card title="Update Profile"
+                              subtitle="Update your public profile"
+                              id="update-profile-section">
+                <form (ngSubmit)="updateName()"
+                      [formGroup]="updateNameForm"
+                      id="update-name-form">
+                    <ion-list>
+                        <app-text-input type="text"
+                                        label="First Name"
+                                        placeholder="First Name"
+                                        formControlName="firstName"></app-text-input>
+                        <app-text-input type="text"
+                                        label="Last Name"
+                                        placeholder="Last Name"
+                                        formControlName="lastName"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ updateNameError }}</div>
+                    <ion-button id="update-name-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!updateNameForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Save Changes
+                    </ion-button>
+                </form>
+            </app-section-card>
+        </div>
+        <div id="update-email"
+             class="profile-page-card">
+            <app-section-card title="Update Email"
+                              subtitle="Update your current email address"
+                              id="update-email-section">
+                <form (ngSubmit)="updateEmail()"
+                      [formGroup]="updateEmailForm"
+                      id="update-email-form">
+                    <ion-list>
+                        <app-text-input type="email"
+                                        label="Email"
+                                        placeholder="Email"
+                                        formControlName="email"></app-text-input>
+                        <app-text-input type="password"
+                                        label="Password"
+                                        placeholder="Enter your password"
+                                        formControlName="password"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ updateEmailError }}</div>
+                    <ion-button id="update-email-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!updateEmailForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Update Email
+                    </ion-button>
+                </form>
+            </app-section-card>
+        </div>
+        <div id="reset-password"
+             class="profile-page-card">
+            <app-section-card title="Reset Password"
+                              subtitle="Reset your current password"
+                              id="reset-password-section">
+                <form (ngSubmit)="resetPassword()"
+                      [formGroup]="resetPasswordForm"
+                      id="reset-password-form">
+                    <ion-list>
+                        <app-text-input type="password"
+                                        label="Current Password"
+                                        placeholder="Current Password"
+                                        formControlName="currentPassword"></app-text-input>
+                        <app-text-input type="password"
+                                        label="New Password"
+                                        placeholder="New Password"
+                                        formControlName="newPassword"></app-text-input>
+                        <app-text-input type="password"
+                                        placeholder="Confirm New Password"
+                                        formControlName="confirmNewPassword"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ resetPasswordError }}</div>
+                    <ion-button id="reset-password-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!resetPasswordForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Reset Password
+                    </ion-button>
+                </form>
+            </app-section-card>
+        </div>
+    </div>
 </ion-content>
