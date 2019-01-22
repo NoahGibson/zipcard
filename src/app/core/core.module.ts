@@ -2,26 +2,23 @@ import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 
-import {MenuComponent} from '@app/core/menu/menu.component';
-import {MenuHeaderComponent} from '@app/core/menu/menu-header/menu-header.component';
-
 import {AuthService} from '@app/core/auth';
 import {AuthGuard} from '@app/core/guards';
 import {NavigationService} from '@app/core/navigation';
 import {ResumeService, SettingsService, UserService} from '@app/core/services';
+import {MenuModule} from '@app/core/menu/menu.module';
+import {MenuComponent} from '@app/core/menu/menu.component';
 
 /**
  * Module containing elements of the app that need to only be, and are only, imported once
  * within the application.
  */
 @NgModule({
-    declarations: [
-        MenuComponent,
-        MenuHeaderComponent
-    ],
+    declarations: [],
     imports: [
         CommonModule,
-        IonicModule
+        IonicModule,
+        MenuModule
     ],
     exports: [
         MenuComponent
