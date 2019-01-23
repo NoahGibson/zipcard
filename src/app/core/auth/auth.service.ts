@@ -191,8 +191,8 @@ export class AuthService {
      */
     public async deleteAccount(): Promise<string> {
         try {
-            await this.afAuth.auth.currentUser.delete();
             await this.userService.deleteUser(this._currentUid);
+            await this.afAuth.auth.currentUser.delete();
         } catch (e) {
             return e.message;
         }
