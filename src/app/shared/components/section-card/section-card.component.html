@@ -1,16 +1,30 @@
 <ion-card class="section-card">
     <ion-card-header *ngIf="title || subtitle"
                      class="section-card-header">
-        <ion-card-title *ngIf="title"
-                        class="section-card-title">
-            <h3>{{ title }}</h3>
-        </ion-card-title>
-        <ion-card-subtitle *ngIf="subtitle"
-                           class="section-card-subtitle">
-            {{ subtitle }}
-        </ion-card-subtitle>
+        <div class="section-card-header-content">
+            <div class="section-card-label">
+                <h3 class="section-card-title">{{ title }}</h3>
+                <h6 class="section-card-subtitle">{{ subtitle }}</h6>
+            </div>
+            <div *ngIf="expandable"
+                 class="section-card-expand"
+                 (click)="onToggleExpand()">
+                <button class="section-card-expand-button"></button>
+            </div>
+        </div>
     </ion-card-header>
-    <ion-card-content class="section-card-content">
+    <app-expandable *ngIf="expandable; else notExpandable"
+                    [expanded]="expanded">
+        <ion-card-content class="section-card-content">
+            <ng-container [ngTemplateOutlet]="tempOutlet"></ng-container>
+        </ion-card-content>
+    </app-expandable>
+    <ng-template #notExpandable>
+        <ion-card-content class="section-card-content">
+            <ng-container [ngTemplateOutlet]="tempOutlet"></ng-container>
+        </ion-card-content>
+    </ng-template>
+    <ng-template #tempOutlet>
         <ng-content></ng-content>
-    </ion-card-content>
+    </ng-template>
 </ion-card>

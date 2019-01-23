@@ -3,10 +3,13 @@
 </ion-header>
 <ion-content padding color="light">
     <div id="profile-page">
+
+        <!-- Update Profile Section -->
         <div id="update-profile"
              class="profile-page-card">
             <app-section-card title="Update Profile"
                               subtitle="Update your public profile"
+                              [expandable]="true"
                               id="update-profile-section">
                 <form (ngSubmit)="updateName()"
                       [formGroup]="updateNameForm"
@@ -34,10 +37,13 @@
                 </form>
             </app-section-card>
         </div>
+
+        <!-- Update Email Section -->
         <div id="update-email"
              class="profile-page-card">
             <app-section-card title="Update Email"
                               subtitle="Update your current email address"
+                              [expandable]="true"
                               id="update-email-section">
                 <form (ngSubmit)="updateEmail()"
                       [formGroup]="updateEmailForm"
@@ -65,10 +71,13 @@
                 </form>
             </app-section-card>
         </div>
+
+        <!-- Reset Password Section -->
         <div id="reset-password"
              class="profile-page-card">
             <app-section-card title="Reset Password"
                               subtitle="Reset your current password"
+                              [expandable]="true"
                               id="reset-password-section">
                 <form (ngSubmit)="resetPassword()"
                       [formGroup]="resetPasswordForm"
@@ -99,5 +108,6 @@
                 </form>
             </app-section-card>
         </div>
+
     </div>
 </ion-content>

@@ -1,8 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 /**
- * Component representing a section of the DOM that can be expanded and collapsed
- * with animation.
+ * Component representing a section of the DOM that can be expanded and collapsed.
  */
 @Component({
     selector: 'app-expandable',
@@ -15,4 +14,5 @@ export class ExpandableComponent {
      * Whether or not this component should currently be expanded.
      */
     @Input() expanded = false;
+
 }

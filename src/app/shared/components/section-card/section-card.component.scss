@@ -1,4 +1,46 @@
 .section-card {
   background: white;
   border-radius: 10px;
+
+  .section-card-header-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .section-card-label {
+
+      .section-card-title {
+        font-size: 1.6em;
+        color: var(--ion-color-dark);
+      }
+
+      .section-card-subtitle {
+        font-size: 1.1em;
+      }
+
+    }
+
+    .section-card-expand {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+
+      .section-card-expand-button {
+        height: inherit;
+        width: inherit;
+        background-color: transparent;
+      }
+
+      button:focus {
+        outline: 0;
+      }
+
+    }
+
+  }
+
+  .section-card-content {
+    padding-top: 0;
+  }
+
 }
