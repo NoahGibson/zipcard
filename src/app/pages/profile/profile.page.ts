@@ -45,6 +45,16 @@ export class ProfilePage {
     resetPasswordError: string;
 
     /**
+     * Form group for deleting the user's account.
+     */
+    deleteAccountForm: FormGroup;
+
+    /**
+     * Error message, if any, for deleting the user's account.
+     */
+    deleteAccountError: string;
+
+    /**
      * The currently authenticated user.
      * @ignore
      */
@@ -65,6 +75,7 @@ export class ProfilePage {
         this.initializeNameForm();
         this.initializeEmailForm();
         this.initializePasswordForm();
+        this.initializeDeleteForm();
     }
 
     /**
@@ -117,6 +128,16 @@ export class ProfilePage {
             currentPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
             newPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
             confirmNewPassword: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
+        });
+    }
+
+    /**
+     * Initializes the delete account form.
+     * @ignore
+     */
+    private initializeDeleteForm(): void {
+        this.deleteAccountForm = this.fb.group({
+            password: ['', Validators.compose([Validators.required, Validators.minLength(6)])]
         });
     }
 
@@ -197,6 +218,28 @@ export class ProfilePage {
         if (!this.resetPasswordError) {
             this.resetPasswordError = await this.authService.updatePassword(data.newPassword);
             // TODO - reset form to have all blank fields
+        }
+    }
+
+    /**
+     * Permanently deletes the current user's account.
+     *
+     * @returns A promise that evaluates after attempting to delete the user's account
+     */
+    public async deleteAccount(): Promise<void> {
+        this.deleteAccountError = null;
+        const data = this.deleteAccountForm.value;
+        if (!data.password) {
+            this.deleteAccountError = 'Password is required';
+            return;
+        }
+        const credentials = {
+            email: this._currentUser.email,
+            password: data.password
+        };
+        this.deleteAccountError = await this.authService.signInWithEmail(credentials);
+        if (!this.deleteAccountError) {
+            this.deleteAccountError = await this.authService.deleteAccount();
         }
     }
 

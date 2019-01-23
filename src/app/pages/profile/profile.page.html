@@ -109,5 +109,35 @@
             </app-section-card>
         </div>
 
+        <!-- Delete Account Section -->
+        <div id="delete-account"
+             class="profile-page-card">
+            <app-section-card title="Delete Account"
+                              subtitle="Permanently delete your account"
+                              [expandable]="true"
+                              id="delete-account-section">
+                <form (ngSubmit)="deleteAccount()"
+                      [formGroup]="deleteAccountForm"
+                      id="delete-account-form">
+                    <ion-list>
+                        <app-text-input type="password"
+                                        label="Password"
+                                        placeholder="Password"
+                                        formControlName="password"></app-text-input>
+                    </ion-list>
+                    <div class="form-error">{{ deleteAccountError }}</div>
+                    <ion-button id="delete-account-confirm-button"
+                                class="button-confirm"
+                                [disabled]="!deleteAccountForm.valid"
+                                type="submit"
+                                fill="outline"
+                                expand="block"
+                                shape="round">
+                        Delete Account
+                    </ion-button>
+                </form>
+            </app-section-card>
+        </div>
+
     </div>
 </ion-content>
