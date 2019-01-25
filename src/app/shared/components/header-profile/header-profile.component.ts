@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {UserService} from '@app/core';
+import {UserDataService} from '@app/core';
 
 @Component({
     selector: 'app-header-profile',
@@ -9,6 +9,6 @@ import {UserService} from '@app/core';
 })
 export class HeaderProfileComponent {
 
-    constructor(public userService: UserService) {}
+    constructor(public userService: UserDataService) {}
 
 }

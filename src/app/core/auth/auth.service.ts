@@ -4,7 +4,7 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {User as fbUser} from 'firebase';
 
-import {UserService} from '@app/core/services/user.service';
+import {UserDataService} from '@app/core/services/user.data.service';
 import {User} from '@app/core/models';
 
 /**
@@ -54,7 +54,7 @@ export class AuthService {
      * @ignore
      */
     constructor(private afAuth: AngularFireAuth,
-                private userService: UserService) {
+                private userService: UserDataService) {
         this.init();
     }
 
@@ -66,7 +66,7 @@ export class AuthService {
         this.authState$.subscribe(async (auth) => {
             if (auth) {
                 this._currentUid = auth.uid;
-                const userObservable = await this.userService.getUserById(this._currentUid);
+                const userObservable = await this.userService.getUserDataByID(this._currentUid);
                 this._userSubscription = userObservable.subscribe((user) => {
                     this._currentUser.next(user);
                 });
@@ -119,8 +119,8 @@ export class AuthService {
                 photoUrl: userAttributes.photoUrl,
                 resumeUrl: userAttributes.resumeUrl
             };
-            // TODO - handle createUser error
-            await this.userService.createUser(newUser);
+            // TODO - handle createUserData error
+            await this.userService.createUserData(newUser);
         } catch (e) {
             return e.message;
         }
@@ -148,7 +148,7 @@ export class AuthService {
      */
     public async updateName(firstName: string, lastName: string): Promise<string> {
         try {
-            await this.userService.updateUser(this._currentUid, {firstName: firstName, lastName: lastName});
+            await this.userService.updateUserData(this._currentUid, {firstName: firstName, lastName: lastName});
         } catch (e) {
             return e.message;
         }
@@ -164,7 +164,7 @@ export class AuthService {
     public async updateEmail(newEmail: string): Promise<string> {
         try {
             await this.afAuth.auth.currentUser.updateEmail(newEmail);
-            await this.userService.updateUser(this._currentUid, {email: newEmail});
+            await this.userService.updateUserData(this._currentUid, {email: newEmail});
         } catch (e) {
             return e.message;
         }
@@ -191,7 +191,7 @@ export class AuthService {
      */
     public async deleteAccount(): Promise<string> {
         try {
-            await this.userService.deleteUser(this._currentUid);
+            await this.userService.deleteUserData(this._currentUid);
             await this.afAuth.auth.currentUser.delete();
         } catch (e) {
             return e.message;

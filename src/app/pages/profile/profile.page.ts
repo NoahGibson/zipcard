@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-import {AuthService, User, UserService} from '@app/core';
+import {AuthService, User, UserDataService} from '@app/core';
 
 /**
  * A user's profile page, where they can edit their information.

@@ -17,7 +17,7 @@ import {User} from '@app/core/models';
 @Injectable({
     providedIn: 'root',
 })
-export class UserService {
+export class UserDataService {
 
     /**
      * The path to the users location in Firebase database.
@@ -37,7 +37,7 @@ export class UserService {
      * @param {string} uid The UID of the user to retrieve the data of
      * @returns An observable of the user's data
      */
-    public async getUserById(uid: string): Promise<Observable<User>> {
+    public async getUserDataByID(uid: string): Promise<Observable<User>> {
         // TODO - somehow return an error message if one exists
         try {
             const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
@@ -57,7 +57,7 @@ export class UserService {
      * @returns A promise containing true if the user was successfully added;
      *      false otherwise
      */
-    public async createUser(newUser: User): Promise<boolean> {
+    public async createUserData(newUser: User): Promise<boolean> {
         if (!newUser.uid || !newUser.firstName || !newUser.lastName || !newUser.email) {
             // TODO - handle error
             console.log('Missing required user attributes');
@@ -92,7 +92,7 @@ export class UserService {
      * @returns A promise containing true if the user was successfully updated;
      *      false otherwise
      */
-    public async updateUser(uid: string, update: Partial<User>): Promise<boolean> {
+    public async updateUserData(uid: string, update: Partial<User>): Promise<boolean> {
         if (update.uid) {
             // TODO - handle error
             console.log('Cannot update the UID of a user.');
@@ -133,7 +133,7 @@ export class UserService {
      * @returns A promise containing true if the user was successfully deleted;
      *      false otherwise
      */
-    public async deleteUser(uid: string): Promise<boolean> {
+    public async deleteUserData(uid: string): Promise<boolean> {
         // TODO - check to make sure user exists
         try {
             const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
