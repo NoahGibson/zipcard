@@ -9,14 +9,11 @@
     </ion-list>
     <div>
         <div class="form-error">{{ loginError }}</div>
-        <ion-button id="login-toggle-button"
-                    class="button-confirm"
+        <app-button id="login-toggle-button"
                     [disabled]="!loginForm.valid"
-                    type="submit"
-                    fill="outline"
-                    expand="block"
-                    shape="round">
+                    [expand]="true"
+                    type="submit">
             Login
-        </ion-button>
+        </app-button>
     </div>
 </form>
