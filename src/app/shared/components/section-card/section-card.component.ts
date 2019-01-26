@@ -25,6 +25,8 @@ export class SectionCardComponent {
      */
     @Input() expandable = false;
 
+    @Input() icon: string;
+
     /**
      * Whether or not the current card is expanded.
      */

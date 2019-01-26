@@ -10,12 +10,12 @@
     .section-card-label {
 
       .section-card-title {
-        font-size: 1.6em;
+        font-size: 1.3em;
         color: var(--ion-color-dark);
       }
 
       .section-card-subtitle {
-        font-size: 1.1em;
+        font-size: 1em;
       }
 
     }
@@ -33,6 +33,17 @@
 
       button:focus {
         outline: 0;
+      }
+
+    }
+
+    .section-card-icon {
+      margin-left: auto;
+      padding: 15px;
+      color: var(--ion-color-secondary);
+
+      .section-card-icon-item {
+        font-size: 35px;
       }
 
     }

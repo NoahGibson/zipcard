@@ -1,7 +1,7 @@
 <ion-header>
     <app-header title="Profile"></app-header>
 </ion-header>
-<ion-content padding color="light">
+<ion-content padding-top color="light">
     <div id="profile-page">
 
         <!-- Update Profile Section -->
@@ -10,6 +10,7 @@
             <app-section-card title="Update Profile"
                               subtitle="Update your public profile"
                               [expandable]="true"
+                              icon="person"
                               id="update-profile-section">
                 <form (ngSubmit)="updateName()"
                       [formGroup]="updateNameForm"
@@ -44,6 +45,7 @@
             <app-section-card title="Update Email"
                               subtitle="Update your current email address"
                               [expandable]="true"
+                              icon="mail"
                               id="update-email-section">
                 <form (ngSubmit)="updateEmail()"
                       [formGroup]="updateEmailForm"
@@ -78,6 +80,7 @@
             <app-section-card title="Reset Password"
                               subtitle="Reset your current password"
                               [expandable]="true"
+                              icon="keypad"
                               id="reset-password-section">
                 <form (ngSubmit)="resetPassword()"
                       [formGroup]="resetPasswordForm"
@@ -115,6 +118,7 @@
             <app-section-card title="Delete Account"
                               subtitle="Permanently delete your account"
                               [expandable]="true"
+                              icon="trash"
                               id="delete-account-section">
                 <form (ngSubmit)="deleteAccount()"
                       [formGroup]="deleteAccountForm"

@@ -11,6 +11,10 @@
                  (click)="onToggleExpand()">
                 <button class="section-card-expand-button"></button>
             </div>
+            <div *ngIf="icon"
+                 class="section-card-icon">
+                <ion-icon [name]="icon" class="section-card-icon-item"></ion-icon>
+            </div>
         </div>
     </ion-card-header>
     <app-expandable *ngIf="expandable; else notExpandable"
