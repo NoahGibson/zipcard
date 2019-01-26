@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 
 import {AngularFirestore} from '@angular/fire/firestore';
 
-import {User} from '@app/core/models';
+import {UserData} from '@app/core/models';
 
 /**
  * Service providing various methods for accessing and manipulating user data.
@@ -17,7 +17,7 @@ import {User} from '@app/core/models';
 @Injectable({
     providedIn: 'root',
 })
-export class UserService {
+export class UserDataService {
 
     /**
      * The path to the users location in Firebase database.
@@ -31,16 +31,16 @@ export class UserService {
     constructor(private afs: AngularFirestore) {}
 
     /**
-     * Retrieves a {@link User} from the database with the given UID,
+     * Retrieves a {@link UserData} from the database with the given UID,
      * if they exist.
      *
      * @param {string} uid The UID of the user to retrieve the data of
      * @returns An observable of the user's data
      */
-    public async getUserById(uid: string): Promise<Observable<User>> {
+    public async getUserData(uid: string): Promise<Observable<UserData>> {
         // TODO - somehow return an error message if one exists
         try {
-            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
+            const userDoc = await this.afs.doc<UserData>(this.USERS_LOC + '/' + uid);
             return userDoc.valueChanges();
         } catch (e) {
             // TODO - don't log error to console
@@ -49,24 +49,24 @@ export class UserService {
     }
 
     /**
-     * Creates a new user in the database from the given {@link User}. The
+     * Creates a new user in the database from the given {@link UserData}. The
      * UID, first name, last name, and email properties of the given user must
      * be set; photo url and resume url are optional.
      *
-     * @param {User} newUser The user to add to the database
+     * @param {UserData} userData The user to add to the database
      * @returns A promise containing true if the user was successfully added;
      *      false otherwise
      */
-    public async createUser(newUser: User): Promise<boolean> {
-        if (!newUser.uid || !newUser.firstName || !newUser.lastName || !newUser.email) {
+    public async createUserData(userData: UserData): Promise<boolean> {
+        if (!userData.uid || !userData.firstName || !userData.lastName || !userData.email) {
             // TODO - handle error
             console.log('Missing required user attributes');
             return false;
         }
         // TODO - check to make sure current user doesn't already exist
         try {
-            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + newUser.uid);
-            await userDoc.set(newUser);
+            const userDoc = await this.afs.doc<UserData>(this.USERS_LOC + '/' + userData.uid);
+            await userDoc.set(userData);
             return true;
         } catch (e) {
             // TODO - handle error
@@ -76,7 +76,7 @@ export class UserService {
     }
 
     /**
-     * Updates the {@link User} with the given UID with the provided new attributes.
+     * Updates the {@link UserData} with the given UID with the provided new attributes.
      * If an attribute is not specified, it will remain the same. First name,
      * last name, and email must not be empty if they are provided. The UID of a
      * user cannot be changed.
@@ -88,11 +88,11 @@ export class UserService {
      * Note: in order to update a user's password, call AuthService.updatePassword.
      *
      * @param {string} uid The UID of the user to update
-     * @param {Partial<User>} update The new attributes of the user
+     * @param {Partial<UserData>} update The new attributes of the user
      * @returns A promise containing true if the user was successfully updated;
      *      false otherwise
      */
-    public async updateUser(uid: string, update: Partial<User>): Promise<boolean> {
+    public async updateUserData(uid: string, update: Partial<UserData>): Promise<boolean> {
         if (update.uid) {
             // TODO - handle error
             console.log('Cannot update the UID of a user.');
@@ -114,7 +114,7 @@ export class UserService {
             return false;
         }
         try {
-            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
+            const userDoc = await this.afs.doc<UserData>(this.USERS_LOC + '/' + uid);
             await userDoc.update(update);
             return true;
         } catch (e) {
@@ -133,10 +133,10 @@ export class UserService {
      * @returns A promise containing true if the user was successfully deleted;
      *      false otherwise
      */
-    public async deleteUser(uid: string): Promise<boolean> {
+    public async deleteUserData(uid: string): Promise<boolean> {
         // TODO - check to make sure user exists
         try {
-            const userDoc = await this.afs.doc<User>(this.USERS_LOC + '/' + uid);
+            const userDoc = await this.afs.doc<UserData>(this.USERS_LOC + '/' + uid);
             await userDoc.delete();
             // TODO - delete user's resume and photo
             return true;

@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-import {AuthService, User, UserService} from '@app/core';
+import {AuthService, UserData} from '@app/core';
 
 /**
  * A user's profile page, where they can edit their information.
@@ -58,7 +58,7 @@ export class ProfilePage {
      * The currently authenticated user.
      * @ignore
      */
-    private _currentUser: User;
+    private _currentUser: UserData;
 
     /**
      * The subscription to the currently authenticated user.
