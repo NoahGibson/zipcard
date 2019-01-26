@@ -1,7 +1,7 @@
 /**
- * Model for a user of the application.
+ * Model for a user's data, i.e. what is stored in the database.
  */
-export class User {
+export class UserData {
 
     /**
      * The user's UID.

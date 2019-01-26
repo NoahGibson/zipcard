@@ -4,8 +4,8 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {User as fbUser} from 'firebase';
 
-import {UserDataService} from '@app/core/services/user.data.service';
-import {User} from '@app/core/models';
+import {UserDataService} from '@app/core/services/user-data.service';
+import {UserData} from '@app/core/models';
 
 /**
  * Application authentication service, used for purposes such as signing in and out of the
@@ -31,12 +31,12 @@ export class AuthService {
      * BehaviorSubject for the currently logged in user.
      * @ignore
      */
-    private _currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
+    private _currentUser: BehaviorSubject<UserData> = new BehaviorSubject(null);
 
     /**
-     * The currently logged in application {@link User}.
+     * The currently logged in application {@link UserData}.
      */
-    public readonly currentUser$: Observable<User> = this._currentUser.asObservable();
+    public readonly currentUser$: Observable<UserData> = this._currentUser.asObservable();
 
     /**
      * The subscription to the current user
@@ -66,7 +66,7 @@ export class AuthService {
         this.authState$.subscribe(async (auth) => {
             if (auth) {
                 this._currentUid = auth.uid;
-                const userObservable = await this.userService.getUserDataByID(this._currentUid);
+                const userObservable = await this.userService.getUserData(this._currentUid);
                 this._userSubscription = userObservable.subscribe((user) => {
                     this._currentUser.next(user);
                 });
@@ -111,7 +111,7 @@ export class AuthService {
                                         resumeUrl: string}): Promise<string> {
         try {
             await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-            const newUser: User = {
+            const newUser: UserData = {
                 uid: this._currentUid,
                 firstName: userAttributes.firstName,
                 lastName: userAttributes.lastName,
