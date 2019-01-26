@@ -1,6 +1,7 @@
 .section-card {
   background: white;
   border-radius: 10px;
+  //box-shadow: 0 3px 1px -2px rgba(var(--ion-color-secondary-rgb),.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(var(--ion-color-secondary-rgb),.12);
 
   .section-card-header-content {
     display: flex;
@@ -10,12 +11,12 @@
     .section-card-label {
 
       .section-card-title {
-        font-size: 1.6em;
+        font-size: 1.3em;
         color: var(--ion-color-dark);
       }
 
       .section-card-subtitle {
-        font-size: 1.1em;
+        font-size: 1em;
       }
 
     }
@@ -33,6 +34,17 @@
 
       button:focus {
         outline: 0;
+      }
+
+    }
+
+    .section-card-icon {
+      margin-left: auto;
+      padding: 15px;
+      color: var(--ion-color-primary);
+
+      .section-card-icon-item {
+        font-size: 35px;
       }
 
     }

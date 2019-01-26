@@ -5,19 +5,18 @@
             <h3 id="login-subtitle">Recruiting Reimagined</h3>
         </div>
         <div id="login-context">
-            <app-login-page-popup title="{{ actionTitle }}">
+            <app-login-page-popup>
                 <app-login-form *ngIf="action === 'login'; else signup"></app-login-form>
                 <ng-template #signup>
                     <app-signup-form></app-signup-form>
                 </ng-template>
-                <ion-button id="login-toggle-button"
-                            class="button-cancel"
+                <app-button id="login-toggle-button"
+                            color="medium"
                             fill="outline"
-                            shape="round"
                             size="small"
                             (click)="toggleAction()">
                     {{ notActionTitle }}
-                </ion-button>
+                </app-button>
             </app-login-page-popup>
         </div>
     </div>
