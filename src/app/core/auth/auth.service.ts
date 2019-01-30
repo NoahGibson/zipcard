@@ -98,26 +98,19 @@ export class AuthService {
      * Signs up a user via email and password, then signs in the user.
      *
      * @param credentials An object containing the email and password of a user
-     * @param userAttributes An object containing the first name, last name, email,
-     *      photo url, and resume url of a user
+     * @param userAttributes An object containing the first name and last name of a user
      * @returns A promise containing an error message, if any
      */
     public async signUpWithEmail(credentials: {email: string, password: string},
                                  userAttributes: {
                                         firstName: string,
-                                        lastName: string,
-                                        email: string,
-                                        photoUrl: string,
-                                        resumeUrl: string}): Promise<string> {
+                                        lastName: string}): Promise<string> {
         try {
             await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
             const newUser: UserData = {
                 uid: this._currentUid,
                 firstName: userAttributes.firstName,
-                lastName: userAttributes.lastName,
-                email: userAttributes.email,
-                photoUrl: userAttributes.photoUrl,
-                resumeUrl: userAttributes.resumeUrl
+                lastName: userAttributes.lastName
             };
             // TODO - handle createUserData error
             await this.userService.createUserData(newUser);
@@ -155,8 +148,7 @@ export class AuthService {
     }
 
     /**
-     * Updates the email of an authenticated user as well as
-     * updates the user's email value in the database.
+     * Updates the email of an authenticated user.
      *
      * @param {string} newEmail The new email of the user
      * @returns A promise containing an error message, if any
@@ -164,7 +156,6 @@ export class AuthService {
     public async updateEmail(newEmail: string): Promise<string> {
         try {
             await this.afAuth.auth.currentUser.updateEmail(newEmail);
-            await this.userService.updateUserData(this._currentUid, {email: newEmail});
         } catch (e) {
             return e.message;
         }
