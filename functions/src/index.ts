@@ -1,14 +1,18 @@
 import * as functions from 'firebase-functions';
-import * as cors from 'cors';
-const corsHandler = cors({origin: true});
+import * as admin from 'firebase-admin';
+admin.initializeApp();
 
 // // Start writing Firebase Functions
 // // https://firebase.google.com/docs/functions/typescript
 
-const helloWorldFn = (request: functions.Request, response: functions.Response) => {
- response.send("Hello from Firebase!");
-}
-
-export const helloWorld = functions.https.onRequest((request, response) => {
- corsHandler(request, response, () => { helloWorldFn(request, response) });
+/**
+ * Function triggered on a user deleting their account. This handler deletes
+ * any data the user has in Firestore or storage.
+ */
+export const onDeleteAccount = functions.auth.user().onDelete((user) => {
+ return admin.firestore().collection('users').doc(user.uid).delete();
+ // TODO - delete files in storage
+ // return admin.storage().bucket().deleteFiles({
+ //  prefix: '/users/' + user.uid
+ // });
 });
