@@ -9,14 +9,14 @@ export class User {
     uid: string;
 
     /**
-     * The user's first name.
+     * The user's full name
      */
-    firstName: string;
+    fullName: string;
 
     /**
-     * The user's last name.
+     * The user's email.
      */
-    lastName: string;
+    email: string;
 
     /**
      * The URL location of the user's profile photo.

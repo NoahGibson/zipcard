@@ -2,11 +2,11 @@
   <app-header>
     <div id="header-profile">
       <img id="header-profile-image"
-           [src]="(authService.currentUser$ | async).photoUrl"
+           [src]="(currentUserService.currentUser$ | async).photoUrl"
            alt="" />
       <div id="header-profile-info">
         <div id="header-profile-name">
-          <h6 id="header-profile-name-header">{{ (authService.currentUser$ | async).firstName }} {{ (authService.currentUser$ | async).lastName }}</h6>
+          <h6 id="header-profile-name-header">{{ (currentUserService.currentUser$ | async).fullName }}</h6>
         </div>
       </div>
     </div>
@@ -26,8 +26,8 @@
       <!--No Resume Selected-->
     <!--</div>-->
   <!--</ng-template>-->
-  <p *ngIf="(authService.currentUser$ | async)">
-    {{ (authService.currentUser$ | async).firstName }} {{ (authService.currentUser$ | async).lastName }}
+  <p *ngIf="(currentUserService.currentUser$ | async)">
+    {{ (currentUserService.currentUser$ | async).fullName }}
   </p>
 
 
