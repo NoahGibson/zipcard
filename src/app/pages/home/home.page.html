@@ -1,6 +1,7 @@
 <ion-header>
   <app-header>
-    <div id="header-profile">
+    <div id="header-profile"
+         *ngIf="(currentUserService.currentUser$ | async)">
       <img id="header-profile-image"
            [src]="(currentUserService.currentUser$ | async).photoUrl"
            alt="" />
@@ -29,7 +30,6 @@
   <p *ngIf="(currentUserService.currentUser$ | async)">
     {{ (currentUserService.currentUser$ | async).fullName }}
   </p>
-
 
 </ion-content>
 

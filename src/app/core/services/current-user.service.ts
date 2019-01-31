@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 
 import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFirestore} from '@angular/fire/firestore';
 
 import {User, Credentials} from '@app/core/models';
 import {UserService} from '@app/core/services/user.service';
@@ -38,9 +39,16 @@ export class CurrentUserService {
     private _userSubscription: Subscription;
 
     /**
+     * The path to the users collection in Firebase database.
+     * @ignore
+     */
+    private readonly USERS_COLLECTION = 'users';
+
+    /**
      * @ignore
      */
     constructor(private afAuth: AngularFireAuth,
+                private database: AngularFirestore,
                 private userService: UserService) {
         this.init();
     }
@@ -79,6 +87,9 @@ export class CurrentUserService {
             // TODO - use reauthenticateWithCredential instead
             await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
             await this.afAuth.auth.currentUser.updateEmail(newEmail);
+            // TODO - make auth.updateEmail and database.updateEmail occur simultaneously
+            const userDoc = await this.database.doc<User>(this.USERS_COLLECTION + '/' + this._currentUid);
+            await userDoc.update({email: newEmail});
         } catch (e) {
             throw new Error(e.message);
         }
@@ -111,10 +122,8 @@ export class CurrentUserService {
      */
     public async updateName(newName: string): Promise<void> {
         try {
-            await this.afAuth.auth.currentUser.updateProfile({
-                displayName: newName,
-                photoURL: this.afAuth.auth.currentUser.photoURL
-            });
+            const userDoc = await this.database.doc<User>(this.USERS_COLLECTION + '/' + this._currentUid);
+            await userDoc.update({fullName: newName});
         } catch (e) {
             throw new Error(e.message);
         }

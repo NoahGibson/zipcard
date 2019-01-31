@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {UserDataService} from '@app/core/services';
+import {CurrentUserService} from '@app/core/services';
 
 @Component({
     selector: 'app-menu-header',
@@ -9,6 +9,6 @@ import {UserDataService} from '@app/core/services';
 })
 export class MenuHeaderComponent {
 
-    constructor(public userService: UserDataService) {}
+    constructor(public currentUserService: CurrentUserService) {}
 
 }

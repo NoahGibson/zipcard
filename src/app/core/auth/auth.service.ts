@@ -2,9 +2,10 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
 import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFirestore} from '@angular/fire/firestore';
 import {User as fbUser} from 'firebase';
 
-import {Credentials} from '@app/core/models';
+import {Credentials, User} from '@app/core/models';
 
 /**
  * Application authentication service, used for purposes such as signing in and out of the
@@ -32,9 +33,16 @@ export class AuthService {
     private _currentUid: string = null;
 
     /**
+     * The path to the users collection in Firebase database.
      * @ignore
      */
-    constructor(private afAuth: AngularFireAuth) {
+    private readonly USERS_COLLECTION = 'users';
+
+    /**
+     * @ignore
+     */
+    constructor(private afAuth: AngularFireAuth,
+                private database: AngularFirestore) {
         this.init();
     }
 
@@ -78,10 +86,15 @@ export class AuthService {
     public async signUpWithEmail(credentials: Credentials, fullName: string): Promise<void> {
         try {
             await this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-            await this.afAuth.auth.currentUser.updateProfile({
-                displayName: fullName,
-                photoURL: null
-            });
+            const userDoc = await this.database.doc<User>(this.USERS_COLLECTION + '/' + this._currentUid);
+            const newUser: User = {
+                uid: this._currentUid,
+                fullName: fullName,
+                email: credentials.email,
+                photoUrl: null,
+                resumeUrl: null
+            };
+            await userDoc.set(newUser);
         } catch (e) {
             throw new Error(e.message);
         }
