@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-import {AuthService, User, UserService} from '@app/core';
+import {AuthService, CurrentUserService, User} from '@app/core';
 
 /**
  * A user's profile page, where they can edit their information.
@@ -69,7 +69,8 @@ export class ProfilePage {
     /**
      * @ignore
      */
-    constructor(public authService: AuthService,
+    constructor(private authService: AuthService,
+                public currentUserService: CurrentUserService,
                 private fb: FormBuilder) {
         this.initializeCurrentUser();
         this.initializeNameForm();
@@ -92,7 +93,7 @@ export class ProfilePage {
      * @ignore
      */
     private initializeCurrentUser(): void {
-        this._currentUserSubscription = this.authService.currentUser$.subscribe((user) => {
+        this._currentUserSubscription = this.currentUserService.currentUser$.subscribe((user) => {
             this._currentUser = user;
         });
     }
@@ -103,8 +104,7 @@ export class ProfilePage {
      */
     private initializeNameForm(): void {
         this.updateNameForm = this.fb.group({
-            firstName: [this._currentUser.firstName, Validators.compose([Validators.required])],
-            lastName: [this._currentUser.lastName, Validators.compose([Validators.required])]
+            fullName: [this._currentUser.fullName, Validators.compose([Validators.required])]
         });
     }
 
@@ -142,23 +142,27 @@ export class ProfilePage {
     }
 
     /**
-     * Updates the current user's name from the given new values, checking to make sure the
-     * given values are not the same as the original.
+     * Updates the current user's name from the given new value, checking to make sure the
+     * given value is not the same as the original.
      *
      * @returns A promise that evaluates after attempting to update the user's name
      */
     public async updateName(): Promise<void> {
         this.updateNameError = null;
         const data = this.updateNameForm.value;
-        if (!data.firstName || !data.lastName) {
-            this.updateNameError = 'First and Last Name are required';
+        if (!data.fullName) {
+            this.updateNameError = 'Name is required';
             return;
         }
-        if (data.firstName === this._currentUser.firstName && data.lastName === this._currentUser.lastName) {
-            this.updateNameError = 'First and Last Name are the same';
+        if (data.fullName === this._currentUser.fullName) {
+            this.updateNameError = 'Name is the same';
             return;
         }
-        this.updateNameError = await this.authService.updateName(data.firstName, data.lastName);
+        try {
+            await this.currentUserService.updateName(data.fullName);
+        } catch (e) {
+            this.updateNameError = e.message;
+        }
     }
 
     /**
@@ -182,10 +186,11 @@ export class ProfilePage {
             email: this._currentUser.email,
             password: data.password
         };
-        this.updateEmailError = await this.authService.signInWithEmail(credentials);
-        if (!this.updateEmailError && data.email !== this._currentUser.email) {
-            this.updateEmailError = await this.authService.updateEmail(data.email);
+        try {
+            await this.currentUserService.updateEmail(credentials, data.email);
             // TODO - reset form to have an empty password field
+        } catch (e) {
+            this.updateEmailError = e.message;
         }
     }
 
@@ -214,10 +219,11 @@ export class ProfilePage {
             email: this._currentUser.email,
             password: data.currentPassword
         };
-        this.resetPasswordError = await this.authService.signInWithEmail(credentials);
-        if (!this.resetPasswordError) {
-            this.resetPasswordError = await this.authService.updatePassword(data.newPassword);
+        try {
+            await this.currentUserService.updatePassword(credentials, data.newPassword);
             // TODO - reset form to have all blank fields
+        } catch (e) {
+            this.resetPasswordError = e.message;
         }
     }
 
@@ -237,9 +243,10 @@ export class ProfilePage {
             email: this._currentUser.email,
             password: data.password
         };
-        this.deleteAccountError = await this.authService.signInWithEmail(credentials);
-        if (!this.deleteAccountError) {
-            this.deleteAccountError = await this.authService.deleteAccount();
+        try {
+            await this.authService.deleteAccount(credentials);
+        } catch (e) {
+            this.deleteAccountError = e.message;
         }
     }
 

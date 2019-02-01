@@ -1,7 +1,7 @@
 <ion-header>
     <app-header title="Profile"></app-header>
 </ion-header>
-<ion-content padding color="light">
+<ion-content padding-top color="light">
     <div id="profile-page">
 
         <!-- Update Profile Section -->
@@ -10,30 +10,24 @@
             <app-section-card title="Update Profile"
                               subtitle="Update your public profile"
                               [expandable]="true"
+                              icon="person"
                               id="update-profile-section">
                 <form (ngSubmit)="updateName()"
                       [formGroup]="updateNameForm"
                       id="update-name-form">
                     <ion-list>
                         <app-text-input type="text"
-                                        label="First Name"
-                                        placeholder="First Name"
-                                        formControlName="firstName"></app-text-input>
-                        <app-text-input type="text"
-                                        label="Last Name"
-                                        placeholder="Last Name"
-                                        formControlName="lastName"></app-text-input>
+                                        label="Full Name"
+                                        placeholder="Full Name"
+                                        formControlName="fullName"></app-text-input>
                     </ion-list>
                     <div class="form-error">{{ updateNameError }}</div>
-                    <ion-button id="update-name-confirm-button"
-                                class="button-confirm"
+                    <app-button id="update-name-confirm-button"
                                 [disabled]="!updateNameForm.valid"
                                 type="submit"
-                                fill="outline"
-                                expand="block"
-                                shape="round">
+                                [expand]="true">
                         Save Changes
-                    </ion-button>
+                    </app-button>
                 </form>
             </app-section-card>
         </div>
@@ -44,6 +38,7 @@
             <app-section-card title="Update Email"
                               subtitle="Update your current email address"
                               [expandable]="true"
+                              icon="mail"
                               id="update-email-section">
                 <form (ngSubmit)="updateEmail()"
                       [formGroup]="updateEmailForm"
@@ -59,15 +54,12 @@
                                         formControlName="password"></app-text-input>
                     </ion-list>
                     <div class="form-error">{{ updateEmailError }}</div>
-                    <ion-button id="update-email-confirm-button"
-                                class="button-confirm"
+                    <app-button id="update-email-confirm-button"
                                 [disabled]="!updateEmailForm.valid"
                                 type="submit"
-                                fill="outline"
-                                expand="block"
-                                shape="round">
+                                [expand]="true">
                         Update Email
-                    </ion-button>
+                    </app-button>
                 </form>
             </app-section-card>
         </div>
@@ -78,6 +70,7 @@
             <app-section-card title="Reset Password"
                               subtitle="Reset your current password"
                               [expandable]="true"
+                              icon="keypad"
                               id="reset-password-section">
                 <form (ngSubmit)="resetPassword()"
                       [formGroup]="resetPasswordForm"
@@ -96,15 +89,12 @@
                                         formControlName="confirmNewPassword"></app-text-input>
                     </ion-list>
                     <div class="form-error">{{ resetPasswordError }}</div>
-                    <ion-button id="reset-password-confirm-button"
-                                class="button-confirm"
+                    <app-button id="reset-password-confirm-button"
                                 [disabled]="!resetPasswordForm.valid"
                                 type="submit"
-                                fill="outline"
-                                expand="block"
-                                shape="round">
+                                [expand]="true">
                         Reset Password
-                    </ion-button>
+                    </app-button>
                 </form>
             </app-section-card>
         </div>
@@ -115,6 +105,7 @@
             <app-section-card title="Delete Account"
                               subtitle="Permanently delete your account"
                               [expandable]="true"
+                              icon="trash"
                               id="delete-account-section">
                 <form (ngSubmit)="deleteAccount()"
                       [formGroup]="deleteAccountForm"
@@ -126,15 +117,12 @@
                                         formControlName="password"></app-text-input>
                     </ion-list>
                     <div class="form-error">{{ deleteAccountError }}</div>
-                    <ion-button id="delete-account-confirm-button"
-                                class="button-confirm"
+                    <app-button id="delete-account-confirm-button"
                                 [disabled]="!deleteAccountForm.valid"
                                 type="submit"
-                                fill="outline"
-                                expand="block"
-                                shape="round">
+                                [expand]="true">
                         Delete Account
-                    </ion-button>
+                    </app-button>
                 </form>
             </app-section-card>
         </div>

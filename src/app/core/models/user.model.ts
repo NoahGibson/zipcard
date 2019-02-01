@@ -9,27 +9,22 @@ export class User {
     uid: string;
 
     /**
-     * The user's first name.
+     * The user's full name
      */
-    firstName: string;
+    fullName: string;
 
     /**
-     * The user's last name.
-     */
-    lastName: string;
-
-    /**
-     * The user's email address.
+     * The user's email.
      */
     email: string;
 
     /**
-     * The URL to the user's profile photo within Firebase's storage.
+     * The URL location of the user's profile photo.
      */
     photoUrl: string;
 
     /**
-     * The URL to the user's resume within Firebase's storage.
+     * The URL location of the user's resume.
      */
     resumeUrl: string;
 

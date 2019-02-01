@@ -58,7 +58,7 @@ export class ResumeService {
     //     }
     // }
 
-    public async setResume(remoteSrc: string, name: string, data: Uint8Array) {
+    public async setUserResume(uid: string, resume: File): Promise<void> {
         // try {
         //     const newResume = {
         //         remoteSrc: remoteSrc,
@@ -73,13 +73,16 @@ export class ResumeService {
         // }
     }
 
-    public async resetResume() {
+    public async getUserResume(uid: string): Promise<Observable<string>> {
         // try {
         //     await this.storage.set(this.RESUME_SETTING, this.DEFAULT_RESUME_SETTING);
         //     this._resume.next(this.DEFAULT_RESUME_SETTING);
         // } catch (e) {
         //     console.log('Unable to update resume settings', e);
         // }
+        return null;
     }
+
+    public async deleteUserResume(uid: string): Promise<void> {}
 
 }

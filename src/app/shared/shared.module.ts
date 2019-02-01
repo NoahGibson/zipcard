@@ -10,6 +10,7 @@ import {ResumePreviewComponent} from '@app/shared/components/resume-preview/resu
 import {TextInputComponent} from '@app/shared/components/text-input/text-input.component';
 import {SectionCardComponent} from '@app/shared/components/section-card/section-card.component';
 import {ExpandableComponent} from '@app/shared/components/expandable/expandable.component';
+import {ButtonComponent} from '@app/shared/components/button/button.component';
 import {SafePipe} from '@app/shared/pipes/safe.pipe';
 
 /**
@@ -25,6 +26,7 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         TextInputComponent,
         SectionCardComponent,
         ExpandableComponent,
+        ButtonComponent,
         SafePipe
     ],
     imports: [
@@ -40,6 +42,7 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         TextInputComponent,
         SectionCardComponent,
         ExpandableComponent,
+        ButtonComponent,
         SafePipe
     ]
 })

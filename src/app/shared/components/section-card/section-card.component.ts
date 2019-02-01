@@ -26,6 +26,11 @@ export class SectionCardComponent {
     @Input() expandable = false;
 
     /**
+     * The icon to use for the header of the card section.
+     */
+    @Input() icon: string;
+
+    /**
      * Whether or not the current card is expanded.
      */
     public expanded = false;

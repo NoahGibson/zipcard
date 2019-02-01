@@ -29,7 +29,11 @@ export class LoginFormComponent {
             email: data.email,
             password: data.password
         };
-        this.loginError = await this.authService.signInWithEmail(credentials);
+        try {
+            await this.authService.signInWithEmail(credentials);
+        } catch (e) {
+            this.loginError = e.message;
+        }
     }
 
 }

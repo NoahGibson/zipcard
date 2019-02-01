@@ -1,0 +1,12 @@
+<div class="app-button-wrapper">
+    <ion-button class="app-button"
+                [type]="type"
+                [expand]="expand ? 'block': ''"
+                [disabled]="disabled"
+                [color]="color"
+                shape="round"
+                [fill]="fill"
+                [size]="size">
+        <ng-content></ng-content>
+    </ion-button>
+</div>
