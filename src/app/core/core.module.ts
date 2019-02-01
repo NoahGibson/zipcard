@@ -5,7 +5,12 @@ import {IonicModule} from '@ionic/angular';
 import {AuthService} from '@app/core/auth';
 import {AuthGuard} from '@app/core/guards';
 import {NavigationService} from '@app/core/navigation';
-import {ResumeService, SettingsService, UserDataService} from '@app/core/services';
+import {
+    ResumeService,
+    SettingsService,
+    UserService,
+    CurrentUserService
+} from '@app/core/services';
 import {MenuModule} from '@app/core/menu/menu.module';
 import {MenuComponent} from '@app/core/menu/menu.component';
 
@@ -27,7 +32,8 @@ import {MenuComponent} from '@app/core/menu/menu.component';
         AuthService,
         AuthGuard,
         NavigationService,
-        UserDataService,
+        UserService,
+        CurrentUserService,
         SettingsService,
         ResumeService
     ]

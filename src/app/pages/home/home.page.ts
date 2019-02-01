@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {AuthService} from '@app/core';
+import {CurrentUserService} from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -9,6 +9,6 @@ import {AuthService} from '@app/core';
 })
 export class HomePage {
 
-    constructor(public authService: AuthService) {}
+    constructor(public currentUserService: CurrentUserService) {}
 
 }

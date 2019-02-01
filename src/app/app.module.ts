@@ -6,6 +6,7 @@ import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {AngularFirestoreModule} from '@angular/fire/firestore';
 import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireFunctionsModule, FunctionsRegionToken} from '@angular/fire/functions';
 
 import {environment} from '../environments/environment';
 
@@ -32,12 +33,14 @@ import {CoreModule} from '@app/core';
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         AngularFirestoreModule,
-        AngularFireStorageModule
+        AngularFireStorageModule,
+        AngularFireFunctionsModule
     ],
     providers: [
         StatusBar,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+        { provide: FunctionsRegionToken, useValue: 'us-central1' },
         Chooser
     ],
     bootstrap: [AppComponent]
