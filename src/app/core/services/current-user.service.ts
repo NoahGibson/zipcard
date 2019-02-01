@@ -22,7 +22,7 @@ export class CurrentUserService {
     private _currentUser: BehaviorSubject<User> = new BehaviorSubject(null);
 
     /**
-     * The currently logged in application {@link UserData}.
+     * The currently logged in application {@link User}.
      */
     public readonly currentUser$: Observable<User> = this._currentUser.asObservable();
 
