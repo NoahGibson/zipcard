@@ -86,11 +86,12 @@ export class CurrentUserService {
     public async updateEmail(credentials: Credentials, newEmail: string): Promise<void> {
         try {
             // TODO - use reauthenticateWithCredential instead
-            await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
-            await this.afAuth.auth.currentUser.updateEmail(newEmail);
-            // TODO - make auth.updateEmail and database.updateEmail occur simultaneously
             const userDoc = await this.database.doc<User>(this.USERS_COLLECTION + '/' + this._currentUid);
-            await userDoc.update({email: newEmail});
+            await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+            const authPromise = this.afAuth.auth.currentUser.updateEmail(newEmail);
+            const databasePromise = userDoc.update({email: newEmail});
+            await authPromise;
+            await databasePromise;
         } catch (e) {
             throw new Error(e.message);
         }
