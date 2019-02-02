@@ -66,6 +66,7 @@ export class CurrentUserService {
                     this._currentUser.next(user);
                 });
             } else {
+                this._currentUser.next(null);
                 this._currentUid = null;
                 if (this._userSubscription) {
                     this._userSubscription.unsubscribe();
