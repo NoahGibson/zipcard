@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {Chooser} from '@ionic-native/chooser/ngx';
 
-import {ResumeService} from '@app/core';
-
 @Component({
     selector: 'app-resume-chooser',
     templateUrl: './resume-chooser.component.html',
@@ -10,8 +8,7 @@ import {ResumeService} from '@app/core';
 })
 export class ResumeChooserComponent {
 
-    constructor(private chooser: Chooser,
-                public resumeService: ResumeService) {}
+    constructor(private chooser: Chooser) {}
 
     async choose() {
         const file = await this.chooser.getFile('application/pdf');

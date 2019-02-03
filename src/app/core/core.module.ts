@@ -6,7 +6,6 @@ import {AuthService} from '@app/core/auth';
 import {AuthGuard} from '@app/core/guards';
 import {NavigationService} from '@app/core/navigation';
 import {
-    ResumeService,
     SettingsService,
     UserService,
     CurrentUserService
@@ -34,8 +33,7 @@ import {MenuComponent} from '@app/core/menu/menu.component';
         NavigationService,
         UserService,
         CurrentUserService,
-        SettingsService,
-        ResumeService
+        SettingsService
     ]
 })
 export class CoreModule {
