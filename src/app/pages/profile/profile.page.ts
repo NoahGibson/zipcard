@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {Chooser} from '@ionic-native/chooser/ngx';
+
+import {AngularFireStorage} from '@angular/fire/storage';
 
 import {AuthService, CurrentUserService, User} from '@app/core';
 
@@ -70,8 +73,10 @@ export class ProfilePage {
      * @ignore
      */
     constructor(private authService: AuthService,
+                private storage: AngularFireStorage,
                 public currentUserService: CurrentUserService,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private chooser: Chooser) {
         this.initializeCurrentUser();
         this.initializeNameForm();
         this.initializeEmailForm();
@@ -247,6 +252,21 @@ export class ProfilePage {
             await this.authService.deleteAccount(credentials);
         } catch (e) {
             this.deleteAccountError = e.message;
+        }
+    }
+
+    /**
+     * Prompts the user to select their profile photo, and then
+     * updates their photo to the selected photo.
+     * @ignore
+     */
+    public async choosePhoto(): Promise<void> {
+        try {
+            const file = await this.chooser.getFile('image/jpeg');
+            const storageRef = await this.storage.ref('users/' + this._currentUser.uid + '/photo/profile_photo.jpg');
+            await storageRef.put(file.data, {contentType: 'image/jpeg'});
+        } catch (e) {
+            throw new Error(e.message);
         }
     }
 
