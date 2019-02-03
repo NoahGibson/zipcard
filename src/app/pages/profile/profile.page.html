@@ -17,6 +17,7 @@
                       id="update-name-form">
                     <div class="profile-image-wrapper">
                         <img class="profile-image"
+                             *ngIf="(currentUserService.currentUser$ | async)"
                              [src]="(currentUserService.currentUser$ | async).photoUrl"
                              alt="Profile Image" />
                         <app-button id="select-profile-photo-button"
