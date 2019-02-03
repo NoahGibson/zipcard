@@ -6,13 +6,13 @@ import {AuthService} from '@app/core/auth';
 import {AuthGuard} from '@app/core/guards';
 import {NavigationService} from '@app/core/navigation';
 import {
-    ResumeService,
     SettingsService,
     UserService,
     CurrentUserService
 } from '@app/core/services';
 import {MenuModule} from '@app/core/menu/menu.module';
 import {MenuComponent} from '@app/core/menu/menu.component';
+import {AlertService, LoadingService} from '@app/core/overlays';
 
 /**
  * Module containing elements of the app that need to only be, and are only, imported once
@@ -35,7 +35,8 @@ import {MenuComponent} from '@app/core/menu/menu.component';
         UserService,
         CurrentUserService,
         SettingsService,
-        ResumeService
+        AlertService,
+        LoadingService
     ]
 })
 export class CoreModule {
