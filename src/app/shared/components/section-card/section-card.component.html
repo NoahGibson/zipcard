@@ -17,12 +17,12 @@
             </div>
         </div>
     </ion-card-header>
-    <app-expandable *ngIf="expandable; else notExpandable"
-                    [expanded]="expanded">
+    <div *ngIf="expandable; else notExpandable"
+         [appExpandable]="expanded">
         <ion-card-content class="section-card-content">
             <ng-container [ngTemplateOutlet]="tempOutlet"></ng-container>
         </ion-card-content>
-    </app-expandable>
+    </div>
     <ng-template #notExpandable>
         <ion-card-content class="section-card-content">
             <ng-container [ngTemplateOutlet]="tempOutlet"></ng-container>

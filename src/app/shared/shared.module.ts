@@ -9,9 +9,9 @@ import {HeaderProfileComponent} from '@app/shared/components/header-profile/head
 import {ResumePreviewComponent} from '@app/shared/components/resume-preview/resume-preview.component';
 import {TextInputComponent} from '@app/shared/components/text-input/text-input.component';
 import {SectionCardComponent} from '@app/shared/components/section-card/section-card.component';
-import {ExpandableComponent} from '@app/shared/components/expandable/expandable.component';
 import {ButtonComponent} from '@app/shared/components/button/button.component';
 import {SafePipe} from '@app/shared/pipes/safe.pipe';
+import {ExpandableDirective} from '@app/shared/directives/expandable/expandable.directive';
 
 /**
  * Module containing all aspects of the app that are not particular to any one feature or module of
@@ -25,9 +25,9 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         HeaderProfileComponent,
         TextInputComponent,
         SectionCardComponent,
-        ExpandableComponent,
         ButtonComponent,
-        SafePipe
+        SafePipe,
+        ExpandableDirective
     ],
     imports: [
         CommonModule,
@@ -41,9 +41,9 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         HeaderProfileComponent,
         TextInputComponent,
         SectionCardComponent,
-        ExpandableComponent,
         ButtonComponent,
-        SafePipe
+        SafePipe,
+        ExpandableDirective
     ]
 })
 export class SharedModule {
