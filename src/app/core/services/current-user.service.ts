@@ -63,6 +63,9 @@ export class CurrentUserService {
                 this._currentUid = auth.uid;
                 const userObservable = await this.userService.getUser(this._currentUid);
                 this._userSubscription = userObservable.subscribe((user) => {
+                    if (!user.photoUrl) {
+                        user.photoUrl = 'assets/images/default_profile_photo.png';
+                    }
                     this._currentUser.next(user);
                 });
             } else {

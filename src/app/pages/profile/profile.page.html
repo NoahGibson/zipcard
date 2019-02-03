@@ -15,6 +15,19 @@
                 <form (ngSubmit)="updateName()"
                       [formGroup]="updateNameForm"
                       id="update-name-form">
+                    <div class="profile-image-wrapper">
+                        <img class="profile-image"
+                             [src]="(currentUserService.currentUser$ | async).photoUrl"
+                             alt="Profile Image" />
+                        <app-button id="select-profile-photo-button"
+                                    type="button"
+                                    fill="clear"
+                                    color="medium"
+                                    (click)="true"
+                                    [expand]="true">
+                            Select Photo
+                        </app-button>
+                    </div>
                     <ion-list>
                         <app-text-input type="text"
                                         label="Full Name"
