@@ -11,12 +11,13 @@ import * as UUID from 'uuid/v4';
  * Function triggered on a user deleting their account. This handler deletes
  * any data the user has in Firestore or storage.
  */
-export const onDeleteAccount = functions.auth.user().onDelete((user) => {
-    return admin.firestore().collection('users').doc(user.uid).delete();
-    // TODO - delete files in storage
-    // return admin.storage().bucket().deleteFiles({
-    //  prefix: '/users/' + user.uid
-    // });
+export const onDeleteAccount = functions.auth.user().onDelete(async (user) => {
+    const deleteDataPromise = admin.firestore().collection('users').doc(user.uid).delete();
+    const deleteFilesPromise = bucket.deleteFiles({
+        prefix: 'users/' + user.uid
+    });
+    await deleteDataPromise;
+    await deleteFilesPromise;
 });
 
 /**
