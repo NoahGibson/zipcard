@@ -29,6 +29,16 @@
 
   }
 
+  .resume-preview-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .resume-preview-frame {
+      height: 300px;
+    }
+
+  }
+
   .list-md {
     padding-top: 0;
   }

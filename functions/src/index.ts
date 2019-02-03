@@ -23,41 +23,65 @@ export const onDeleteAccount = functions.auth.user().onDelete(async (user) => {
 /**
  * Function to update the user's photoUrl to their uploaded photo.
  */
-export const onUploadPhoto = functions.storage.object().onFinalize(async (object, context) => {
+export const onUploadPhoto = functions.storage.object().onFinalize(async (object) => {
 
-    // Getting user's uid
-    let userId: string;
-    if (context && context.auth && context.auth.uid) {
-        userId = context.auth.uid;
-    } else if (object && object.name) {
+    if (object && object.name) {
+        // Checking if file uploaded is photo
         const re = /users\/([\w-]+)\/photo\/profile_photo\.jpeg/;
         const matches = object.name.match(re);
         if (matches) {
-            userId = matches[1];
+            const userId = matches[1];
+            const uuid = UUID();
+            // Setting metadata for photo
+            await bucket.file(object.name).setMetadata({
+                contentType: 'image/jpeg',
+                metadata: {
+                    firebaseStorageDownloadTokens: uuid
+                }
+            });
+            const encodedPhoto = encodeURIComponent(object.name);
+            // Updating user's photoUrl
+            return admin.firestore().collection('users').doc(userId).set({
+                photoUrl: 'https://firebasestorage.googleapis.com/v0/b/' + bucket.name + '/o/' + encodedPhoto + '?alt=media&token=' + uuid
+            }, {merge: true});
         } else {
-            return Promise.reject('Unable to get user id');
+            return Promise.resolve();
         }
     } else {
-        return Promise.reject('Unable to get user id');
+        return Promise.reject('Unable to get object');
     }
 
-    // Checking if file uploaded is profile photo
-    if (object.name === 'users/' + userId + '/photo/profile_photo.jpeg') {
-        const uuid = UUID();
-        // Setting metadata for photo
-        await bucket.file(object.name).setMetadata({
-            contentType: 'image/jpeg',
-            metadata: {
-                firebaseStorageDownloadTokens: uuid
-            }
-        });
-        const encodedPhoto = encodeURIComponent(object.name);
-        // Updating user's photoUrl
-        return admin.firestore().collection('users').doc(userId).set({
-            photoUrl: 'https://firebasestorage.googleapis.com/v0/b/' + bucket.name + '/o/' + encodedPhoto + '?alt=media&token=' + uuid
-        }, {merge: true});
+});
+
+/**
+ * Function to update the user's resumeUrl to their uploaded resume.
+ */
+export const onUploadResume = functions.storage.object().onFinalize(async (object) => {
+
+    if (object && object.name) {
+        // Checking if file uploaded is resume
+        const re = /users\/([\w-]+)\/resume\/resume\.pdf/;
+        const matches = object.name.match(re);
+        if (matches) {
+            const userId = matches[1];
+            const uuid = UUID();
+            // Setting metadata for resume
+            await bucket.file(object.name).setMetadata({
+                contentType: 'application/pdf',
+                metadata: {
+                    firebaseStorageDownloadTokens: uuid
+                }
+            });
+            const encodedResume = encodeURIComponent(object.name);
+            // Updating user's resumeUrl
+            return admin.firestore().collection('users').doc(userId).set({
+                resumeUrl: 'https://firebasestorage.googleapis.com/v0/b/' + bucket.name + '/o/' + encodedResume + '?alt=media&token=' + uuid
+            }, {merge: true});
+        } else {
+            return Promise.resolve();
+        }
     } else {
-        return Promise.resolve();
+        return Promise.reject('Unable to get object');
     }
 
 });

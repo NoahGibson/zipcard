@@ -3,6 +3,7 @@ import {BehaviorSubject, Observable, Subscription} from 'rxjs';
 
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireStorage} from '@angular/fire/storage';
 
 import {User, Credentials} from '@app/core/models';
 import {UserService} from '@app/core/services/user.service';
@@ -49,6 +50,7 @@ export class CurrentUserService {
      */
     constructor(private afAuth: AngularFireAuth,
                 private database: AngularFirestore,
+                private storage: AngularFireStorage,
                 private userService: UserService) {
         this.init();
     }
@@ -134,8 +136,36 @@ export class CurrentUserService {
         }
     }
 
-    public async updatePhoto(photo): Promise<void> {}
+    /**
+     * Updates the user's photo to the given photo in storage. Throws an error if
+     * there was an issue updating the user's photo.
+     *
+     * @param {Uint8Array} photo The byte data for the user's new photo
+     * @returns A promise that evaluates after attempting to update the user's photo
+     */
+    public async updatePhoto(photo: Uint8Array): Promise<void> {
+        try {
+            const storageRef = await this.storage.ref('users/' + this._currentUid + '/photo/profile_photo.jpeg');
+            await storageRef.put(photo, {contentType: 'image/jpeg'});
+        } catch (e) {
+            throw new Error(e.message);
+        }
+    }
 
-    public async updateResume(resume): Promise<void> {}
+    /**
+     * Updates the user's resume to the given resume in storage. Throws an error
+     * if there was an issue updating the user's resume.
+     *
+     * @param {Uint8Array} resume The byte data for the user's new resume
+     * @returns A promise that evaluates after attempting to update the user's resume
+     */
+    public async updateResume(resume: Uint8Array): Promise<void> {
+        try {
+            const storageRef = await this.storage.ref('users/' + this._currentUid + '/resume/resume.pdf');
+            await storageRef.put(resume, {contentType: 'application/pdf'});
+        } catch (e) {
+            throw new Error(e.message);
+        }
+    }
 
 }

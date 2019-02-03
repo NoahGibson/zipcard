@@ -5,7 +5,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 
 import {SharedModule} from '@app/shared';
-
 import {ProfilePage} from './profile.page';
 
 /**

@@ -3,8 +3,6 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Chooser} from '@ionic-native/chooser/ngx';
 
-import {AngularFireStorage} from '@angular/fire/storage';
-
 import {
     AlertService,
     AuthService,
@@ -79,7 +77,6 @@ export class ProfilePage {
      * @ignore
      */
     constructor(private authService: AuthService,
-                private storage: AngularFireStorage,
                 public currentUserService: CurrentUserService,
                 private fb: FormBuilder,
                 private chooser: Chooser,
@@ -301,13 +298,34 @@ export class ProfilePage {
         try {
             const file = await this.chooser.getFile('image/jpeg');
             await this.loadingService.displayLoading('Updating photo...');
-            const storageRef = await this.storage.ref('users/' + this._currentUser.uid + '/photo/profile_photo.jpeg');
-            await storageRef.put(file.data, {contentType: 'image/jpeg'});
+            await this.currentUserService.updatePhoto(file.data);
             await this.loadingService.dismissLoading();
             await this.alertService.presentOkAlert(
                 '',
                 '',
                 'Successfully updated photo. It may take a few seconds for your displayed photo to reflect these changes.'
+            );
+        } catch (e) {
+            await this.loadingService.dismissLoading();
+            throw new Error(e.message);
+        }
+    }
+
+    /**
+     * Prompts the user to select their resume, and then
+     * updates their resume to the selected resume.
+     * @ignore
+     */
+    private async chooseResume(): Promise<void> {
+        try {
+            const file = await this.chooser.getFile('application/pdf');
+            await this.loadingService.displayLoading('Updating resume...');
+            await this.currentUserService.updateResume(file.data);
+            await this.loadingService.dismissLoading();
+            await this.alertService.presentOkAlert(
+                '',
+                '',
+                'Successfully updated resume. It may take a few seconds for your displayed resume to reflect these changes.'
             );
         } catch (e) {
             await this.loadingService.dismissLoading();
