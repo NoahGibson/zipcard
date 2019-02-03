@@ -5,6 +5,11 @@
   align-items: center;
   padding-top: 25px;
   background-image: linear-gradient(rgba(var(--ion-color-medium-rgb), 0.2), rgba(255,255,255, 0));
+
+  .menu-header-title {
+    font-size: 1.3em;
+  }
+
 }
 
 #menu-header-image {
