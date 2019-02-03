@@ -307,7 +307,7 @@ export class ProfilePage {
             await this.alertService.presentOkAlert(
                 '',
                 '',
-                'Successfully updated photo. It may take a few seconds for your displayed photo to update.'
+                'Successfully updated photo. It may take a few seconds for your displayed photo to reflect these changes.'
             );
         } catch (e) {
             await this.loadingService.dismissLoading();
