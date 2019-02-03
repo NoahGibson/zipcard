@@ -260,10 +260,10 @@ export class ProfilePage {
      * updates their photo to the selected photo.
      * @ignore
      */
-    public async choosePhoto(): Promise<void> {
+    private async choosePhoto(): Promise<void> {
         try {
             const file = await this.chooser.getFile('image/jpeg');
-            const storageRef = await this.storage.ref('users/' + this._currentUser.uid + '/photo/profile_photo.jpg');
+            const storageRef = await this.storage.ref('users/' + this._currentUser.uid + '/photo/profile_photo.jpeg');
             await storageRef.put(file.data, {contentType: 'image/jpeg'});
         } catch (e) {
             throw new Error(e.message);
