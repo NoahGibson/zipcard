@@ -4,3 +4,4 @@ export * from './auth';
 export * from './services';
 export * from './navigation';
 export * from './models';
+export * from './overlays';

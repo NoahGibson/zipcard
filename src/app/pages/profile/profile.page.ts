@@ -5,7 +5,7 @@ import {Chooser} from '@ionic-native/chooser/ngx';
 
 import {AngularFireStorage} from '@angular/fire/storage';
 
-import {AuthService, CurrentUserService, User} from '@app/core';
+import {AlertService, AuthService, CurrentUserService, User} from '@app/core';
 
 /**
  * A user's profile page, where they can edit their information.
@@ -76,7 +76,8 @@ export class ProfilePage {
                 private storage: AngularFireStorage,
                 public currentUserService: CurrentUserService,
                 private fb: FormBuilder,
-                private chooser: Chooser) {
+                private chooser: Chooser,
+                private alertService: AlertService) {
         this.initializeCurrentUser();
         this.initializeNameForm();
         this.initializeEmailForm();
@@ -160,11 +161,16 @@ export class ProfilePage {
             return;
         }
         if (data.fullName === this._currentUser.fullName) {
-            this.updateNameError = 'Name is the same';
+            this.updateNameError = 'The provided name is the same';
             return;
         }
         try {
             await this.currentUserService.updateName(data.fullName);
+            await this.alertService.presentOkAlert(
+                '',
+                '',
+                'Successfully updated name.'
+            );
         } catch (e) {
             this.updateNameError = e.message;
         }
@@ -184,7 +190,7 @@ export class ProfilePage {
             return;
         }
         if (data.email === this._currentUser.email) {
-            this.updateEmailError = 'Email is the same';
+            this.updateEmailError = 'The provided email is the same';
             return;
         }
         const credentials = {
@@ -193,6 +199,11 @@ export class ProfilePage {
         };
         try {
             await this.currentUserService.updateEmail(credentials, data.email);
+            await this.alertService.presentOkAlert(
+                '',
+                '',
+                'Successfully updated email.'
+            );
             // TODO - reset form to have an empty password field
         } catch (e) {
             this.updateEmailError = e.message;
@@ -225,7 +236,12 @@ export class ProfilePage {
             password: data.currentPassword
         };
         try {
-            await this.currentUserService.updatePassword(credentials, data.newPassword);
+            await this.currentUserService.updatePassword(credentials, data.newPassword)
+            await this.alertService.presentOkAlert(
+                '',
+                '',
+                'Successfully updated password.'
+            );
             // TODO - reset form to have all blank fields
         } catch (e) {
             this.resetPasswordError = e.message;
@@ -250,6 +266,11 @@ export class ProfilePage {
         };
         try {
             await this.authService.deleteAccount(credentials);
+            await this.alertService.presentOkAlert(
+                '',
+                '',
+                'Successfully deleted account.'
+            );
         } catch (e) {
             this.deleteAccountError = e.message;
         }

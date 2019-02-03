@@ -12,6 +12,7 @@ import {
 } from '@app/core/services';
 import {MenuModule} from '@app/core/menu/menu.module';
 import {MenuComponent} from '@app/core/menu/menu.component';
+import {AlertService} from '@app/core/overlays';
 
 /**
  * Module containing elements of the app that need to only be, and are only, imported once
@@ -33,7 +34,8 @@ import {MenuComponent} from '@app/core/menu/menu.component';
         NavigationService,
         UserService,
         CurrentUserService,
-        SettingsService
+        SettingsService,
+        AlertService
     ]
 })
 export class CoreModule {
