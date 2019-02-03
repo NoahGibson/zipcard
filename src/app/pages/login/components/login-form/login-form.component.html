@@ -8,7 +8,7 @@
                         formControlName="password"></app-text-input>
     </ion-list>
     <div>
-        <div class="form-error">{{ loginError }}</div>
+        <div [appMessage]="'error'">{{ loginError }}</div>
         <app-button id="login-toggle-button"
                     [disabled]="!loginForm.valid"
                     [expand]="true"

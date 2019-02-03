@@ -12,6 +12,7 @@ import {SectionCardComponent} from '@app/shared/components/section-card/section-
 import {ButtonComponent} from '@app/shared/components/button/button.component';
 import {SafePipe} from '@app/shared/pipes/safe.pipe';
 import {ExpandableDirective} from '@app/shared/directives/expandable/expandable.directive';
+import {MessageDirective} from '@app/shared/directives/message/message.directive';
 
 /**
  * Module containing all aspects of the app that are not particular to any one feature or module of
@@ -27,7 +28,8 @@ import {ExpandableDirective} from '@app/shared/directives/expandable/expandable.
         SectionCardComponent,
         ButtonComponent,
         SafePipe,
-        ExpandableDirective
+        ExpandableDirective,
+        MessageDirective
     ],
     imports: [
         CommonModule,
@@ -43,7 +45,8 @@ import {ExpandableDirective} from '@app/shared/directives/expandable/expandable.
         SectionCardComponent,
         ButtonComponent,
         SafePipe,
-        ExpandableDirective
+        ExpandableDirective,
+        MessageDirective
     ]
 })
 export class SharedModule {
