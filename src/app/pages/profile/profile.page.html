@@ -35,7 +35,7 @@
                                         placeholder="Full Name"
                                         formControlName="fullName"></app-text-input>
                     </ion-list>
-                    <div class="form-error">{{ updateNameError }}</div>
+                    <div [appMessage]="'error'">{{ updateNameError }}</div>
                     <app-button id="update-name-confirm-button"
                                 [disabled]="!updateNameForm.valid"
                                 type="submit"
@@ -67,7 +67,7 @@
                                         placeholder="Enter your password"
                                         formControlName="password"></app-text-input>
                     </ion-list>
-                    <div class="form-error">{{ updateEmailError }}</div>
+                    <div [appMessage]="'error'">{{ updateEmailError }}</div>
                     <app-button id="update-email-confirm-button"
                                 [disabled]="!updateEmailForm.valid"
                                 type="submit"
@@ -102,7 +102,7 @@
                                         placeholder="Confirm New Password"
                                         formControlName="confirmNewPassword"></app-text-input>
                     </ion-list>
-                    <div class="form-error">{{ resetPasswordError }}</div>
+                    <div [appMessage]="'error'">{{ resetPasswordError }}</div>
                     <app-button id="reset-password-confirm-button"
                                 [disabled]="!resetPasswordForm.valid"
                                 type="submit"
@@ -130,7 +130,7 @@
                                         placeholder="Password"
                                         formControlName="password"></app-text-input>
                     </ion-list>
-                    <div class="form-error">{{ deleteAccountError }}</div>
+                    <div [appMessage]="'error'">{{ deleteAccountError }}</div>
                     <app-button id="delete-account-confirm-button"
                                 [disabled]="!deleteAccountForm.valid"
                                 type="submit"

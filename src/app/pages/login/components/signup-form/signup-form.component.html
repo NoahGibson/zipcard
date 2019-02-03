@@ -14,7 +14,7 @@
                         formControlName="confirmPassword"></app-text-input>
     </ion-list>
     <div>
-        <div class="form-error">{{ signupError }}</div>
+        <div [appMessage]="'error'">{{ signupError }}</div>
         <app-button id="login-toggle-button"
                     [disabled]="!signupForm.valid"
                     [expand]="true"

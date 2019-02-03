@@ -5,13 +5,13 @@ import {FormsModule} from '@angular/forms';
 
 import {HeaderComponent} from '@app/shared/components/header/header.component';
 import {ResumeChooserComponent} from '@app/shared/components/resume-chooser/resume-chooser.component';
-import {HeaderProfileComponent} from '@app/shared/components/header-profile/header-profile.component';
 import {ResumePreviewComponent} from '@app/shared/components/resume-preview/resume-preview.component';
 import {TextInputComponent} from '@app/shared/components/text-input/text-input.component';
 import {SectionCardComponent} from '@app/shared/components/section-card/section-card.component';
-import {ExpandableComponent} from '@app/shared/components/expandable/expandable.component';
 import {ButtonComponent} from '@app/shared/components/button/button.component';
 import {SafePipe} from '@app/shared/pipes/safe.pipe';
+import {ExpandableDirective} from '@app/shared/directives/expandable/expandable.directive';
+import {MessageDirective} from '@app/shared/directives/message/message.directive';
 
 /**
  * Module containing all aspects of the app that are not particular to any one feature or module of
@@ -22,12 +22,12 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         HeaderComponent,
         ResumeChooserComponent,
         ResumePreviewComponent,
-        HeaderProfileComponent,
         TextInputComponent,
         SectionCardComponent,
-        ExpandableComponent,
         ButtonComponent,
-        SafePipe
+        SafePipe,
+        ExpandableDirective,
+        MessageDirective
     ],
     imports: [
         CommonModule,
@@ -38,12 +38,12 @@ import {SafePipe} from '@app/shared/pipes/safe.pipe';
         HeaderComponent,
         ResumeChooserComponent,
         ResumePreviewComponent,
-        HeaderProfileComponent,
         TextInputComponent,
         SectionCardComponent,
-        ExpandableComponent,
         ButtonComponent,
-        SafePipe
+        SafePipe,
+        ExpandableDirective,
+        MessageDirective
     ]
 })
 export class SharedModule {
