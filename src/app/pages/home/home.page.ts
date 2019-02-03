@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 
-import {AlertService, CurrentUserService} from '@app/core';
+import {CurrentUserService} from '@app/core';
 
 @Component({
   selector: 'app-home',
@@ -9,23 +9,6 @@ import {AlertService, CurrentUserService} from '@app/core';
 })
 export class HomePage {
 
-    constructor(public currentUserService: CurrentUserService,
-                private alertService: AlertService) {}
-
-    async displayMessage() {
-        await this.alertService.presentAlertWithButtons(
-            '',
-            '',
-            'This is a test message popup',
-            [
-                {
-                    text: 'Confirm'
-                },
-                {
-                    text: 'Cancel'
-                }
-            ]
-        );
-    }
+    constructor(public currentUserService: CurrentUserService) {}
 
 }
