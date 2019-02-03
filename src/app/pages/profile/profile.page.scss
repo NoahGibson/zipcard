@@ -8,4 +8,27 @@
     max-width: 500px;
   }
 
+  .profile-image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .profile-image {
+      height: 130px;
+      width: 130px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 10px;
+    }
+
+    #select-profile-photo-button {
+      width: 150px;
+    }
+
+  }
+
+
+
 }

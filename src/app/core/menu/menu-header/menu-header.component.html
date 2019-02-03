@@ -1,10 +1,11 @@
-<div class="menu-header">
-    <!--<div class="menu-header-heading">-->
-        <!--<img id="menu-header-image"-->
-             <!--[src]="(userService.user | async).pictureUrl"-->
-             <!--alt="Profile Image" />-->
-    <!--</div>-->
-    <!--<div class="menu-header-content">-->
-        <!--<h3>{{ (userService.user | async).firstName }} {{ (userService.user | async).lastName }}</h3>-->
-    <!--</div>-->
+<div class="menu-header"
+     *ngIf="(currentUserService.currentUser$ | async)">
+    <div class="menu-header-heading">
+        <img id="menu-header-image"
+             [src]="(currentUserService.currentUser$ | async).photoUrl"
+             alt="Profile Image" />
+    </div>
+    <div class="menu-header-content">
+        <h3>{{ (currentUserService.currentUser$ | async).fullName }}</h3>
+    </div>
 </div>

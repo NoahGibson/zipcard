@@ -63,9 +63,13 @@ export class CurrentUserService {
                 this._currentUid = auth.uid;
                 const userObservable = await this.userService.getUser(this._currentUid);
                 this._userSubscription = userObservable.subscribe((user) => {
+                    if (!user.photoUrl) {
+                        user.photoUrl = 'assets/images/default_profile_photo.png';
+                    }
                     this._currentUser.next(user);
                 });
             } else {
+                this._currentUser.next(null);
                 this._currentUid = null;
                 if (this._userSubscription) {
                     this._userSubscription.unsubscribe();
@@ -85,11 +89,12 @@ export class CurrentUserService {
     public async updateEmail(credentials: Credentials, newEmail: string): Promise<void> {
         try {
             // TODO - use reauthenticateWithCredential instead
-            await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
-            await this.afAuth.auth.currentUser.updateEmail(newEmail);
-            // TODO - make auth.updateEmail and database.updateEmail occur simultaneously
             const userDoc = await this.database.doc<User>(this.USERS_COLLECTION + '/' + this._currentUid);
-            await userDoc.update({email: newEmail});
+            await this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
+            const authPromise = this.afAuth.auth.currentUser.updateEmail(newEmail);
+            const databasePromise = userDoc.update({email: newEmail});
+            await authPromise;
+            await databasePromise;
         } catch (e) {
             throw new Error(e.message);
         }
