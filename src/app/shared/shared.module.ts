@@ -5,7 +5,6 @@ import {FormsModule} from '@angular/forms';
 
 import {HeaderComponent} from '@app/shared/components/header/header.component';
 import {ResumeChooserComponent} from '@app/shared/components/resume-chooser/resume-chooser.component';
-import {HeaderProfileComponent} from '@app/shared/components/header-profile/header-profile.component';
 import {ResumePreviewComponent} from '@app/shared/components/resume-preview/resume-preview.component';
 import {TextInputComponent} from '@app/shared/components/text-input/text-input.component';
 import {SectionCardComponent} from '@app/shared/components/section-card/section-card.component';
@@ -23,7 +22,6 @@ import {MessageDirective} from '@app/shared/directives/message/message.directive
         HeaderComponent,
         ResumeChooserComponent,
         ResumePreviewComponent,
-        HeaderProfileComponent,
         TextInputComponent,
         SectionCardComponent,
         ButtonComponent,
@@ -40,7 +38,6 @@ import {MessageDirective} from '@app/shared/directives/message/message.directive
         HeaderComponent,
         ResumeChooserComponent,
         ResumePreviewComponent,
-        HeaderProfileComponent,
         TextInputComponent,
         SectionCardComponent,
         ButtonComponent,
