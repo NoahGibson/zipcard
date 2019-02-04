@@ -57,11 +57,11 @@
                 <div class="resume-preview-wrapper"
                      *ngIf="(currentUserService.currentUser$ | async)">
                     <div class="resume-preview"
-                         *ngIf="(currentUserService.currentUser$ | async).resumeUrl; else noResume">
-                        <!--<pdf-viewer [src]="(currentUserService.currentUser$ | async).resumeUrl | safe: 'resourceUrl'"></pdf-viewer>-->
-                        <iframe class="resume-preview-frame"
-                                frameborder="0"
-                                [src]="(currentUserService.currentUser$ | async).resumeUrl | safe: 'resourceUrl'"></iframe>
+                         *ngIf="_resume; else noResume">
+                        <pdf-viewer [src]="_resume"
+                                    [original-size]="false"
+                                    [fit-to-page]="true"
+                                    style="display: block;"></pdf-viewer>
                     </div>
                     <ng-template #noResume>
                         <div class="resume-preview" [appMessage]="'info'">
