@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 import {HeaderComponent} from '@app/shared/components/header/header.component';
 import {ResumeChooserComponent} from '@app/shared/components/resume-chooser/resume-chooser.component';
@@ -32,7 +34,9 @@ import {MessageDirective} from '@app/shared/directives/message/message.directive
     imports: [
         CommonModule,
         IonicModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule,
+        PdfViewerModule
     ],
     exports: [
         HeaderComponent,

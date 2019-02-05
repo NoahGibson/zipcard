@@ -12,23 +12,23 @@
                               [expandable]="true"
                               icon="person"
                               id="update-profile-section">
+                <div class="profile-image-wrapper">
+                    <img class="profile-image"
+                         *ngIf="(currentUserService.currentUser$ | async)"
+                         [src]="(currentUserService.currentUser$ | async).photoUrl"
+                         alt="Profile Image" />
+                    <app-button id="select-profile-photo-button"
+                                type="button"
+                                fill="clear"
+                                color="medium"
+                                (click)="choosePhoto()"
+                                [expand]="true">
+                        Select Photo
+                    </app-button>
+                </div>
                 <form (ngSubmit)="updateName()"
                       [formGroup]="updateNameForm"
                       id="update-name-form">
-                    <div class="profile-image-wrapper">
-                        <img class="profile-image"
-                             *ngIf="(currentUserService.currentUser$ | async)"
-                             [src]="(currentUserService.currentUser$ | async).photoUrl"
-                             alt="Profile Image" />
-                        <app-button id="select-profile-photo-button"
-                                    type="button"
-                                    fill="clear"
-                                    color="medium"
-                                    (click)="choosePhoto()"
-                                    [expand]="true">
-                            Select Photo
-                        </app-button>
-                    </div>
                     <ion-list>
                         <app-text-input type="text"
                                         label="Full Name"
@@ -43,6 +43,31 @@
                         Save Changes
                     </app-button>
                 </form>
+            </app-section-card>
+        </div>
+
+        <!-- Update Resume Section -->
+        <div id="update-resume"
+             class="profile-page-card">
+            <app-section-card title="Update Resume"
+                              subtitle="Update your current resume"
+                              [expandable]="true"
+                              icon="document"
+                              id="update-resume-section">
+                <div class="resume-preview-wrapper"
+                     *ngIf="(currentUserService.currentUser$ | async)">
+                    <app-resume-preview
+                            [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl">
+                    </app-resume-preview>
+                </div>
+                <div class="update-resume-wrapper">
+                    <app-button id="select-resume-button"
+                                type="button"
+                                (click)="chooseResume()"
+                                [expand]="true">
+                        Select Resume
+                    </app-button>
+                </div>
             </app-section-card>
         </div>
 
