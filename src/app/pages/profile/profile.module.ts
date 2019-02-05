@@ -3,8 +3,6 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
-import {HttpClientModule} from '@angular/common/http';
-import {PdfViewerModule} from 'ng2-pdf-viewer';
 
 import {SharedModule} from '@app/shared';
 import {ProfilePage} from './profile.page';
@@ -19,8 +17,6 @@ import {ProfilePage} from './profile.page';
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        HttpClientModule,
-        PdfViewerModule,
         RouterModule.forChild([
             {
                 path: '',

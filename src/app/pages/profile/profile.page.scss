@@ -30,13 +30,8 @@
   }
 
   .resume-preview-wrapper {
-    display: flex;
-    justify-content: center;
-
-    .resume-preview {
-      width: 300px;
-    }
-
+    width: 100%;
+    max-width: 300px;
   }
 
   .list-md {

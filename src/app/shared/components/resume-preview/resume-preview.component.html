@@ -1,0 +1,15 @@
+<div class="resume-preview">
+    <div class="resume-preview-wrapper">
+        <pdf-viewer *ngIf="_resume; else noResume"
+                    [src]="_resume"
+                    [original-size]="false"
+                    [fit-to-page]="true"
+                    [show-all]="false"
+                    [render-text]="false"></pdf-viewer>
+        <ng-template  #noResume>
+            <div class="no-resume-wrapper">
+                <p [appMessage]="'info'">No Resume Selected</p>
+            </div>
+        </ng-template>
+    </div>
+</div>

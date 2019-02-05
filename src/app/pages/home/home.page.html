@@ -14,24 +14,11 @@
   </app-header>
 </ion-header>
 
-<ion-content>
+<ion-content color="light">
 
-  <!--<div *ngIf="(resumeService.resume | async).data; else noResume">-->
-    <!--<pdf-viewer [src]="(resumeService.resume | async).data"-->
-                <!--[original-size]="false"-->
-                <!--[fit-to-page]="true"-->
-                <!--style="display: block;"></pdf-viewer>-->
-  <!--</div>-->
-  <!--<ng-template #noResume>-->
-    <!--<div>-->
-      <!--No Resume Selected-->
-    <!--</div>-->
-  <!--</ng-template>-->
+  <div class="resume-preview-wrapper">
+    <app-resume-preview *ngIf="(currentUserService.currentUser$ | async)"
+                        [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl"></app-resume-preview>
+  </div>
 
 </ion-content>
-
-<ion-footer padding-bottom padding-start padding-end
-            style="background-color: var(--ion-color-light)">
-  <app-resume-chooser></app-resume-chooser>
-</ion-footer>
-

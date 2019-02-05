@@ -56,18 +56,9 @@
                               id="update-resume-section">
                 <div class="resume-preview-wrapper"
                      *ngIf="(currentUserService.currentUser$ | async)">
-                    <div class="resume-preview"
-                         *ngIf="_resume; else noResume">
-                        <pdf-viewer [src]="_resume"
-                                    [original-size]="false"
-                                    [fit-to-page]="true"
-                                    style="display: block;"></pdf-viewer>
-                    </div>
-                    <ng-template #noResume>
-                        <div class="resume-preview" [appMessage]="'info'">
-                            No Resume Selected
-                        </div>
-                    </ng-template>
+                    <app-resume-preview
+                            [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl">
+                    </app-resume-preview>
                 </div>
                 <div class="update-resume-wrapper">
                     <app-button id="select-resume-button"

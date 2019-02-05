@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 import {Chooser} from '@ionic-native/chooser/ngx';
-import {HttpClient} from '@angular/common/http';
 
 import {
     AlertService,
@@ -75,18 +74,6 @@ export class ProfilePage {
     private _currentUserSubscription: Subscription;
 
     /**
-     * The subscription to the current user's resume.
-     * @ignore
-     */
-    private _resumeSubscription: Subscription;
-
-    /**
-     * The user's resume.
-     * @ignore
-     */
-    _resume: any;
-
-    /**
      * @ignore
      */
     constructor(private authService: AuthService,
@@ -94,8 +81,7 @@ export class ProfilePage {
                 private fb: FormBuilder,
                 private chooser: Chooser,
                 private alertService: AlertService,
-                private loadingService: LoadingService,
-                private http: HttpClient) {
+                private loadingService: LoadingService) {
         this.initializeCurrentUser();
         this.initializeNameForm();
         this.initializeEmailForm();
@@ -112,9 +98,6 @@ export class ProfilePage {
         if (this._currentUserSubscription) {
             this._currentUserSubscription.unsubscribe();
         }
-        if (this._resumeSubscription) {
-            this._resumeSubscription.unsubscribe();
-        }
     }
 
     /**
@@ -124,11 +107,6 @@ export class ProfilePage {
     private initializeCurrentUser(): void {
         this._currentUserSubscription = this.currentUserService.currentUser$.subscribe((user) => {
             this._currentUser = user;
-            if (this._currentUser && this._currentUser.resumeUrl) {
-                this._resumeSubscription = this.http.get(this._currentUser.resumeUrl, {responseType: 'blob'}).subscribe((resume) => {
-                    this._resume = URL.createObjectURL(resume);
-                });
-            }
         });
     }
 
