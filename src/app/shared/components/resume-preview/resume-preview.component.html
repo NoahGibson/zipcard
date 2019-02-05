@@ -8,7 +8,8 @@
                     [render-text]="false"></pdf-viewer>
         <ng-template  #noResume>
             <div class="no-resume-wrapper">
-                <p [appMessage]="'info'">No Resume Selected</p>
+                <div class="no-resume-message">No Resume Selected</div>
+                <div class="no-resume-icon"><ion-icon name="sad"></ion-icon></div>
             </div>
         </ng-template>
     </div>
