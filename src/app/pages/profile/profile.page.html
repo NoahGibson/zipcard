@@ -57,7 +57,8 @@
                 <div class="resume-preview-wrapper"
                      *ngIf="(currentUserService.currentUser$ | async)">
                     <app-resume-preview
-                            [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl">
+                            [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl"
+                            [inset]="true">
                     </app-resume-preview>
                 </div>
                 <div class="update-resume-wrapper">

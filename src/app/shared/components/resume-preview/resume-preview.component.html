@@ -1,5 +1,6 @@
 <div class="resume-preview">
-    <div class="resume-preview-wrapper">
+    <div class="resume-preview-wrapper"
+         [ngClass]="{'inset': inset}">
         <pdf-viewer *ngIf="_resume; else noResume"
                     [src]="_resume"
                     [original-size]="false"
