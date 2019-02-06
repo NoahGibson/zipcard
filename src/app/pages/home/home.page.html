@@ -5,20 +5,38 @@
       <img id="header-profile-image"
            [src]="(currentUserService.currentUser$ | async).photoUrl"
            alt="" />
-      <div id="header-profile-info">
-        <div id="header-profile-name">
-          <h6 id="header-profile-name-header">{{ (currentUserService.currentUser$ | async).fullName }}</h6>
-        </div>
-      </div>
+      <h6 id="header-profile-name">{{ (currentUserService.currentUser$ | async).fullName }}</h6>
     </div>
   </app-header>
 </ion-header>
 
 <ion-content color="light">
 
-  <div class="resume-preview-wrapper">
-    <app-resume-preview *ngIf="(currentUserService.currentUser$ | async)"
-                        [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl"></app-resume-preview>
+  <div id="home-resume-preview-wrapper">
+    <div id="home-resume-preview">
+      <app-resume-preview *ngIf="(currentUserService.currentUser$ | async)"
+                          [resumeUrl]="(currentUserService.currentUser$ | async).resumeUrl">
+      </app-resume-preview>
+    </div>
+  </div>
+
+  <div id="home-options">
+
+    <div class="option-button">
+      <ion-icon name="arrow-round-up"></ion-icon>
+      <app-button id="send-resume"
+                  [expand]="true">
+        Send
+      </app-button>
+    </div>
+
+    <div class="option-button">
+      <ion-icon name="arrow-round-down"></ion-icon>
+      <app-button id="receive-resume"
+                  [expand]="true">
+        Receive
+      </app-button>
+    </div>
   </div>
 
 </ion-content>

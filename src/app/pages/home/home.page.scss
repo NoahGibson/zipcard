@@ -1,10 +1,3 @@
-#header-profile-toolbar{
-  --padding-top: 0px;
-  --padding-bottom: 0px;
-  --padding-start: 0px;
-  --padding-end: 0px;
-}
-
 #header-profile {
   display: flex;
   flex-direction: row;
@@ -18,11 +11,53 @@
     margin: 0 10px;
   }
 
-  #header-profile-info {
-    font-size: 0.75em;
+  #header-profile-name {
+    font-size: 1em;
+    margin: 5px;
+  }
 
-    #header-profile-name-header {
-      margin: 5px;
+}
+
+#home-resume-preview-wrapper {
+  height: 100%;
+
+  #home-resume-preview {
+    max-width: 500px;
+    margin: auto;
+    padding-top: 5px;
+  }
+
+}
+
+#home-options {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 20%;
+  max-height: 200px;
+  min-height: 75px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: rgba(var(--ion-color-light-rgb), 0.7);
+
+  .option-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    max-width: 300px;
+    min-width: 50px;
+    padding: 15px;
+
+    app-button {
+      width: 100%;
+    }
+
+    ion-icon {
+      color: var(--ion-color-primary);
+      font-size: 25px;
     }
 
   }
