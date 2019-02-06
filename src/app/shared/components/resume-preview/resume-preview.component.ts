@@ -19,6 +19,13 @@ export class ResumePreviewComponent implements OnChanges {
     @Input() resumeUrl: string;
 
     /**
+     * Whether or not the resume preview should be displayed as being "inset"
+     * into the surrounding area. Setting this as true will display a border
+     * around the preview as well as give it a background.
+     */
+    @Input() inset: false;
+
+    /**
      * The resume to preview.
      * @ignore
      */
