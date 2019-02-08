@@ -23,20 +23,29 @@
   <div id="home-options">
 
     <div class="option-button">
-      <ion-icon name="arrow-round-up"></ion-icon>
       <app-button id="send-resume"
-                  [expand]="true">
-        Send
+                  [expand]="true"
+                  [stretch]="true">
+        <div>
+          <ion-icon name="arrow-round-up"></ion-icon>
+          <br/>
+          <label>Send</label>
+        </div>
       </app-button>
     </div>
 
     <div class="option-button">
-      <ion-icon name="arrow-round-down"></ion-icon>
       <app-button id="receive-resume"
-                  [expand]="true">
-        Receive
+                  [expand]="true"
+                  [stretch]="true">
+        <div>
+          <ion-icon name="arrow-round-down"></ion-icon>
+          <br/>
+          <label>Receive</label>
+        </div>
       </app-button>
     </div>
+
   </div>
 
 </ion-content>
