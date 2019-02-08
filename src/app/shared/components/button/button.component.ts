@@ -40,4 +40,14 @@ export class ButtonComponent {
      */
     @Input() expand = false;
 
+    /**
+     * Whether or not the button should stretch to a full height.
+     */
+    @Input() stretch = false;
+
+    /**
+     * If true, the button will have a heavier font weight.
+     */
+    @Input() strong = false;
+
 }
