@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {PopoverController} from '@ionic/angular';
 
-import {CurrentUserService, User} from '@app/core';
+import {AlertService, CurrentUserService, User} from '@app/core';
 import {QRPopoverComponent} from './components/qr-popover/qr-popover.component';
 
 @Component({
@@ -28,6 +28,7 @@ export class HomePage {
      * @ignore
      */
     constructor(public currentUserService: CurrentUserService,
+                private alertService: AlertService,
                 private popoverController: PopoverController) {
         this.initializeCurrentUser();
     }
@@ -53,14 +54,27 @@ export class HomePage {
         });
     }
 
+    /**
+     * Present a QR code to the user containing their uid for reference by another user to fetch
+     * their details. Displays an alert message to the user if their resume is not set.
+     * @ignore
+     */
     async presentQRCode() {
-        const popover = await this.popoverController.create({
-            component: QRPopoverComponent,
-            componentProps: {
-                qrData: this._currentUser.uid
-            }
-        });
-        await popover.present();
+        if (this._currentUser && this._currentUser.resumeUrl) {
+            const popover = await this.popoverController.create({
+                component: QRPopoverComponent,
+                componentProps: {
+                    qrData: this._currentUser.uid
+                }
+            });
+            await popover.present();
+        } else {
+            await this.alertService.presentOkAlert(
+                'You don\'t have a resume set!',
+                '',
+                'Upload your resume on the Profile page to send it.'
+            );
+        }
     }
 
 }
