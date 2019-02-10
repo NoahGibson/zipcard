@@ -25,7 +25,8 @@
     <div class="option-button">
       <app-button id="send-resume"
                   [expand]="true"
-                  [stretch]="true">
+                  [stretch]="true"
+                  (click)="presentQRCode()">
         <div>
           <ion-icon name="arrow-round-up"></ion-icon>
           <br/>
