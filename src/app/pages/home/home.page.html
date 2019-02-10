@@ -12,6 +12,7 @@
 
 <ion-content color="light">
 
+  <!-- The preview of the user's resume, if one exists -->
   <div id="home-resume-preview-wrapper">
     <div id="home-resume-preview">
       <app-resume-preview *ngIf="(currentUserService.currentUser$ | async)"
@@ -20,12 +21,15 @@
     </div>
   </div>
 
+  <!-- The send and receive buttons on the page -->
   <div id="home-options">
 
+    <!-- Send button -->
     <div class="option-button">
       <app-button id="send-resume"
                   [expand]="true"
-                  [stretch]="true">
+                  [stretch]="true"
+                  (click)="presentQRCode()">
         <div>
           <ion-icon name="arrow-round-up"></ion-icon>
           <br/>
@@ -34,6 +38,7 @@
       </app-button>
     </div>
 
+    <!-- Receive button -->
     <div class="option-button">
       <app-button id="receive-resume"
                   [expand]="true"
