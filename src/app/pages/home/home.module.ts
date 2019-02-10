@@ -9,6 +9,9 @@ import {HomePage} from './home.page';
 import {QRPopoverComponent} from './components/qr-popover/qr-popover.component';
 import {SharedModule} from '@app/shared';
 
+/**
+ * Module containing all elements specific to the [Home Page]{@link HomePage} functionality.
+ */
 @NgModule({
     imports: [
         CommonModule,

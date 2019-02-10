@@ -175,7 +175,7 @@ export class ProfilePage {
             await this.currentUserService.updateName(data.fullName);
             await this.loadingService.dismissLoading();
             await this.alertService.presentOkAlert(
-                '',
+                'Success!',
                 '',
                 'Successfully updated name.'
             );
@@ -211,7 +211,7 @@ export class ProfilePage {
             await this.currentUserService.updateEmail(credentials, data.email);
             await this.loadingService.dismissLoading();
             await this.alertService.presentOkAlert(
-                '',
+                'Success!',
                 '',
                 'Successfully updated email.'
             );
@@ -252,7 +252,7 @@ export class ProfilePage {
             await this.currentUserService.updatePassword(credentials, data.newPassword);
             await this.loadingService.dismissLoading();
             await this.alertService.presentOkAlert(
-                '',
+                'Success!',
                 '',
                 'Successfully updated password.'
             );
@@ -282,9 +282,9 @@ export class ProfilePage {
         try {
             await this.authService.deleteAccount(credentials);
             await this.alertService.presentOkAlert(
+                'Success!',
                 '',
-                '',
-                'Successfully deleted account.'
+                'Successfully deleted account. Sorry to see you go!'
             );
         } catch (e) {
             this.deleteAccountError = e.message;
@@ -303,7 +303,7 @@ export class ProfilePage {
             await this.currentUserService.updatePhoto(file.data);
             await this.loadingService.dismissLoading();
             await this.alertService.presentOkAlert(
-                '',
+                'Success!',
                 '',
                 'Successfully updated photo. It may take a few seconds for your displayed photo to reflect these changes.'
             );
@@ -325,7 +325,7 @@ export class ProfilePage {
             await this.currentUserService.updateResume(file.data);
             await this.loadingService.dismissLoading();
             await this.alertService.presentOkAlert(
-                '',
+                'Success!',
                 '',
                 'Successfully updated resume. It may take a few seconds for your displayed resume to reflect these changes.'
             );
