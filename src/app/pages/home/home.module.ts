@@ -8,6 +8,7 @@ import {QRCodeModule} from 'angularx-qrcode';
 import {HomePage} from './home.page';
 import {QRPopoverComponent} from './components/qr-popover/qr-popover.component';
 import {SharedModule} from '@app/shared';
+import {Brightness} from '@ionic-native/brightness/ngx';
 
 /**
  * Module containing all elements specific to the [Home Page]{@link HomePage} functionality.
@@ -33,6 +34,9 @@ import {SharedModule} from '@app/shared';
     declarations: [
         HomePage,
         QRPopoverComponent
+    ],
+    providers: [
+        Brightness
     ]
 })
 export class HomePageModule {}

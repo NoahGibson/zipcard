@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {PopoverController} from '@ionic/angular';
+import {Brightness} from '@ionic-native/brightness/ngx';
 
 import {AlertService, CurrentUserService, User} from '@app/core';
 import {QRPopoverComponent} from './components/qr-popover/qr-popover.component';
@@ -29,7 +30,8 @@ export class HomePage {
      */
     constructor(public currentUserService: CurrentUserService,
                 private alertService: AlertService,
-                private popoverController: PopoverController) {
+                private popoverController: PopoverController,
+                private brightness: Brightness) {
         this.initializeCurrentUser();
     }
 
@@ -57,17 +59,32 @@ export class HomePage {
     /**
      * Present a QR code to the user containing their uid for reference by another user to fetch
      * their details. Displays an alert message to the user if their resume is not set.
-     * @ignore
+     *
+     * @returns A promise that resolves after displaying the QR code to the user
      */
-    async presentQRCode() {
+    private async presentQRCode(): Promise<void> {
         if (this._currentUser && this._currentUser.resumeUrl) {
+
+            // Creating popover
             const popover = await this.popoverController.create({
                 component: QRPopoverComponent,
                 componentProps: {
                     qrData: this._currentUser.uid
                 }
             });
-            await popover.present();
+
+            // Getting current brightness, and creating function to reset brightness
+            const oldBrightness = await this.brightness.getBrightness();
+            popover.onWillDismiss().then(async () => {
+                await this.brightness.setBrightness(oldBrightness);
+            });
+
+            // Setting brightness to 100% and displaying qr code
+            const popoverPresent = popover.present();
+            const brightnessChange = this.brightness.setBrightness(1);
+            await popoverPresent;
+            await brightnessChange;
+
         } else {
             await this.alertService.presentOkAlert(
                 'You don\'t have a resume set!',
