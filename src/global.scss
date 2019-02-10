@@ -12,10 +12,21 @@
 
 @import url('https://fonts.googleapis.com/css?family=Libre+Franklin|Open+Sans');
 
+/* Setting the default font for the app */
 body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* Setting the font for the headers of the app */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Libre Franklin', sans-serif;
+}
+
+/* Setting how to position popover content on the page by default */
+ion-popover {
+  div.popover-content {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
 }

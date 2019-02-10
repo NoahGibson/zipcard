@@ -1,1 +1,10 @@
-<qrcode [qrdata]="qrData" [size]="128" [level]="'M'"></qrcode>
+<div id="qr-code-popup">
+    <qrcode [qrdata]="qrData"
+            [size]="128"
+            [level]="'M'"
+            id="qr-code"></qrcode>
+    <div id="qr-code-message">
+        Have another user scan this code to view your resume!
+    </div>
+</div>
+

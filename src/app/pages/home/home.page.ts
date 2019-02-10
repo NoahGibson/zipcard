@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-
-import {CurrentUserService, User} from '@app/core';
 import {Subscription} from 'rxjs';
 import {PopoverController} from '@ionic/angular';
-import {PopoverPage} from '@app/core/popover/popover.page';
-import {QRPopoverComponent} from '@app/pages/home/components/qr-popover/qr-popover.component';
+
+import {CurrentUserService, User} from '@app/core';
+import {QRPopoverComponent} from './components/qr-popover/qr-popover.component';
 
 @Component({
   selector: 'app-home',

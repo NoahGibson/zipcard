@@ -1,0 +1,13 @@
+#qr-code-popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  text-align: center;
+
+  #qr-code {
+    margin: 10px;
+  }
+
+}

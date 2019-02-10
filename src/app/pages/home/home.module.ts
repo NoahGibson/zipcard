@@ -3,11 +3,11 @@ import {CommonModule} from '@angular/common';
 import {IonicModule} from '@ionic/angular';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
+import {QRCodeModule} from 'angularx-qrcode';
 
 import {HomePage} from './home.page';
+import {QRPopoverComponent} from './components/qr-popover/qr-popover.component';
 import {SharedModule} from '@app/shared';
-import {QRPopoverComponent} from '@app/pages/home/components/qr-popover/qr-popover.component';
-import {QRCodeModule} from 'angularx-qrcode';
 
 @NgModule({
     imports: [
