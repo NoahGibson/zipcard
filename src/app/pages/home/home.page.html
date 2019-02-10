@@ -42,7 +42,8 @@
     <div class="option-button">
       <app-button id="receive-resume"
                   [expand]="true"
-                  [stretch]="true">
+                  [stretch]="true"
+                  (click)="presentQRScanner()">
         <div>
           <ion-icon name="arrow-round-down"></ion-icon>
           <br/>
