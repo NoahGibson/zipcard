@@ -10,6 +10,14 @@ found [here](https://console.firebase.google.com/project/zipcard-65375/overview)
 Trello is used for managing project tasks. The board for Zipcard can either be accessed via the Boards tab within the
 Bitbucket repo, or at [this link](https://trello.com/b/VJMLUXao/zipcard).
 
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/28206685/150871628-116c869a-6e3c-4bfc-9ce0-47e1697e620a.png" width="20%" />
+  <img src="https://user-images.githubusercontent.com/28206685/150871741-0849ce64-c012-4eb2-b87d-571ce1dbe0e9.png" width="20%" /> 
+  <img src="https://user-images.githubusercontent.com/28206685/150871663-0b6b144c-1a1e-49bf-8a0b-db2607e24e76.png" width="20%" />
+  <img src="https://user-images.githubusercontent.com/28206685/150871673-49e38ead-8fe8-4291-b5bd-db86519c7b9b.png" width="20%" />
+</p>
+
+
 ### Contents
 
 - [How to use Git](#markdown-header-how-to-use-git)
